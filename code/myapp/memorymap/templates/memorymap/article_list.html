@@ -1,18 +1,10 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Memorymap</title>
-  <style>body{padding: 10px;}</style> 
-</head>
-<body>
+{% extends './base.html' %}
+{% block content %}
   <h1>記事一覧</h1>
-
   {% for article in object_list %}
-  <p>
-    {{ article.category.name }},{{ article.title }}
-  </p>
+    <p>
+      {{ article.category.name }},{{ article.title }}
+    </p>
+    <img src="{{article.image.url}}" alt="{{ article.title }}">
   {% endfor %}
-</body>
-</html>
+{% endblock %}
