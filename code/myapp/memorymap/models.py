@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -15,7 +16,7 @@ class Category(models.Model):
 class Article(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField(max_length=2000)
-    image = models.ImageField(upload_to='article_images/')
+    image = models.ImageField(null=True,blank=True,upload_to='article_images/')
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -35,3 +36,6 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse('memorymap:detail', kwargs={'pk': self.pk})
