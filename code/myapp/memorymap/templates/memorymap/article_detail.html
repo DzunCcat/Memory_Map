@@ -1,0 +1,32 @@
+{% extends './base.html' %}
+{% block content %}
+
+<h1>{{ article.title }}</h1>
+<div>
+    <p>{{ article.category.name }}</p>
+    <p>{{ article.content }}</p>
+    {% if article.image.url is not NULL %}
+    <img src="{{article.image.url}}" alt="{{ article.title }}">
+    {% endif %}
+</div>
+
+
+
+<div>
+  <script type="module" src="./article_detail.js"></script>
+  <div id="map"></div>
+    <div id="pano"></div>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1JzoyI8N7Ju0cccYnOVvAftcdy-c5JAg&callback=initialize&v1=fenway"
+      defer
+    >
+  </script>
+</div>
+
+<div>| 
+    <a href='{% url "memorymap:index" %}'>一覧</a> |
+    <a href='{% url "memorymap:update" article.pk %}'>編集</a> |
+    <a href='{% url "memorymap:delete" article.pk %}'>削除</a> |
+</div>
+
+{% endblock %}
