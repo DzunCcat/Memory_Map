@@ -10,17 +10,21 @@
     {% endif %}
 </div>
 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<link rel="stylesheet" href="./article_detail.css">
+<script type="module" src="./article_detail.js"></script>
 
 
-<div>
-  <script type="module" src="./article_detail.js"></script>
-  <div id="map"></div>
-    <div id="pano"></div>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1JzoyI8N7Ju0cccYnOVvAftcdy-c5JAg&callback=initialize&v1=fenway"
+<div class="body">
+
+  <div id="street-view"></div>
+
+  <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1JzoyI8N7Ju0cccYnOVvAftcdy-c5JAg&callback=initialize&v1=weekly"
       defer
-    >
-  </script>
+  ></script>
+
+  <!-- <img src="https://maps.googleapis.com/maps/api/streetview?size=400x400&location={{article.latitude}},{{article.longitude}}&fov=80&heading=70&pitch=0&key=AIzaSyC1JzoyI8N7Ju0cccYnOVvAftcdy-c5JAg"> -->
 </div>
 
 <div>| 

@@ -132,3 +132,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #Media setting
 MEDIA_URL = ''
 MEDIA_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) 
+
+
+GOOGLE_MAPS_API_KEY = 'AIzaSyC1JzoyI8N7Ju0cccYnOVvAftcdy-c5JAg'
