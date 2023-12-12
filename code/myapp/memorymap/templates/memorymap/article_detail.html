@@ -11,20 +11,24 @@
 </div>
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<link rel="stylesheet" href="./article_detail.css">
-<script type="module" src="./article_detail.js"></script>
+<link rel="stylesheet" href="../../static/App_Folder_css/article_detail.css">
+
 
 
 <div class="body">
 
-  <div id="street-view"></div>
+    <div id="street-view" data-latitude="{{ article.latitude }}" data-longitude="{{ article.longitude }}"></div>
 
-  <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1JzoyI8N7Ju0cccYnOVvAftcdy-c5JAg&callback=initialize&v1=weekly"
-      defer
-  ></script>
+    <script>
+        window.onload = function() {
+          initialize();  // ここで initialize 関数を呼び出す
+        };
+    </script>
 
-  <!-- <img src="https://maps.googleapis.com/maps/api/streetview?size=400x400&location={{article.latitude}},{{article.longitude}}&fov=80&heading=70&pitch=0&key=AIzaSyC1JzoyI8N7Ju0cccYnOVvAftcdy-c5JAg"> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&v=weekly" defer></script>
+    <script type="module" src="../../static/js/article_detail.js"></script>
+
+    <!-- <img src="https://maps.googleapis.com/maps/api/streetview?size=400x400&location={{article.latitude}},{{article.longitude}}&fov=80&heading=70&pitch=0&key=AIzaSyC1JzoyI8N7Ju0cccYnOVvAftcdy-c5JAg"> -->
 </div>
 
 <div>| 

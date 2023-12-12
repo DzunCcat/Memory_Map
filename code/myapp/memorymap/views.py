@@ -7,9 +7,11 @@ class IndexView(generic.ListView):
     model = Article
 
 class DetailView(generic.DetailView):
-    api_key = settings.GOOGLE_MAPS_API_KEY
     model = Article
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['google_maps_api_key'] = settings.GOOGLE_MAPS_API_KEY
+        return context
 
 class CreateView(generic.edit.CreateView):
     model = Article
