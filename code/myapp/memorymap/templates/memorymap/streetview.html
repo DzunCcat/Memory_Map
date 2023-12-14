@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Map and Street View</title>
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #map,
+    #pano {
+      float: left;
+      height: 100%;
+      width: 50%;
+    }
+  </style>
+
+  <script>
+    const LIMIT = 30; // 移動回数の上限値
+    const START_LAT_LNG = { lat: 33.6964215, lng: 130.6859688 }; // 開始地点の緯度、経度
+    const START_HEADING = 180; // 開始時の方角
+
+    function initMap() {
+        const map = new google.maps.Map(document.getElementById("map"), {
+            center: START_LAT_LNG,
+            zoom: 14,
+        });
+        const panorama = new google.maps.StreetViewPanorama(
+            document.getElementById("pano"),
+            {
+                position: START_LAT_LNG,
+                pov: {
+                    heading: 34,
+                    pitch: 10,
+                },
+            }
+        );
+
+        map.setStreetView(panorama);
+    }
+
+    window.initialize = initMap;
+  </script>
+
+</head>
+
+<body>
+  <div id="map"></div>
+  <div id="pano"></div>
+
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.52&key=AIzaSyC1JzoyI8N7Ju0cccYnOVvAftcdy-c5JAg&callback=initMap"
+        defer></script>
+</body>
+
+</html>
