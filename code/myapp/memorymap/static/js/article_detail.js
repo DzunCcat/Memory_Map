@@ -1,18 +1,31 @@
 'use strict';
 
-function initialize() {
-  let panorama;
-  let latitude = parseFloat(document.getElementById("street-view").getAttribute("data-latitude"));
-  let longitude = parseFloat(document.getElementById("street-view").getAttribute("data-longitude"));
+{
+  const LIMIT = 30; // 移動回数の上限値
+  const START_LAT_LNG = { lat: {{lat}}, lng: {{lng}} }; // 開始地点の緯度、経度
+  const START_HEADING = 180; // 開始時の方角
 
-  let position = new google.maps.LatLng({ lat: latitude, lng: longitude });
+  function initMap() {
+      const map = new google.maps.Map(document.getElementById("map"), {
+          center: START_LAT_LNG,
+          zoom: 14,
+      });
+      const panorama = new google.maps.StreetViewPanorama(
+          document.getElementById("pano"),
+          {
+              position: START_LAT_LNG,
+              pov: {
+                  heading: 34,
+                  pitch: 10,
+              },
+          }
+      );
 
-  panorama = new google.maps.StreetViewPanorama(
-    document.getElementById("street-view"),
-    {
-      position: position,
-      pov: { heading: 165, pitch: 0 },
-      zoom: 1,
-    },
-  );
-}
+      map.setStreetView(panorama);
+  }
+
+    window.initialize = initMap;
+    
+    // Add a declaration or statement here
+
+  }

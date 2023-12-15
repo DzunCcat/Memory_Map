@@ -11,11 +11,78 @@
 </div>
 
 <!-- <link rel="stylesheet" href="../../static/App_Folder_css/article_detail.css"> -->
+<style>
+    /* html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    } */
 
-<iframe src="{% url 'memorymap:streetview' article.pk %}" width="100%" height="1000">
-</iframe>
+    #map,
+    #pano {
+        float: left;
+        height: 100%;
+        width: 50%;
+    }
+</style>
 
-<div>| 
+
+
+<script>
+    const LIMIT = 10; // 移動回数の上限値
+    let count = 0; // 移動回数
+    const START_LAT_LNG = { lat: {{lat}}, lng: {{lng}} }; // 開始地点の緯度、経度
+    const START_HEADING = 180; // 開始時の方角
+
+    function initMap() {
+        const map = new google.maps.Map(document.getElementById("map"), {
+            center: START_LAT_LNG,
+            zoom: 14,
+        });
+        const panorama = new google.maps.StreetViewPanorama(
+            document.getElementById("pano"),
+            {
+                position: START_LAT_LNG,
+                pov: {
+                    heading: 34,
+                    pitch: 10,
+                },
+            }
+        );
+
+        panorama.addListener("position_changed", () => {
+            count++;
+
+            if (count > LIMIT) {
+                count = 0;
+                alert("移動回数の上限に達しました。");
+
+                // apiを使えなくする
+                panorama.setVisible(false);
+                map.setStreetView(null);
+            }
+        });
+
+        map.setStreetView(panorama);
+    }
+
+    window.initialize = initMap;
+
+</script>
+<div id="googleMaps" style="display: flex; ">
+    <div id="map" style="width: 50%; height: 400px;"></div>
+    <div id="pano" style="width: 50%; height: 400px;"></div>
+</div>
+
+
+
+<script
+    src="{{streetview_url}}"
+    defer></script>
+
+
+<div>|
     <a href='{% url "memorymap:index" %}'>一覧</a> |
     <a href='{% url "memorymap:update" article.pk %}'>編集</a> |
     <a href='{% url "memorymap:delete" article.pk %}'>削除</a> |

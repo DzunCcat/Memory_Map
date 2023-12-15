@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts.apps.AccountsConfig',
     'memorymap.apps.MemorymapConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'myapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,6 +71,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'myapp.wsgi.application'
+
+LOGIN_REDIRECT_URL = '/'
+
 
 
 # Database
@@ -121,8 +125,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-
+#後で詰める
 STATIC_URL = 'static/'
+# STATIC_URL = '/memorymap/static/'
+# STATIC_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -131,8 +139,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Media setting
 MEDIA_URL = ''
-MEDIA_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) 
+MEDIA_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+
+#Google Maps API Key
 GOOGLE_MAPS_API_KEY = 'AIzaSyC1JzoyI8N7Ju0cccYnOVvAftcdy-c5JAg'
-X_FRAME_OPTIONS = 'SAMEORIGIN'
+X_FRAME_OPTIONS = 'sameorigin'
