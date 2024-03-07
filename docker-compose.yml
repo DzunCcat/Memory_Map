@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  web:
+    build: . 
+    tty: true
+    volumes:
+      - ./Memory_Map/code:/workspace 
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    user: "1000:1000" 
+  db:
+    image: postgres
+    volumes:
+        - postgres_data:/var/lib/postgresql/data 
+    environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: password
+        POSTGRES_DB: Memorymap
+  pgadmin4:
+    image: dpage/pgadmin4
+    ports:
+        - 8888:80
+    volumes:
+        - pgadmin4_data:/var/lib/pgadmin
+    environment:
+        PGADMIN_DEFAULT_EMAIL: sanokut0914@gmail.com
+        PGADMIN_DEFAULT_PASSWORD: password
+    depends_on:
+      - db
+volumes:
+    postgres_data:
+      driver: local
+    pgadmin4_data:
+    
