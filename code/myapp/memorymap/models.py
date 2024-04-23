@@ -48,7 +48,7 @@ from django.utils.deconstruct import deconstructible
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from django.utils import timezone
-from django.utils.text import slugify
+from autoslug import AutoSlugField
 from mptt.models import MPTTModel, TreeForeignKey
 
 import re
@@ -76,26 +76,16 @@ class User(AbstractUser):
     profile_picture = models.ImageField(upload_to='profile_pics/',default='profile_pics/default.jpg', blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
     birthday = models.DateField(blank=True, null=True)
-    slug = models.SlugField(null=True, blank=True, unique=True)  # Slugフィールドの定義
+    slug = AutoSlugField(populate_from='username', unique=True, always_update=True)
 
-    def save(self, *args, **kwargs):
-        try:
-            if not self.slug:
-                base_slug = slugify(self.username)
-                new_slug = base_slug
-                counter = 1
-                max_attempts = 10
-            while User.objects.filter(slug=new_slug).exists():
-                if counter >= max_attempts:
-                    raise ValidationError(_('Unable to generate a unique slug.'))
-                new_slug = f"{base_slug}-{counter}"
-                counter += 1
-            self.slug = new_slug
-            super(User, self).save(*args, **kwargs)
-        except IntegrityError as e:
-            # エラーログを出力し、カスタムエラーを発生
-            logger.error(f"Error saving user: {e}")
-            raise ValidationError("Database error, unable to save the user.")
+def save(self, *args, **kwargs):
+    try:
+        super(User, self).save(*args, **kwargs)
+        
+    except IntegrityError as e:
+        logger.error(f"Error saving user: {e}")
+        raise ValidationError("Database error, unable to save the user.")
+
 
 # Post Model
 class Post(models.Model):

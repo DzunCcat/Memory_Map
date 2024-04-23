@@ -1,3 +1,5 @@
+
+#version 0.1 code
 # from django.urls import reverse_lazy
 # from django.views import generic
 # from .models import Category, Article
@@ -57,18 +59,19 @@
     
 #     success_url = reverse_lazy('memorymap:index')
 
-
-from django.shortcuts import render,redirect
-from django.views.generic import TemplateView, ListView, CreateView
+#new code
+from django.shortcuts import render,redirect, get_object_or_404
+from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
 
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
 
 from django.urls import reverse_lazy
 
-from .models import User, Post
-from .forms import CustomUserCreationForm
+from .models import User, Post, Media, Follower, Comment
+from .forms import CustomUserCreationForm, PostForm, CommentForm
 
 class HomeView(LoginRequiredMixin,ListView):
     model = Post
@@ -79,10 +82,9 @@ class HomeView(LoginRequiredMixin,ListView):
 class LoginView(LoginView):
     template_name = 'login.html'
     redirect_authenticated_user = True
-    next_page = '/'
 
-    # def get_success_url(self):
-    #     return reverse_lazy('home')
+    def get_success_url(self):
+        return reverse_lazy('home')
 
 class LogoutView(LogoutView):
     next_page = '/login/'
@@ -94,16 +96,20 @@ class RegisterView(CreateView):
 
 class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'profile.html'
-    login_url = '/login/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        username = kwargs.get('username')
-        user = User.objects.get(username=username)
-        context['user'] = user
-        context['posts'] = Post.objects.filter(author=user)
+        user = get_object_or_404(User, username=self.kwargs.get('username', self.request.user.username))
+
+        context.update({
+            'user': user,
+            'posts': Post.objects.filter(author=user).order_by('-created_at'),
+            'followers': Follower.objects.filter(followed=user).count(),
+            'following': Follower.objects.filter(follower=user).count(),
+            'is_following': self.request.user.is_authenticated and Follower.objects.filter(follower=self.request.user, followed=user).exists()
+        })
         return context
-    
+
 class NewsFeedView(LoginRequiredMixin, ListView):
     model = Post
     template_name = 'news_feed.html'
@@ -113,24 +119,85 @@ class NewsFeedView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Post.objects.filter(author__in=self.request.user.followed.all())
 
-class CreatePostView(LoginRequiredMixin, CreateView):
-    model = Post
-    fields = ['content', 'content_type', 'title', 'visibility', 'thumbnail']
-    template_name = 'create_post.html'
-    success_url = reverse_lazy('news_feed')
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-    
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['content', 'content_type', 'visibility']
-    template_name = 'post_form.html'
-    success_url = reverse_lazy('home')
+    form_class = PostForm
+    template_name = 'posts/post_form.html'
+    success_url = reverse_lazy('home')  # Homeページにリダイレクト
+
+    # old code
+    # def form_valid(self, form):
+    #     form.instance.author = self.request.user  # 投稿の作者を自動的に設定
+    #     return super().form_valid(form)
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
+        form.instance.author = self.request.user  # 投稿の作者を自動的に設定
+        response = super(PostCreateView, self).form_valid(form)  # Postオブジェクトを保存
+        media_files = self.request.FILES.getlist('media')  # フォームから送信されたメディアファイルを取得
+        for file in media_files:
+            Media.objects.create(post=self.object, file=file)  # 各メディアファイルを新しいMediaオブジェクトとして保存
+        return response
 
+    def get_form(self, form_class=None):
+        form = super(PostCreateView, self).get_form(form_class)
+        # フォームの動的設定
+        if 'content_type' in form.fields:
+            form.fields['content_type'].widget.attrs.update({'onchange': 'updateFormFields();'})
+        return form
+
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'post_detail.html'
+    context_object_name = 'post'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment_form'] = CommentForm()  # コメントフォームをコンテキストに追加
+        context['comments'] = Comment.objects.filter(post=self.object).order_by('-created_at')  # コメントを新しいものから順に表示
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = self.object
+            comment.user = request.user  # コメント投稿者
+            comment.save()
+            return redirect(self.object.get_absolute_url())
+        return self.get(request, *args, **kwargs)
     
+class CommentDetailView(DetailView):
+    model = Comment
+    template_name = 'comment_detail.html'
+    context_object_name = 'comment'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # ここで追加のコンテキストを設定する場合はここに書きます
+        return context
+
+
+class PostUpdateView(LoginRequiredMixin, UpdateView):
+    model = Post
+    form_class = PostForm
+    template_name = 'posts/post_form.html'
+    success_url = reverse_lazy('home')
+
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if obj.author != self.request.user:
+            raise PermissionDenied('You do not have permission to edit this post.')
+        return super().dispatch(request, *args, **kwargs)
+
+
+class PostDeleteView(LoginRequiredMixin, DeleteView):
+    model = Post
+    template_name = 'posts/post_confirm_delete.html'
+    success_url = reverse_lazy('home')
+
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if obj.author != self.request.user:
+            raise PermissionDenied('You do not have permission to delete this post.')
+        return super().dispatch(request, *args, **kwargs)
