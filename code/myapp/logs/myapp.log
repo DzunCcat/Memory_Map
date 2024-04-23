@@ -1,0 +1,560 @@
+DEBUG 2024-04-17 14:46:42,069 utils 74 139917566864256 (0.003) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 14:47:09,599 utils 75 140222266157952 (0.003) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 14:47:09,612 utils 75 140222266157952 (0.005) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-04-17 14:47:09,616 utils 75 140222266157952 (0.002) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 14:47:09,618 utils 75 140222266157952 (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-04-17 14:47:09,699 utils 75 140222266157952 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 14:47:09,701 utils 75 140222266157952 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 14:47:09,702 utils 75 140222266157952 (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-04-17 14:47:09,709 utils 75 140222266157952 (0.004) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'mptt'; args=('mptt',)
+DEBUG 2024-04-17 14:47:09,713 utils 75 140222266157952 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'mptt'; args=('mptt',)
+DEBUG 2024-04-17 14:47:09,715 utils 75 140222266157952 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',)
+DEBUG 2024-04-17 14:47:09,719 utils 75 140222266157952 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'admin' AND "django_content_type"."model" = 'logentry') LIMIT 21; args=('admin', 'logentry')
+DEBUG 2024-04-17 14:47:09,727 utils 75 140222266157952 (0.005) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (3) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(3,)
+DEBUG 2024-04-17 14:47:09,730 utils 75 140222266157952 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',)
+DEBUG 2024-04-17 14:47:09,732 utils 75 140222266157952 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',)
+DEBUG 2024-04-17 14:47:09,734 utils 75 140222266157952 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'permission') LIMIT 21; args=('auth', 'permission')
+DEBUG 2024-04-17 14:47:09,739 utils 75 140222266157952 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'group') LIMIT 21; args=('auth', 'group')
+DEBUG 2024-04-17 14:47:09,742 utils 75 140222266157952 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'user') LIMIT 21; args=('auth', 'user')
+DEBUG 2024-04-17 14:47:09,745 utils 75 140222266157952 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (4, 5, 6) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(4, 5, 6)
+DEBUG 2024-04-17 14:47:09,747 utils 75 140222266157952 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',)
+DEBUG 2024-04-17 14:47:09,750 utils 75 140222266157952 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',)
+DEBUG 2024-04-17 14:47:09,756 utils 75 140222266157952 (0.004) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'contenttypes' AND "django_content_type"."model" = 'contenttype') LIMIT 21; args=('contenttypes', 'contenttype')
+DEBUG 2024-04-17 14:47:09,765 utils 75 140222266157952 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (7) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(7,)
+DEBUG 2024-04-17 14:47:09,767 utils 75 140222266157952 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',)
+DEBUG 2024-04-17 14:47:09,769 utils 75 140222266157952 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',)
+DEBUG 2024-04-17 14:47:09,771 utils 75 140222266157952 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'sessions' AND "django_content_type"."model" = 'session') LIMIT 21; args=('sessions', 'session')
+DEBUG 2024-04-17 14:47:09,774 utils 75 140222266157952 (0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (8) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(8,)
+DEBUG 2024-04-17 14:47:09,775 utils 75 140222266157952 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',)
+DEBUG 2024-04-17 14:52:46,960 utils 76 140280125356928 (0.004) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 14:52:46,969 utils 76 140280125356928 (0.001) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-04-17 14:52:56,973 utils 77 140194595982208 (0.002) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 14:52:56,978 utils 77 140194595982208 (0.001) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-04-17 14:52:56,981 utils 77 140194595982208 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 14:52:56,983 utils 77 140194595982208 (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-04-17 14:52:57,092 utils 77 140194595982208 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 14:52:57,094 utils 77 140194595982208 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 14:52:57,096 utils 77 140194595982208 (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-04-17 14:52:57,099 utils 77 140194595982208 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'memorymap'; args=('memorymap',)
+DEBUG 2024-04-17 14:52:57,119 utils 77 140194595982208 (0.009) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('memorymap', 'hashtag'), ('memorymap', 'post'), ('memorymap', 'tag'), ('memorymap', 'user'), ('memorymap', 'userposttag'), ('memorymap', 'repost'), ('memorymap', 'notification'), ('memorymap', 'media'), ('memorymap', 'like'), ('memorymap', 'follower'), ('memorymap', 'directmessage'), ('memorymap', 'comment'), ('memorymap', 'posthashtag') RETURNING "django_content_type"."id"; args=('memorymap', 'hashtag', 'memorymap', 'post', 'memorymap', 'tag', 'memorymap', 'user', 'memorymap', 'userposttag', 'memorymap', 'repost', 'memorymap', 'notification', 'memorymap', 'media', 'memorymap', 'like', 'memorymap', 'follower', 'memorymap', 'directmessage', 'memorymap', 'comment', 'memorymap', 'posthashtag')
+DEBUG 2024-04-17 14:52:57,130 utils 77 140194595982208 (0.005) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'hashtag') LIMIT 21; args=('memorymap', 'hashtag')
+DEBUG 2024-04-17 14:52:57,142 utils 77 140194595982208 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'post') LIMIT 21; args=('memorymap', 'post')
+DEBUG 2024-04-17 14:52:57,145 utils 77 140194595982208 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'tag') LIMIT 21; args=('memorymap', 'tag')
+DEBUG 2024-04-17 14:52:57,147 utils 77 140194595982208 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'user') LIMIT 21; args=('memorymap', 'user')
+DEBUG 2024-04-17 14:52:57,150 utils 77 140194595982208 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'userposttag') LIMIT 21; args=('memorymap', 'userposttag')
+DEBUG 2024-04-17 14:52:57,152 utils 77 140194595982208 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'repost') LIMIT 21; args=('memorymap', 'repost')
+DEBUG 2024-04-17 14:52:57,154 utils 77 140194595982208 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'notification') LIMIT 21; args=('memorymap', 'notification')
+DEBUG 2024-04-17 14:52:57,157 utils 77 140194595982208 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'media') LIMIT 21; args=('memorymap', 'media')
+DEBUG 2024-04-17 14:52:57,160 utils 77 140194595982208 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'like') LIMIT 21; args=('memorymap', 'like')
+DEBUG 2024-04-17 14:52:57,162 utils 77 140194595982208 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'follower') LIMIT 21; args=('memorymap', 'follower')
+DEBUG 2024-04-17 14:52:57,164 utils 77 140194595982208 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'directmessage') LIMIT 21; args=('memorymap', 'directmessage')
+DEBUG 2024-04-17 14:52:57,166 utils 77 140194595982208 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'comment') LIMIT 21; args=('memorymap', 'comment')
+DEBUG 2024-04-17 14:52:57,168 utils 77 140194595982208 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'posthashtag') LIMIT 21; args=('memorymap', 'posthashtag')
+DEBUG 2024-04-17 14:52:57,172 utils 77 140194595982208 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21)
+DEBUG 2024-04-17 14:52:57,178 utils 77 140194595982208 (0.002) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add hashtag', 9, 'add_hashtag'), ('Can change hashtag', 9, 'change_hashtag'), ('Can delete hashtag', 9, 'delete_hashtag'), ('Can view hashtag', 9, 'view_hashtag'), ('Can add Post', 10, 'add_post'), ('Can change Post', 10, 'change_post'), ('Can delete Post', 10, 'delete_post'), ('Can view Post', 10, 'view_post'), ('Can add tag', 11, 'add_tag'), ('Can change tag', 11, 'change_tag'), ('Can delete tag', 11, 'delete_tag'), ('Can view tag', 11, 'view_tag'), ('Can add user', 12, 'add_user'), ('Can change user', 12, 'change_user'), ('Can delete user', 12, 'delete_user'), ('Can view user', 12, 'view_user'), ('Can add user post tag', 13, 'add_userposttag'), ('Can change user post tag', 13, 'change_userposttag'), ('Can delete user post tag', 13, 'delete_userposttag'), ('Can view user post tag', 13, 'view_userposttag'), ('Can add repost', 14, 'add_repost'), ('Can change repost', 14, 'change_repost'), ('Can delete repost', 14, 'delete_repost'), ('Can view repost', 14, 'view_repost'), ('Can add notification', 15, 'add_notification'), ('Can change notification', 15, 'change_notification'), ('Can delete notification', 15, 'delete_notification'), ('Can view notification', 15, 'view_notification'), ('Can add Media', 16, 'add_media'), ('Can change Media', 16, 'change_media'), ('Can delete Media', 16, 'delete_media'), ('Can view Media', 16, 'view_media'), ('Can add like', 17, 'add_like'), ('Can change like', 17, 'change_like'), ('Can delete like', 17, 'delete_like'), ('Can view like', 17, 'view_like'), ('Can add follower', 18, 'add_follower'), ('Can change follower', 18, 'change_follower'), ('Can delete follower', 18, 'delete_follower'), ('Can view follower', 18, 'view_follower'), ('Can add direct message', 19, 'add_directmessage'), ('Can change direct message', 19, 'change_directmessage'), ('Can delete direct message', 19, 'delete_directmessage'), ('Can view direct message', 19, 'view_directmessage'), ('Can add comment', 20, 'add_comment'), ('Can change comment', 20, 'change_comment'), ('Can delete comment', 20, 'delete_comment'), ('Can view comment', 20, 'view_comment'), ('Can add post hashtag', 21, 'add_posthashtag'), ('Can change post hashtag', 21, 'change_posthashtag'), ('Can delete post hashtag', 21, 'delete_posthashtag'), ('Can view post hashtag', 21, 'view_posthashtag') RETURNING "auth_permission"."id"; args=('Can add hashtag', 9, 'add_hashtag', 'Can change hashtag', 9, 'change_hashtag', 'Can delete hashtag', 9, 'delete_hashtag', 'Can view hashtag', 9, 'view_hashtag', 'Can add Post', 10, 'add_post', 'Can change Post', 10, 'change_post', 'Can delete Post', 10, 'delete_post', 'Can view Post', 10, 'view_post', 'Can add tag', 11, 'add_tag', 'Can change tag', 11, 'change_tag', 'Can delete tag', 11, 'delete_tag', 'Can view tag', 11, 'view_tag', 'Can add user', 12, 'add_user', 'Can change user', 12, 'change_user', 'Can delete user', 12, 'delete_user', 'Can view user', 12, 'view_user', 'Can add user post tag', 13, 'add_userposttag', 'Can change user post tag', 13, 'change_userposttag', 'Can delete user post tag', 13, 'delete_userposttag', 'Can view user post tag', 13, 'view_userposttag', 'Can add repost', 14, 'add_repost', 'Can change repost', 14, 'change_repost', 'Can delete repost', 14, 'delete_repost', 'Can view repost', 14, 'view_repost', 'Can add notification', 15, 'add_notification', 'Can change notification', 15, 'change_notification', 'Can delete notification', 15, 'delete_notification', 'Can view notification', 15, 'view_notification', 'Can add Media', 16, 'add_media', 'Can change Media', 16, 'change_media', 'Can delete Media', 16, 'delete_media', 'Can view Media', 16, 'view_media', 'Can add like', 17, 'add_like', 'Can change like', 17, 'change_like', 'Can delete like', 17, 'delete_like', 'Can view like', 17, 'view_like', 'Can add follower', 18, 'add_follower', 'Can change follower', 18, 'change_follower', 'Can delete follower', 18, 'delete_follower', 'Can view follower', 18, 'view_follower', 'Can add direct message', 19, 'add_directmessage', 'Can change direct message', 19, 'change_directmessage', 'Can delete direct message', 19, 'delete_directmessage', 'Can view direct message', 19, 'view_directmessage', 'Can add comment', 20, 'add_comment', 'Can change comment', 20, 'change_comment', 'Can delete comment', 20, 'delete_comment', 'Can view comment', 20, 'view_comment', 'Can add post hashtag', 21, 'add_posthashtag', 'Can change post hashtag', 21, 'change_posthashtag', 'Can delete post hashtag', 21, 'delete_posthashtag', 'Can view post hashtag', 21, 'view_posthashtag')
+DEBUG 2024-04-17 14:52:57,183 utils 77 140194595982208 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'memorymap'; args=('memorymap',)
+DEBUG 2024-04-17 14:52:57,185 utils 77 140194595982208 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'mptt'; args=('mptt',)
+DEBUG 2024-04-17 14:52:57,189 utils 77 140194595982208 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'mptt'; args=('mptt',)
+DEBUG 2024-04-17 14:52:57,191 utils 77 140194595982208 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',)
+DEBUG 2024-04-17 14:52:57,193 utils 77 140194595982208 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'admin' AND "django_content_type"."model" = 'logentry') LIMIT 21; args=('admin', 'logentry')
+DEBUG 2024-04-17 14:52:57,196 utils 77 140194595982208 (0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (3) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(3,)
+DEBUG 2024-04-17 14:52:57,198 utils 77 140194595982208 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',)
+DEBUG 2024-04-17 14:52:57,200 utils 77 140194595982208 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',)
+DEBUG 2024-04-17 14:52:57,202 utils 77 140194595982208 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'permission') LIMIT 21; args=('auth', 'permission')
+DEBUG 2024-04-17 14:52:57,207 utils 77 140194595982208 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'group') LIMIT 21; args=('auth', 'group')
+DEBUG 2024-04-17 14:52:57,209 utils 77 140194595982208 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'user') LIMIT 21; args=('auth', 'user')
+DEBUG 2024-04-17 14:52:57,212 utils 77 140194595982208 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (4, 5, 6) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(4, 5, 6)
+DEBUG 2024-04-17 14:52:57,214 utils 77 140194595982208 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',)
+DEBUG 2024-04-17 14:52:57,216 utils 77 140194595982208 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',)
+DEBUG 2024-04-17 14:52:57,218 utils 77 140194595982208 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'contenttypes' AND "django_content_type"."model" = 'contenttype') LIMIT 21; args=('contenttypes', 'contenttype')
+DEBUG 2024-04-17 14:52:57,222 utils 77 140194595982208 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (7) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(7,)
+DEBUG 2024-04-17 14:52:57,223 utils 77 140194595982208 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',)
+DEBUG 2024-04-17 14:52:57,225 utils 77 140194595982208 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',)
+DEBUG 2024-04-17 14:52:57,227 utils 77 140194595982208 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'sessions' AND "django_content_type"."model" = 'session') LIMIT 21; args=('sessions', 'session')
+DEBUG 2024-04-17 14:52:57,231 utils 77 140194595982208 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (8) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(8,)
+DEBUG 2024-04-17 14:52:57,234 utils 77 140194595982208 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',)
+DEBUG 2024-04-17 14:57:45,756 utils 78 140544759667584 (0.002) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 14:57:48,704 utils 78 140544759667584 (0.004) TRUNCATE "auth_group", "auth_user", "auth_user_user_permissions", "auth_group_permissions", "django_admin_log", "django_content_type", "auth_permission", "django_session", "auth_user_groups" RESTART IDENTITY;; args=None
+DEBUG 2024-04-17 15:16:24,005 utils 88 140122949200768 (0.003) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 15:16:24,020 utils 88 140122949200768 (0.002) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-04-17 15:16:24,024 utils 88 140122949200768 (0.002) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 15:16:24,026 utils 88 140122949200768 (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-04-17 15:16:24,141 utils 88 140122949200768 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 15:16:24,142 utils 88 140122949200768 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 15:16:24,144 utils 88 140122949200768 (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-04-17 15:16:24,146 utils 88 140122949200768 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'memorymap'; args=('memorymap',)
+DEBUG 2024-04-17 15:16:24,148 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'hashtag') LIMIT 21; args=('memorymap', 'hashtag')
+DEBUG 2024-04-17 15:16:24,151 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'post') LIMIT 21; args=('memorymap', 'post')
+DEBUG 2024-04-17 15:16:24,153 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'tag') LIMIT 21; args=('memorymap', 'tag')
+DEBUG 2024-04-17 15:16:24,155 utils 88 140122949200768 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'user') LIMIT 21; args=('memorymap', 'user')
+DEBUG 2024-04-17 15:16:24,157 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'userposttag') LIMIT 21; args=('memorymap', 'userposttag')
+DEBUG 2024-04-17 15:16:24,158 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'repost') LIMIT 21; args=('memorymap', 'repost')
+DEBUG 2024-04-17 15:16:24,160 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'notification') LIMIT 21; args=('memorymap', 'notification')
+DEBUG 2024-04-17 15:16:24,162 utils 88 140122949200768 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'media') LIMIT 21; args=('memorymap', 'media')
+DEBUG 2024-04-17 15:16:24,164 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'like') LIMIT 21; args=('memorymap', 'like')
+DEBUG 2024-04-17 15:16:24,165 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'follower') LIMIT 21; args=('memorymap', 'follower')
+DEBUG 2024-04-17 15:16:24,167 utils 88 140122949200768 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'directmessage') LIMIT 21; args=('memorymap', 'directmessage')
+DEBUG 2024-04-17 15:16:24,169 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'comment') LIMIT 21; args=('memorymap', 'comment')
+DEBUG 2024-04-17 15:16:24,171 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'posthashtag') LIMIT 21; args=('memorymap', 'posthashtag')
+DEBUG 2024-04-17 15:16:24,176 utils 88 140122949200768 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21)
+DEBUG 2024-04-17 15:16:24,178 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'memorymap'; args=('memorymap',)
+DEBUG 2024-04-17 15:16:24,180 utils 88 140122949200768 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'mptt'; args=('mptt',)
+DEBUG 2024-04-17 15:16:24,182 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'mptt'; args=('mptt',)
+DEBUG 2024-04-17 15:16:24,183 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',)
+DEBUG 2024-04-17 15:16:24,185 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'admin' AND "django_content_type"."model" = 'logentry') LIMIT 21; args=('admin', 'logentry')
+DEBUG 2024-04-17 15:16:24,187 utils 88 140122949200768 (0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (3) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(3,)
+DEBUG 2024-04-17 15:16:24,189 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',)
+DEBUG 2024-04-17 15:16:24,190 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',)
+DEBUG 2024-04-17 15:16:24,192 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'permission') LIMIT 21; args=('auth', 'permission')
+DEBUG 2024-04-17 15:16:24,193 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'group') LIMIT 21; args=('auth', 'group')
+DEBUG 2024-04-17 15:16:24,195 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'user') LIMIT 21; args=('auth', 'user')
+DEBUG 2024-04-17 15:16:24,197 utils 88 140122949200768 (0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (4, 5, 6) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(4, 5, 6)
+DEBUG 2024-04-17 15:16:24,199 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',)
+DEBUG 2024-04-17 15:16:24,200 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',)
+DEBUG 2024-04-17 15:16:24,202 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'contenttypes' AND "django_content_type"."model" = 'contenttype') LIMIT 21; args=('contenttypes', 'contenttype')
+DEBUG 2024-04-17 15:16:24,205 utils 88 140122949200768 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (7) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(7,)
+DEBUG 2024-04-17 15:16:24,207 utils 88 140122949200768 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',)
+DEBUG 2024-04-17 15:16:24,210 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',)
+DEBUG 2024-04-17 15:16:24,213 utils 88 140122949200768 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'sessions' AND "django_content_type"."model" = 'session') LIMIT 21; args=('sessions', 'session')
+DEBUG 2024-04-17 15:16:24,216 utils 88 140122949200768 (0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (8) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(8,)
+DEBUG 2024-04-17 15:16:24,217 utils 88 140122949200768 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',)
+DEBUG 2024-04-17 15:25:03,246 utils 90 139633190599552 (0.004) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 15:25:03,251 utils 90 139633190599552 (0.001) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-04-17 15:25:03,254 utils 90 139633190599552 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 15:25:03,257 utils 90 139633190599552 (0.002) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-04-17 15:25:03,390 utils 90 139633190599552 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 15:25:03,398 utils 90 139633190599552 (0.003) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 15:25:03,400 utils 90 139633190599552 (0.001) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-04-17 15:25:03,406 utils 90 139633190599552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'memorymap'; args=('memorymap',)
+DEBUG 2024-04-17 15:25:03,408 utils 90 139633190599552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'hashtag') LIMIT 21; args=('memorymap', 'hashtag')
+DEBUG 2024-04-17 15:25:03,411 utils 90 139633190599552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'post') LIMIT 21; args=('memorymap', 'post')
+DEBUG 2024-04-17 15:25:03,413 utils 90 139633190599552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'tag') LIMIT 21; args=('memorymap', 'tag')
+DEBUG 2024-04-17 15:25:03,417 utils 90 139633190599552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'user') LIMIT 21; args=('memorymap', 'user')
+DEBUG 2024-04-17 15:25:03,419 utils 90 139633190599552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'userposttag') LIMIT 21; args=('memorymap', 'userposttag')
+DEBUG 2024-04-17 15:25:03,422 utils 90 139633190599552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'repost') LIMIT 21; args=('memorymap', 'repost')
+DEBUG 2024-04-17 15:25:03,425 utils 90 139633190599552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'notification') LIMIT 21; args=('memorymap', 'notification')
+DEBUG 2024-04-17 15:25:03,428 utils 90 139633190599552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'media') LIMIT 21; args=('memorymap', 'media')
+DEBUG 2024-04-17 15:25:03,430 utils 90 139633190599552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'like') LIMIT 21; args=('memorymap', 'like')
+DEBUG 2024-04-17 15:25:03,432 utils 90 139633190599552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'follower') LIMIT 21; args=('memorymap', 'follower')
+DEBUG 2024-04-17 15:25:03,436 utils 90 139633190599552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'directmessage') LIMIT 21; args=('memorymap', 'directmessage')
+DEBUG 2024-04-17 15:25:03,438 utils 90 139633190599552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'comment') LIMIT 21; args=('memorymap', 'comment')
+DEBUG 2024-04-17 15:25:03,441 utils 90 139633190599552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'posthashtag') LIMIT 21; args=('memorymap', 'posthashtag')
+DEBUG 2024-04-17 15:25:03,448 utils 90 139633190599552 (0.002) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21)
+DEBUG 2024-04-17 15:25:03,450 utils 90 139633190599552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'memorymap'; args=('memorymap',)
+DEBUG 2024-04-17 15:25:03,453 utils 90 139633190599552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'mptt'; args=('mptt',)
+DEBUG 2024-04-17 15:25:03,456 utils 90 139633190599552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'mptt'; args=('mptt',)
+DEBUG 2024-04-17 15:25:03,458 utils 90 139633190599552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',)
+DEBUG 2024-04-17 15:25:03,460 utils 90 139633190599552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'admin' AND "django_content_type"."model" = 'logentry') LIMIT 21; args=('admin', 'logentry')
+DEBUG 2024-04-17 15:25:03,464 utils 90 139633190599552 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (3) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(3,)
+DEBUG 2024-04-17 15:25:03,467 utils 90 139633190599552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',)
+DEBUG 2024-04-17 15:25:03,470 utils 90 139633190599552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',)
+DEBUG 2024-04-17 15:25:03,473 utils 90 139633190599552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'permission') LIMIT 21; args=('auth', 'permission')
+DEBUG 2024-04-17 15:25:03,479 utils 90 139633190599552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'group') LIMIT 21; args=('auth', 'group')
+DEBUG 2024-04-17 15:25:03,482 utils 90 139633190599552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'user') LIMIT 21; args=('auth', 'user')
+DEBUG 2024-04-17 15:25:03,485 utils 90 139633190599552 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (4, 5, 6) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(4, 5, 6)
+DEBUG 2024-04-17 15:25:03,488 utils 90 139633190599552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',)
+DEBUG 2024-04-17 15:25:03,490 utils 90 139633190599552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',)
+DEBUG 2024-04-17 15:25:03,493 utils 90 139633190599552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'contenttypes' AND "django_content_type"."model" = 'contenttype') LIMIT 21; args=('contenttypes', 'contenttype')
+DEBUG 2024-04-17 15:25:03,499 utils 90 139633190599552 (0.002) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (7) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(7,)
+DEBUG 2024-04-17 15:25:03,504 utils 90 139633190599552 (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',)
+DEBUG 2024-04-17 15:25:03,507 utils 90 139633190599552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',)
+DEBUG 2024-04-17 15:25:03,510 utils 90 139633190599552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'sessions' AND "django_content_type"."model" = 'session') LIMIT 21; args=('sessions', 'session')
+DEBUG 2024-04-17 15:25:03,515 utils 90 139633190599552 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (8) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(8,)
+DEBUG 2024-04-17 15:25:03,517 utils 90 139633190599552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',)
+DEBUG 2024-04-17 15:30:39,351 utils 91 139694101252992 (0.003) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 15:30:39,359 utils 91 139694101252992 (0.002) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-04-17 15:30:58,241 utils 92 139882123996032 (0.003) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 15:30:58,247 utils 92 139882123996032 (0.001) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-04-17 15:30:58,249 utils 92 139882123996032 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 15:30:58,255 utils 92 139882123996032 (0.005) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-04-17 15:30:58,270 utils 92 139882123996032 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 15:30:58,273 schema 92 139882123996032 CREATE TABLE "memorymap_hashtag" ("id" bigserial NOT NULL PRIMARY KEY, "tag" varchar(100) NOT NULL UNIQUE); (params None)
+DEBUG 2024-04-17 15:30:58,294 utils 92 139882123996032 (0.021) CREATE TABLE "memorymap_hashtag" ("id" bigserial NOT NULL PRIMARY KEY, "tag" varchar(100) NOT NULL UNIQUE); args=None
+DEBUG 2024-04-17 15:30:58,298 schema 92 139882123996032 CREATE TABLE "memorymap_post" ("id" bigserial NOT NULL PRIMARY KEY, "content" text NOT NULL, "content_type" varchar(100) NOT NULL, "title" varchar(255) NULL, "visibility" varchar(10) NOT NULL, "created_at" timestamp with time zone NOT NULL, "updated_at" timestamp with time zone NOT NULL, "thumbnail" varchar(100) NULL, "uuid" uuid NOT NULL); (params None)
+DEBUG 2024-04-17 15:30:58,305 utils 92 139882123996032 (0.007) CREATE TABLE "memorymap_post" ("id" bigserial NOT NULL PRIMARY KEY, "content" text NOT NULL, "content_type" varchar(100) NOT NULL, "title" varchar(255) NULL, "visibility" varchar(10) NOT NULL, "created_at" timestamp with time zone NOT NULL, "updated_at" timestamp with time zone NOT NULL, "thumbnail" varchar(100) NULL, "uuid" uuid NOT NULL); args=None
+DEBUG 2024-04-17 15:30:58,307 schema 92 139882123996032 CREATE TABLE "memorymap_tag" ("id" bigserial NOT NULL PRIMARY KEY, "name" varchar(100) NOT NULL); (params None)
+DEBUG 2024-04-17 15:30:58,312 utils 92 139882123996032 (0.004) CREATE TABLE "memorymap_tag" ("id" bigserial NOT NULL PRIMARY KEY, "name" varchar(100) NOT NULL); args=None
+DEBUG 2024-04-17 15:30:58,324 schema 92 139882123996032 CREATE TABLE "memorymap_user" ("id" bigserial NOT NULL PRIMARY KEY, "password" varchar(128) NOT NULL, "last_login" timestamp with time zone NULL, "is_superuser" boolean NOT NULL, "username" varchar(150) NOT NULL UNIQUE, "first_name" varchar(150) NOT NULL, "last_name" varchar(150) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" boolean NOT NULL, "is_active" boolean NOT NULL, "date_joined" timestamp with time zone NOT NULL, "profile_picture" varchar(100) NULL, "bio" text NULL, "birthday" date NULL, "slug" varchar(50) NULL UNIQUE); (params None)
+DEBUG 2024-04-17 15:30:58,336 utils 92 139882123996032 (0.012) CREATE TABLE "memorymap_user" ("id" bigserial NOT NULL PRIMARY KEY, "password" varchar(128) NOT NULL, "last_login" timestamp with time zone NULL, "is_superuser" boolean NOT NULL, "username" varchar(150) NOT NULL UNIQUE, "first_name" varchar(150) NOT NULL, "last_name" varchar(150) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" boolean NOT NULL, "is_active" boolean NOT NULL, "date_joined" timestamp with time zone NOT NULL, "profile_picture" varchar(100) NULL, "bio" text NULL, "birthday" date NULL, "slug" varchar(50) NULL UNIQUE); args=None
+DEBUG 2024-04-17 15:30:58,337 schema 92 139882123996032 CREATE TABLE "memorymap_user_groups" ("id" bigserial NOT NULL PRIMARY KEY, "user_id" bigint NOT NULL, "group_id" integer NOT NULL); (params None)
+DEBUG 2024-04-17 15:30:58,341 utils 92 139882123996032 (0.003) CREATE TABLE "memorymap_user_groups" ("id" bigserial NOT NULL PRIMARY KEY, "user_id" bigint NOT NULL, "group_id" integer NOT NULL); args=None
+DEBUG 2024-04-17 15:30:58,342 schema 92 139882123996032 CREATE TABLE "memorymap_user_user_permissions" ("id" bigserial NOT NULL PRIMARY KEY, "user_id" bigint NOT NULL, "permission_id" integer NOT NULL); (params None)
+DEBUG 2024-04-17 15:30:58,348 utils 92 139882123996032 (0.006) CREATE TABLE "memorymap_user_user_permissions" ("id" bigserial NOT NULL PRIMARY KEY, "user_id" bigint NOT NULL, "permission_id" integer NOT NULL); args=None
+DEBUG 2024-04-17 15:30:58,363 schema 92 139882123996032 CREATE TABLE "memorymap_userposttag" ("id" bigserial NOT NULL PRIMARY KEY, "post_id" bigint NOT NULL, "tag_id" bigint NOT NULL, "user_id" bigint NOT NULL); (params None)
+DEBUG 2024-04-17 15:30:58,368 utils 92 139882123996032 (0.004) CREATE TABLE "memorymap_userposttag" ("id" bigserial NOT NULL PRIMARY KEY, "post_id" bigint NOT NULL, "tag_id" bigint NOT NULL, "user_id" bigint NOT NULL); args=None
+DEBUG 2024-04-17 15:30:58,386 schema 92 139882123996032 CREATE TABLE "memorymap_repost" ("id" bigserial NOT NULL PRIMARY KEY, "created_at" timestamp with time zone NOT NULL, "original_post_id" bigint NOT NULL, "reposted_by_id" bigint NOT NULL); (params None)
+DEBUG 2024-04-17 15:30:58,390 utils 92 139882123996032 (0.004) CREATE TABLE "memorymap_repost" ("id" bigserial NOT NULL PRIMARY KEY, "created_at" timestamp with time zone NOT NULL, "original_post_id" bigint NOT NULL, "reposted_by_id" bigint NOT NULL); args=None
+DEBUG 2024-04-17 15:30:58,405 schema 92 139882123996032 ALTER TABLE "memorymap_post" ADD COLUMN "author_id" bigint NOT NULL CONSTRAINT "memorymap_post_author_id_821b0ceb_fk_memorymap_user_id" REFERENCES "memorymap_user"("id") DEFERRABLE INITIALLY DEFERRED; SET CONSTRAINTS "memorymap_post_author_id_821b0ceb_fk_memorymap_user_id" IMMEDIATE; (params [])
+DEBUG 2024-04-17 15:30:58,408 utils 92 139882123996032 (0.002) ALTER TABLE "memorymap_post" ADD COLUMN "author_id" bigint NOT NULL CONSTRAINT "memorymap_post_author_id_821b0ceb_fk_memorymap_user_id" REFERENCES "memorymap_user"("id") DEFERRABLE INITIALLY DEFERRED; SET CONSTRAINTS "memorymap_post_author_id_821b0ceb_fk_memorymap_user_id" IMMEDIATE; args=[]
+DEBUG 2024-04-17 15:30:58,451 schema 92 139882123996032 CREATE TABLE "memorymap_notification" ("id" bigserial NOT NULL PRIMARY KEY, "notification_type" varchar(10) NOT NULL, "text" text NOT NULL, "created_at" timestamp with time zone NOT NULL, "is_read" boolean NOT NULL, "post_id" bigint NULL, "recipient_id" bigint NOT NULL, "sender_id" bigint NOT NULL); (params None)
+DEBUG 2024-04-17 15:30:58,462 utils 92 139882123996032 (0.011) CREATE TABLE "memorymap_notification" ("id" bigserial NOT NULL PRIMARY KEY, "notification_type" varchar(10) NOT NULL, "text" text NOT NULL, "created_at" timestamp with time zone NOT NULL, "is_read" boolean NOT NULL, "post_id" bigint NULL, "recipient_id" bigint NOT NULL, "sender_id" bigint NOT NULL); args=None
+DEBUG 2024-04-17 15:30:58,479 schema 92 139882123996032 CREATE TABLE "memorymap_media" ("id" bigserial NOT NULL PRIMARY KEY, "media_type" varchar(10) NOT NULL, "file" varchar(100) NOT NULL, "created_at" timestamp with time zone NOT NULL, "post_id" bigint NOT NULL); (params None)
+DEBUG 2024-04-17 15:30:58,483 utils 92 139882123996032 (0.004) CREATE TABLE "memorymap_media" ("id" bigserial NOT NULL PRIMARY KEY, "media_type" varchar(10) NOT NULL, "file" varchar(100) NOT NULL, "created_at" timestamp with time zone NOT NULL, "post_id" bigint NOT NULL); args=None
+DEBUG 2024-04-17 15:30:58,503 schema 92 139882123996032 CREATE TABLE "memorymap_like" ("id" bigserial NOT NULL PRIMARY KEY, "created_at" timestamp with time zone NOT NULL, "post_id" bigint NOT NULL, "user_id" bigint NOT NULL); (params None)
+DEBUG 2024-04-17 15:30:58,508 utils 92 139882123996032 (0.005) CREATE TABLE "memorymap_like" ("id" bigserial NOT NULL PRIMARY KEY, "created_at" timestamp with time zone NOT NULL, "post_id" bigint NOT NULL, "user_id" bigint NOT NULL); args=None
+DEBUG 2024-04-17 15:30:58,529 schema 92 139882123996032 CREATE TABLE "memorymap_follower" ("id" bigserial NOT NULL PRIMARY KEY, "followed_id" bigint NOT NULL, "follower_id" bigint NOT NULL); (params None)
+DEBUG 2024-04-17 15:30:58,540 utils 92 139882123996032 (0.010) CREATE TABLE "memorymap_follower" ("id" bigserial NOT NULL PRIMARY KEY, "followed_id" bigint NOT NULL, "follower_id" bigint NOT NULL); args=None
+DEBUG 2024-04-17 15:30:58,578 schema 92 139882123996032 CREATE TABLE "memorymap_directmessage" ("id" bigserial NOT NULL PRIMARY KEY, "message" text NOT NULL, "sent_at" timestamp with time zone NOT NULL, "read_at" timestamp with time zone NULL, "recipient_id" bigint NOT NULL, "sender_id" bigint NOT NULL); (params None)
+DEBUG 2024-04-17 15:30:58,586 utils 92 139882123996032 (0.006) CREATE TABLE "memorymap_directmessage" ("id" bigserial NOT NULL PRIMARY KEY, "message" text NOT NULL, "sent_at" timestamp with time zone NOT NULL, "read_at" timestamp with time zone NULL, "recipient_id" bigint NOT NULL, "sender_id" bigint NOT NULL); args=None
+DEBUG 2024-04-17 15:30:58,609 schema 92 139882123996032 CREATE TABLE "memorymap_comment" ("id" bigserial NOT NULL PRIMARY KEY, "content" text NOT NULL, "created_at" timestamp with time zone NOT NULL, "lft" integer NOT NULL CHECK ("lft" >= 0), "rght" integer NOT NULL CHECK ("rght" >= 0), "tree_id" integer NOT NULL CHECK ("tree_id" >= 0), "level" integer NOT NULL CHECK ("level" >= 0), "parent_id" bigint NULL, "post_id" bigint NOT NULL, "user_id" bigint NOT NULL); (params None)
+DEBUG 2024-04-17 15:30:58,627 utils 92 139882123996032 (0.017) CREATE TABLE "memorymap_comment" ("id" bigserial NOT NULL PRIMARY KEY, "content" text NOT NULL, "created_at" timestamp with time zone NOT NULL, "lft" integer NOT NULL CHECK ("lft" >= 0), "rght" integer NOT NULL CHECK ("rght" >= 0), "tree_id" integer NOT NULL CHECK ("tree_id" >= 0), "level" integer NOT NULL CHECK ("level" >= 0), "parent_id" bigint NULL, "post_id" bigint NOT NULL, "user_id" bigint NOT NULL); args=None
+DEBUG 2024-04-17 15:30:58,650 schema 92 139882123996032 CREATE TABLE "memorymap_posthashtag" ("id" bigserial NOT NULL PRIMARY KEY, "hashtag_id" bigint NOT NULL, "post_id" bigint NOT NULL); (params None)
+DEBUG 2024-04-17 15:30:58,655 utils 92 139882123996032 (0.004) CREATE TABLE "memorymap_posthashtag" ("id" bigserial NOT NULL PRIMARY KEY, "hashtag_id" bigint NOT NULL, "post_id" bigint NOT NULL); args=None
+DEBUG 2024-04-17 15:30:58,672 schema 92 139882123996032 CREATE INDEX "memorymap_p_created_4261dc_idx" ON "memorymap_post" ("created_at", "author_id"); (params None)
+DEBUG 2024-04-17 15:30:58,676 utils 92 139882123996032 (0.003) CREATE INDEX "memorymap_p_created_4261dc_idx" ON "memorymap_post" ("created_at", "author_id"); args=None
+DEBUG 2024-04-17 15:30:58,705 schema 92 139882123996032 ALTER TABLE "memorymap_like" ADD CONSTRAINT "memorymap_like_post_id_user_id_7c34d051_uniq" UNIQUE ("post_id", "user_id"); (params ())
+DEBUG 2024-04-17 15:30:58,710 utils 92 139882123996032 (0.005) ALTER TABLE "memorymap_like" ADD CONSTRAINT "memorymap_like_post_id_user_id_7c34d051_uniq" UNIQUE ("post_id", "user_id"); args=()
+DEBUG 2024-04-17 15:30:58,726 schema 92 139882123996032 ALTER TABLE "memorymap_follower" ADD CONSTRAINT "memorymap_follower_follower_id_followed_id_97b11ad6_uniq" UNIQUE ("follower_id", "followed_id"); (params ())
+DEBUG 2024-04-17 15:30:58,730 utils 92 139882123996032 (0.003) ALTER TABLE "memorymap_follower" ADD CONSTRAINT "memorymap_follower_follower_id_followed_id_97b11ad6_uniq" UNIQUE ("follower_id", "followed_id"); args=()
+DEBUG 2024-04-17 15:30:58,731 schema 92 139882123996032 CREATE INDEX "memorymap_hashtag_tag_699cf8d8_like" ON "memorymap_hashtag" ("tag" varchar_pattern_ops); (params ())
+DEBUG 2024-04-17 15:30:58,735 utils 92 139882123996032 (0.003) CREATE INDEX "memorymap_hashtag_tag_699cf8d8_like" ON "memorymap_hashtag" ("tag" varchar_pattern_ops); args=()
+DEBUG 2024-04-17 15:30:58,735 schema 92 139882123996032 CREATE INDEX "memorymap_user_username_cf497575_like" ON "memorymap_user" ("username" varchar_pattern_ops); (params ())
+DEBUG 2024-04-17 15:30:58,739 utils 92 139882123996032 (0.003) CREATE INDEX "memorymap_user_username_cf497575_like" ON "memorymap_user" ("username" varchar_pattern_ops); args=()
+DEBUG 2024-04-17 15:30:58,739 schema 92 139882123996032 CREATE INDEX "memorymap_user_slug_30d89be2_like" ON "memorymap_user" ("slug" varchar_pattern_ops); (params ())
+DEBUG 2024-04-17 15:30:58,742 utils 92 139882123996032 (0.002) CREATE INDEX "memorymap_user_slug_30d89be2_like" ON "memorymap_user" ("slug" varchar_pattern_ops); args=()
+DEBUG 2024-04-17 15:30:58,742 schema 92 139882123996032 ALTER TABLE "memorymap_user_groups" ADD CONSTRAINT "memorymap_user_groups_user_id_group_id_a37b120a_uniq" UNIQUE ("user_id", "group_id"); (params ())
+DEBUG 2024-04-17 15:30:58,746 utils 92 139882123996032 (0.003) ALTER TABLE "memorymap_user_groups" ADD CONSTRAINT "memorymap_user_groups_user_id_group_id_a37b120a_uniq" UNIQUE ("user_id", "group_id"); args=()
+DEBUG 2024-04-17 15:30:58,747 schema 92 139882123996032 ALTER TABLE "memorymap_user_groups" ADD CONSTRAINT "memorymap_user_groups_user_id_4e020385_fk_memorymap_user_id" FOREIGN KEY ("user_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,749 utils 92 139882123996032 (0.002) ALTER TABLE "memorymap_user_groups" ADD CONSTRAINT "memorymap_user_groups_user_id_4e020385_fk_memorymap_user_id" FOREIGN KEY ("user_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,750 schema 92 139882123996032 ALTER TABLE "memorymap_user_groups" ADD CONSTRAINT "memorymap_user_groups_group_id_111984d5_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,756 utils 92 139882123996032 (0.005) ALTER TABLE "memorymap_user_groups" ADD CONSTRAINT "memorymap_user_groups_group_id_111984d5_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,756 schema 92 139882123996032 CREATE INDEX "memorymap_user_groups_user_id_4e020385" ON "memorymap_user_groups" ("user_id"); (params ())
+DEBUG 2024-04-17 15:30:58,759 utils 92 139882123996032 (0.003) CREATE INDEX "memorymap_user_groups_user_id_4e020385" ON "memorymap_user_groups" ("user_id"); args=()
+DEBUG 2024-04-17 15:30:58,759 schema 92 139882123996032 CREATE INDEX "memorymap_user_groups_group_id_111984d5" ON "memorymap_user_groups" ("group_id"); (params ())
+DEBUG 2024-04-17 15:30:58,763 utils 92 139882123996032 (0.003) CREATE INDEX "memorymap_user_groups_group_id_111984d5" ON "memorymap_user_groups" ("group_id"); args=()
+DEBUG 2024-04-17 15:30:58,763 schema 92 139882123996032 ALTER TABLE "memorymap_user_user_permissions" ADD CONSTRAINT "memorymap_user_user_perm_user_id_permission_id_a76b7b37_uniq" UNIQUE ("user_id", "permission_id"); (params ())
+DEBUG 2024-04-17 15:30:58,767 utils 92 139882123996032 (0.003) ALTER TABLE "memorymap_user_user_permissions" ADD CONSTRAINT "memorymap_user_user_perm_user_id_permission_id_a76b7b37_uniq" UNIQUE ("user_id", "permission_id"); args=()
+DEBUG 2024-04-17 15:30:58,767 schema 92 139882123996032 ALTER TABLE "memorymap_user_user_permissions" ADD CONSTRAINT "memorymap_user_user__user_id_ea76564f_fk_memorymap" FOREIGN KEY ("user_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,774 utils 92 139882123996032 (0.006) ALTER TABLE "memorymap_user_user_permissions" ADD CONSTRAINT "memorymap_user_user__user_id_ea76564f_fk_memorymap" FOREIGN KEY ("user_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,774 schema 92 139882123996032 ALTER TABLE "memorymap_user_user_permissions" ADD CONSTRAINT "memorymap_user_user__permission_id_f39970b8_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,778 utils 92 139882123996032 (0.004) ALTER TABLE "memorymap_user_user_permissions" ADD CONSTRAINT "memorymap_user_user__permission_id_f39970b8_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,779 schema 92 139882123996032 CREATE INDEX "memorymap_user_user_permissions_user_id_ea76564f" ON "memorymap_user_user_permissions" ("user_id"); (params ())
+DEBUG 2024-04-17 15:30:58,783 utils 92 139882123996032 (0.004) CREATE INDEX "memorymap_user_user_permissions_user_id_ea76564f" ON "memorymap_user_user_permissions" ("user_id"); args=()
+DEBUG 2024-04-17 15:30:58,783 schema 92 139882123996032 CREATE INDEX "memorymap_user_user_permissions_permission_id_f39970b8" ON "memorymap_user_user_permissions" ("permission_id"); (params ())
+DEBUG 2024-04-17 15:30:58,787 utils 92 139882123996032 (0.004) CREATE INDEX "memorymap_user_user_permissions_permission_id_f39970b8" ON "memorymap_user_user_permissions" ("permission_id"); args=()
+DEBUG 2024-04-17 15:30:58,788 schema 92 139882123996032 ALTER TABLE "memorymap_userposttag" ADD CONSTRAINT "memorymap_userposttag_post_id_59f93e1e_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,790 utils 92 139882123996032 (0.002) ALTER TABLE "memorymap_userposttag" ADD CONSTRAINT "memorymap_userposttag_post_id_59f93e1e_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,791 schema 92 139882123996032 ALTER TABLE "memorymap_userposttag" ADD CONSTRAINT "memorymap_userposttag_tag_id_3e1a4467_fk_memorymap_tag_id" FOREIGN KEY ("tag_id") REFERENCES "memorymap_tag" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,793 utils 92 139882123996032 (0.002) ALTER TABLE "memorymap_userposttag" ADD CONSTRAINT "memorymap_userposttag_tag_id_3e1a4467_fk_memorymap_tag_id" FOREIGN KEY ("tag_id") REFERENCES "memorymap_tag" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,793 schema 92 139882123996032 ALTER TABLE "memorymap_userposttag" ADD CONSTRAINT "memorymap_userposttag_user_id_6cd00f74_fk_memorymap_user_id" FOREIGN KEY ("user_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,795 utils 92 139882123996032 (0.002) ALTER TABLE "memorymap_userposttag" ADD CONSTRAINT "memorymap_userposttag_user_id_6cd00f74_fk_memorymap_user_id" FOREIGN KEY ("user_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,796 schema 92 139882123996032 CREATE INDEX "memorymap_userposttag_post_id_59f93e1e" ON "memorymap_userposttag" ("post_id"); (params ())
+DEBUG 2024-04-17 15:30:58,800 utils 92 139882123996032 (0.004) CREATE INDEX "memorymap_userposttag_post_id_59f93e1e" ON "memorymap_userposttag" ("post_id"); args=()
+DEBUG 2024-04-17 15:30:58,800 schema 92 139882123996032 CREATE INDEX "memorymap_userposttag_tag_id_3e1a4467" ON "memorymap_userposttag" ("tag_id"); (params ())
+DEBUG 2024-04-17 15:30:58,805 utils 92 139882123996032 (0.004) CREATE INDEX "memorymap_userposttag_tag_id_3e1a4467" ON "memorymap_userposttag" ("tag_id"); args=()
+DEBUG 2024-04-17 15:30:58,805 schema 92 139882123996032 CREATE INDEX "memorymap_userposttag_user_id_6cd00f74" ON "memorymap_userposttag" ("user_id"); (params ())
+DEBUG 2024-04-17 15:30:58,808 utils 92 139882123996032 (0.003) CREATE INDEX "memorymap_userposttag_user_id_6cd00f74" ON "memorymap_userposttag" ("user_id"); args=()
+DEBUG 2024-04-17 15:30:58,809 schema 92 139882123996032 ALTER TABLE "memorymap_repost" ADD CONSTRAINT "memorymap_repost_original_post_id_787c6adf_fk_memorymap_post_id" FOREIGN KEY ("original_post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,810 utils 92 139882123996032 (0.001) ALTER TABLE "memorymap_repost" ADD CONSTRAINT "memorymap_repost_original_post_id_787c6adf_fk_memorymap_post_id" FOREIGN KEY ("original_post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,811 schema 92 139882123996032 ALTER TABLE "memorymap_repost" ADD CONSTRAINT "memorymap_repost_reposted_by_id_ec9cd24b_fk_memorymap_user_id" FOREIGN KEY ("reposted_by_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,812 utils 92 139882123996032 (0.001) ALTER TABLE "memorymap_repost" ADD CONSTRAINT "memorymap_repost_reposted_by_id_ec9cd24b_fk_memorymap_user_id" FOREIGN KEY ("reposted_by_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,813 schema 92 139882123996032 CREATE INDEX "memorymap_repost_original_post_id_787c6adf" ON "memorymap_repost" ("original_post_id"); (params ())
+DEBUG 2024-04-17 15:30:58,815 utils 92 139882123996032 (0.002) CREATE INDEX "memorymap_repost_original_post_id_787c6adf" ON "memorymap_repost" ("original_post_id"); args=()
+DEBUG 2024-04-17 15:30:58,816 schema 92 139882123996032 CREATE INDEX "memorymap_repost_reposted_by_id_ec9cd24b" ON "memorymap_repost" ("reposted_by_id"); (params ())
+DEBUG 2024-04-17 15:30:58,818 utils 92 139882123996032 (0.002) CREATE INDEX "memorymap_repost_reposted_by_id_ec9cd24b" ON "memorymap_repost" ("reposted_by_id"); args=()
+DEBUG 2024-04-17 15:30:58,820 schema 92 139882123996032 CREATE INDEX "memorymap_post_author_id_821b0ceb" ON "memorymap_post" ("author_id"); (params ())
+DEBUG 2024-04-17 15:30:58,823 utils 92 139882123996032 (0.003) CREATE INDEX "memorymap_post_author_id_821b0ceb" ON "memorymap_post" ("author_id"); args=()
+DEBUG 2024-04-17 15:30:58,823 schema 92 139882123996032 ALTER TABLE "memorymap_notification" ADD CONSTRAINT "memorymap_notification_post_id_0b1d6965_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,825 utils 92 139882123996032 (0.001) ALTER TABLE "memorymap_notification" ADD CONSTRAINT "memorymap_notification_post_id_0b1d6965_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,826 schema 92 139882123996032 ALTER TABLE "memorymap_notification" ADD CONSTRAINT "memorymap_notificati_recipient_id_0eb28d0c_fk_memorymap" FOREIGN KEY ("recipient_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,828 utils 92 139882123996032 (0.002) ALTER TABLE "memorymap_notification" ADD CONSTRAINT "memorymap_notificati_recipient_id_0eb28d0c_fk_memorymap" FOREIGN KEY ("recipient_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,828 schema 92 139882123996032 ALTER TABLE "memorymap_notification" ADD CONSTRAINT "memorymap_notification_sender_id_07b35557_fk_memorymap_user_id" FOREIGN KEY ("sender_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,830 utils 92 139882123996032 (0.001) ALTER TABLE "memorymap_notification" ADD CONSTRAINT "memorymap_notification_sender_id_07b35557_fk_memorymap_user_id" FOREIGN KEY ("sender_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,830 schema 92 139882123996032 CREATE INDEX "memorymap_notification_post_id_0b1d6965" ON "memorymap_notification" ("post_id"); (params ())
+DEBUG 2024-04-17 15:30:58,834 utils 92 139882123996032 (0.003) CREATE INDEX "memorymap_notification_post_id_0b1d6965" ON "memorymap_notification" ("post_id"); args=()
+DEBUG 2024-04-17 15:30:58,834 schema 92 139882123996032 CREATE INDEX "memorymap_notification_recipient_id_0eb28d0c" ON "memorymap_notification" ("recipient_id"); (params ())
+DEBUG 2024-04-17 15:30:58,839 utils 92 139882123996032 (0.005) CREATE INDEX "memorymap_notification_recipient_id_0eb28d0c" ON "memorymap_notification" ("recipient_id"); args=()
+DEBUG 2024-04-17 15:30:58,839 schema 92 139882123996032 CREATE INDEX "memorymap_notification_sender_id_07b35557" ON "memorymap_notification" ("sender_id"); (params ())
+DEBUG 2024-04-17 15:30:58,844 utils 92 139882123996032 (0.004) CREATE INDEX "memorymap_notification_sender_id_07b35557" ON "memorymap_notification" ("sender_id"); args=()
+DEBUG 2024-04-17 15:30:58,844 schema 92 139882123996032 ALTER TABLE "memorymap_media" ADD CONSTRAINT "memorymap_media_post_id_7bf80404_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,850 utils 92 139882123996032 (0.005) ALTER TABLE "memorymap_media" ADD CONSTRAINT "memorymap_media_post_id_7bf80404_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,850 schema 92 139882123996032 CREATE INDEX "memorymap_media_post_id_7bf80404" ON "memorymap_media" ("post_id"); (params ())
+DEBUG 2024-04-17 15:30:58,854 utils 92 139882123996032 (0.003) CREATE INDEX "memorymap_media_post_id_7bf80404" ON "memorymap_media" ("post_id"); args=()
+DEBUG 2024-04-17 15:30:58,854 schema 92 139882123996032 ALTER TABLE "memorymap_like" ADD CONSTRAINT "memorymap_like_post_id_3f81d888_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,856 utils 92 139882123996032 (0.001) ALTER TABLE "memorymap_like" ADD CONSTRAINT "memorymap_like_post_id_3f81d888_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,856 schema 92 139882123996032 ALTER TABLE "memorymap_like" ADD CONSTRAINT "memorymap_like_user_id_e06c4aef_fk_memorymap_user_id" FOREIGN KEY ("user_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,859 utils 92 139882123996032 (0.002) ALTER TABLE "memorymap_like" ADD CONSTRAINT "memorymap_like_user_id_e06c4aef_fk_memorymap_user_id" FOREIGN KEY ("user_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,859 schema 92 139882123996032 CREATE INDEX "memorymap_like_post_id_3f81d888" ON "memorymap_like" ("post_id"); (params ())
+DEBUG 2024-04-17 15:30:58,862 utils 92 139882123996032 (0.003) CREATE INDEX "memorymap_like_post_id_3f81d888" ON "memorymap_like" ("post_id"); args=()
+DEBUG 2024-04-17 15:30:58,862 schema 92 139882123996032 CREATE INDEX "memorymap_like_user_id_e06c4aef" ON "memorymap_like" ("user_id"); (params ())
+DEBUG 2024-04-17 15:30:58,865 utils 92 139882123996032 (0.002) CREATE INDEX "memorymap_like_user_id_e06c4aef" ON "memorymap_like" ("user_id"); args=()
+DEBUG 2024-04-17 15:30:58,865 schema 92 139882123996032 ALTER TABLE "memorymap_follower" ADD CONSTRAINT "memorymap_follower_followed_id_7a39c735_fk_memorymap_user_id" FOREIGN KEY ("followed_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,867 utils 92 139882123996032 (0.001) ALTER TABLE "memorymap_follower" ADD CONSTRAINT "memorymap_follower_followed_id_7a39c735_fk_memorymap_user_id" FOREIGN KEY ("followed_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,867 schema 92 139882123996032 ALTER TABLE "memorymap_follower" ADD CONSTRAINT "memorymap_follower_follower_id_28886d00_fk_memorymap_user_id" FOREIGN KEY ("follower_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,870 utils 92 139882123996032 (0.002) ALTER TABLE "memorymap_follower" ADD CONSTRAINT "memorymap_follower_follower_id_28886d00_fk_memorymap_user_id" FOREIGN KEY ("follower_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,870 schema 92 139882123996032 CREATE INDEX "memorymap_follower_followed_id_7a39c735" ON "memorymap_follower" ("followed_id"); (params ())
+DEBUG 2024-04-17 15:30:58,874 utils 92 139882123996032 (0.003) CREATE INDEX "memorymap_follower_followed_id_7a39c735" ON "memorymap_follower" ("followed_id"); args=()
+DEBUG 2024-04-17 15:30:58,874 schema 92 139882123996032 CREATE INDEX "memorymap_follower_follower_id_28886d00" ON "memorymap_follower" ("follower_id"); (params ())
+DEBUG 2024-04-17 15:30:58,878 utils 92 139882123996032 (0.004) CREATE INDEX "memorymap_follower_follower_id_28886d00" ON "memorymap_follower" ("follower_id"); args=()
+DEBUG 2024-04-17 15:30:58,878 schema 92 139882123996032 ALTER TABLE "memorymap_directmessage" ADD CONSTRAINT "memorymap_directmess_recipient_id_2060b065_fk_memorymap" FOREIGN KEY ("recipient_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,882 utils 92 139882123996032 (0.001) ALTER TABLE "memorymap_directmessage" ADD CONSTRAINT "memorymap_directmess_recipient_id_2060b065_fk_memorymap" FOREIGN KEY ("recipient_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,882 schema 92 139882123996032 ALTER TABLE "memorymap_directmessage" ADD CONSTRAINT "memorymap_directmessage_sender_id_1d43e742_fk_memorymap_user_id" FOREIGN KEY ("sender_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,884 utils 92 139882123996032 (0.002) ALTER TABLE "memorymap_directmessage" ADD CONSTRAINT "memorymap_directmessage_sender_id_1d43e742_fk_memorymap_user_id" FOREIGN KEY ("sender_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,884 schema 92 139882123996032 CREATE INDEX "memorymap_directmessage_recipient_id_2060b065" ON "memorymap_directmessage" ("recipient_id"); (params ())
+DEBUG 2024-04-17 15:30:58,887 utils 92 139882123996032 (0.003) CREATE INDEX "memorymap_directmessage_recipient_id_2060b065" ON "memorymap_directmessage" ("recipient_id"); args=()
+DEBUG 2024-04-17 15:30:58,888 schema 92 139882123996032 CREATE INDEX "memorymap_directmessage_sender_id_1d43e742" ON "memorymap_directmessage" ("sender_id"); (params ())
+DEBUG 2024-04-17 15:30:58,891 utils 92 139882123996032 (0.003) CREATE INDEX "memorymap_directmessage_sender_id_1d43e742" ON "memorymap_directmessage" ("sender_id"); args=()
+DEBUG 2024-04-17 15:30:58,892 schema 92 139882123996032 ALTER TABLE "memorymap_comment" ADD CONSTRAINT "memorymap_comment_parent_id_34fa2f71_fk_memorymap_comment_id" FOREIGN KEY ("parent_id") REFERENCES "memorymap_comment" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,893 utils 92 139882123996032 (0.001) ALTER TABLE "memorymap_comment" ADD CONSTRAINT "memorymap_comment_parent_id_34fa2f71_fk_memorymap_comment_id" FOREIGN KEY ("parent_id") REFERENCES "memorymap_comment" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,893 schema 92 139882123996032 ALTER TABLE "memorymap_comment" ADD CONSTRAINT "memorymap_comment_post_id_bbe170d1_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,895 utils 92 139882123996032 (0.001) ALTER TABLE "memorymap_comment" ADD CONSTRAINT "memorymap_comment_post_id_bbe170d1_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,895 schema 92 139882123996032 ALTER TABLE "memorymap_comment" ADD CONSTRAINT "memorymap_comment_user_id_51ea9eb4_fk_memorymap_user_id" FOREIGN KEY ("user_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,896 utils 92 139882123996032 (0.001) ALTER TABLE "memorymap_comment" ADD CONSTRAINT "memorymap_comment_user_id_51ea9eb4_fk_memorymap_user_id" FOREIGN KEY ("user_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,896 schema 92 139882123996032 CREATE INDEX "memorymap_comment_tree_id_45415237" ON "memorymap_comment" ("tree_id"); (params ())
+DEBUG 2024-04-17 15:30:58,899 utils 92 139882123996032 (0.003) CREATE INDEX "memorymap_comment_tree_id_45415237" ON "memorymap_comment" ("tree_id"); args=()
+DEBUG 2024-04-17 15:30:58,900 schema 92 139882123996032 CREATE INDEX "memorymap_comment_parent_id_34fa2f71" ON "memorymap_comment" ("parent_id"); (params ())
+DEBUG 2024-04-17 15:30:58,905 utils 92 139882123996032 (0.005) CREATE INDEX "memorymap_comment_parent_id_34fa2f71" ON "memorymap_comment" ("parent_id"); args=()
+DEBUG 2024-04-17 15:30:58,905 schema 92 139882123996032 CREATE INDEX "memorymap_comment_post_id_bbe170d1" ON "memorymap_comment" ("post_id"); (params ())
+DEBUG 2024-04-17 15:30:58,911 utils 92 139882123996032 (0.005) CREATE INDEX "memorymap_comment_post_id_bbe170d1" ON "memorymap_comment" ("post_id"); args=()
+DEBUG 2024-04-17 15:30:58,912 schema 92 139882123996032 CREATE INDEX "memorymap_comment_user_id_51ea9eb4" ON "memorymap_comment" ("user_id"); (params ())
+DEBUG 2024-04-17 15:30:58,915 utils 92 139882123996032 (0.003) CREATE INDEX "memorymap_comment_user_id_51ea9eb4" ON "memorymap_comment" ("user_id"); args=()
+DEBUG 2024-04-17 15:30:58,915 schema 92 139882123996032 ALTER TABLE "memorymap_posthashtag" ADD CONSTRAINT "memorymap_posthashtag_post_id_hashtag_id_c8ca4891_uniq" UNIQUE ("post_id", "hashtag_id"); (params ())
+DEBUG 2024-04-17 15:30:58,918 utils 92 139882123996032 (0.003) ALTER TABLE "memorymap_posthashtag" ADD CONSTRAINT "memorymap_posthashtag_post_id_hashtag_id_c8ca4891_uniq" UNIQUE ("post_id", "hashtag_id"); args=()
+DEBUG 2024-04-17 15:30:58,918 schema 92 139882123996032 ALTER TABLE "memorymap_posthashtag" ADD CONSTRAINT "memorymap_posthashta_hashtag_id_bd0be59c_fk_memorymap" FOREIGN KEY ("hashtag_id") REFERENCES "memorymap_hashtag" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,919 utils 92 139882123996032 (0.001) ALTER TABLE "memorymap_posthashtag" ADD CONSTRAINT "memorymap_posthashta_hashtag_id_bd0be59c_fk_memorymap" FOREIGN KEY ("hashtag_id") REFERENCES "memorymap_hashtag" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,920 schema 92 139882123996032 ALTER TABLE "memorymap_posthashtag" ADD CONSTRAINT "memorymap_posthashtag_post_id_748291a6_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-17 15:30:58,921 utils 92 139882123996032 (0.001) ALTER TABLE "memorymap_posthashtag" ADD CONSTRAINT "memorymap_posthashtag_post_id_748291a6_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-17 15:30:58,922 schema 92 139882123996032 CREATE INDEX "memorymap_posthashtag_hashtag_id_bd0be59c" ON "memorymap_posthashtag" ("hashtag_id"); (params ())
+DEBUG 2024-04-17 15:30:58,925 utils 92 139882123996032 (0.003) CREATE INDEX "memorymap_posthashtag_hashtag_id_bd0be59c" ON "memorymap_posthashtag" ("hashtag_id"); args=()
+DEBUG 2024-04-17 15:30:58,925 schema 92 139882123996032 CREATE INDEX "memorymap_posthashtag_post_id_748291a6" ON "memorymap_posthashtag" ("post_id"); (params ())
+DEBUG 2024-04-17 15:30:58,929 utils 92 139882123996032 (0.003) CREATE INDEX "memorymap_posthashtag_post_id_748291a6" ON "memorymap_posthashtag" ("post_id"); args=()
+DEBUG 2024-04-17 15:30:58,933 utils 92 139882123996032 (0.002) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 15:30:58,936 utils 92 139882123996032 (0.002) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('memorymap', '0001_initial', '2024-04-17T06:30:58.934157+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('memorymap', '0001_initial', datetime.datetime(2024, 4, 17, 6, 30, 58, 934157, tzinfo=<UTC>))
+DEBUG 2024-04-17 15:30:58,938 utils 92 139882123996032 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-17 15:30:58,939 utils 92 139882123996032 (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-04-17 15:30:58,986 utils 92 139882123996032 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'memorymap'; args=('memorymap',)
+DEBUG 2024-04-17 15:30:58,989 utils 92 139882123996032 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'hashtag') LIMIT 21; args=('memorymap', 'hashtag')
+DEBUG 2024-04-17 15:30:58,992 utils 92 139882123996032 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'post') LIMIT 21; args=('memorymap', 'post')
+DEBUG 2024-04-17 15:30:58,994 utils 92 139882123996032 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'tag') LIMIT 21; args=('memorymap', 'tag')
+DEBUG 2024-04-17 15:30:58,997 utils 92 139882123996032 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'user') LIMIT 21; args=('memorymap', 'user')
+DEBUG 2024-04-17 15:30:58,999 utils 92 139882123996032 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'userposttag') LIMIT 21; args=('memorymap', 'userposttag')
+DEBUG 2024-04-17 15:30:59,001 utils 92 139882123996032 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'repost') LIMIT 21; args=('memorymap', 'repost')
+DEBUG 2024-04-17 15:30:59,004 utils 92 139882123996032 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'notification') LIMIT 21; args=('memorymap', 'notification')
+DEBUG 2024-04-17 15:30:59,006 utils 92 139882123996032 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'media') LIMIT 21; args=('memorymap', 'media')
+DEBUG 2024-04-17 15:30:59,009 utils 92 139882123996032 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'like') LIMIT 21; args=('memorymap', 'like')
+DEBUG 2024-04-17 15:30:59,012 utils 92 139882123996032 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'follower') LIMIT 21; args=('memorymap', 'follower')
+DEBUG 2024-04-17 15:30:59,014 utils 92 139882123996032 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'directmessage') LIMIT 21; args=('memorymap', 'directmessage')
+DEBUG 2024-04-17 15:30:59,017 utils 92 139882123996032 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'comment') LIMIT 21; args=('memorymap', 'comment')
+DEBUG 2024-04-17 15:30:59,019 utils 92 139882123996032 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'posthashtag') LIMIT 21; args=('memorymap', 'posthashtag')
+DEBUG 2024-04-17 15:30:59,023 utils 92 139882123996032 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21)
+DEBUG 2024-04-17 15:30:59,026 utils 92 139882123996032 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'memorymap'; args=('memorymap',)
+DEBUG 2024-04-17 15:30:59,028 utils 92 139882123996032 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'mptt'; args=('mptt',)
+DEBUG 2024-04-17 15:30:59,031 utils 92 139882123996032 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'mptt'; args=('mptt',)
+DEBUG 2024-04-17 15:30:59,034 utils 92 139882123996032 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',)
+DEBUG 2024-04-17 15:30:59,036 utils 92 139882123996032 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'admin' AND "django_content_type"."model" = 'logentry') LIMIT 21; args=('admin', 'logentry')
+DEBUG 2024-04-17 15:30:59,040 utils 92 139882123996032 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (3) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(3,)
+DEBUG 2024-04-17 15:30:59,042 utils 92 139882123996032 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',)
+DEBUG 2024-04-17 15:30:59,044 utils 92 139882123996032 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',)
+DEBUG 2024-04-17 15:30:59,046 utils 92 139882123996032 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'permission') LIMIT 21; args=('auth', 'permission')
+DEBUG 2024-04-17 15:30:59,048 utils 92 139882123996032 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'group') LIMIT 21; args=('auth', 'group')
+DEBUG 2024-04-17 15:30:59,050 utils 92 139882123996032 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'user') LIMIT 21; args=('auth', 'user')
+DEBUG 2024-04-17 15:30:59,052 utils 92 139882123996032 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (4, 5, 6) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(4, 5, 6)
+DEBUG 2024-04-17 15:30:59,053 utils 92 139882123996032 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',)
+DEBUG 2024-04-17 15:30:59,055 utils 92 139882123996032 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',)
+DEBUG 2024-04-17 15:30:59,057 utils 92 139882123996032 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'contenttypes' AND "django_content_type"."model" = 'contenttype') LIMIT 21; args=('contenttypes', 'contenttype')
+DEBUG 2024-04-17 15:30:59,059 utils 92 139882123996032 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (7) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(7,)
+DEBUG 2024-04-17 15:30:59,061 utils 92 139882123996032 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',)
+DEBUG 2024-04-17 15:30:59,062 utils 92 139882123996032 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',)
+DEBUG 2024-04-17 15:30:59,064 utils 92 139882123996032 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'sessions' AND "django_content_type"."model" = 'session') LIMIT 21; args=('sessions', 'session')
+DEBUG 2024-04-17 15:30:59,067 utils 92 139882123996032 (0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (8) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(8,)
+DEBUG 2024-04-17 15:30:59,069 utils 92 139882123996032 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',)

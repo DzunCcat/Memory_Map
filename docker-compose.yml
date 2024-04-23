@@ -5,10 +5,10 @@ services:
     build: . 
     tty: true
     volumes:
-      - ./Memory_Map/code:/workspace 
+      - ./code:/workspace 
     ports:
       - 8000:8000
-    depends_on:
+    depends_on: 
       - db
     user: "1000:1000" 
   db:

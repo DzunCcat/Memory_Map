@@ -7,5 +7,3 @@ COPY requirements.txt /code/
 COPY Dockerfile /code/
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt
-
-RUN pip install pillow
