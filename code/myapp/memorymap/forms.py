@@ -22,11 +22,12 @@ class CustomUserCreationForm(UserCreationForm):
 #         }
 
 class PostForm(forms.ModelForm):
-    media = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}), required=False, label='Media Files')
+    #old code :ClearableFileInput(attrs={'multiple': True}) ->  new code :DropzoneJS
+    # media = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}), required=False, label='Media Files')
 
     class Meta:
         model = Post
-        fields = ['title', 'thumbnail', 'content', 'content_type', 'visibility', 'media']
+        fields = ['title', 'thumbnail', 'content', 'content_type', 'visibility',]
         widgets = {
             'content_type': forms.Select(choices=Post.CONTENT_TYPES),
             'visibility': forms.Select(choices=Post.VISIBILITY_CHOICES),
@@ -34,7 +35,7 @@ class PostForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(PostForm, self).__init__(*args, **kwargs)
-        self.fields['media'].help_text = "Select multiple files"
+        self.fields['thumbnail'].required = False
 
 
     def clean(self):

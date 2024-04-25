@@ -63,15 +63,16 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
 
-from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib.auth.forms import UserCreationForm
+# from django.contrib.auth.views import LoginView, LogoutView
+# from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 
 from django.urls import reverse_lazy
 
-from .models import User, Post, Media, Follower, Comment
-from .forms import CustomUserCreationForm, PostForm, CommentForm
+from .models import Post, Media, Follower, Comment
+from .forms import  PostForm, CommentForm
+# from .forms import CustomUserCreationForm
 
 class HomeView(LoginRequiredMixin,ListView):
     model = Post
@@ -79,36 +80,36 @@ class HomeView(LoginRequiredMixin,ListView):
     context_object_name = 'posts'
     login_url  = '/login/'
 
-class LoginView(LoginView):
-    template_name = 'login.html'
-    redirect_authenticated_user = True
+# class LoginView(LoginView):
+#     template_name = 'login.html'
+#     redirect_authenticated_user = True
 
-    def get_success_url(self):
-        return reverse_lazy('home')
+#     def get_success_url(self):
+#         return reverse_lazy('home')
 
-class LogoutView(LogoutView):
-    next_page = '/login/'
+# class LogoutView(LogoutView):
+#     next_page = '/login/'
 
-class RegisterView(CreateView):
-    form_class = CustomUserCreationForm
-    template_name = 'registration/register.html'
-    success_url = reverse_lazy('login')
+# class RegisterView(CreateView):
+#     form_class = CustomUserCreationForm
+#     template_name = 'registration/register.html'
+#     success_url = reverse_lazy('login')
 
-class ProfileView(LoginRequiredMixin, TemplateView):
-    template_name = 'profile.html'
+# class ProfileView(LoginRequiredMixin, TemplateView):
+#     template_name = 'profile.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        user = get_object_or_404(User, username=self.kwargs.get('username', self.request.user.username))
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         user = get_object_or_404(User, username=self.kwargs.get('username', self.request.user.username))
 
-        context.update({
-            'user': user,
-            'posts': Post.objects.filter(author=user).order_by('-created_at'),
-            'followers': Follower.objects.filter(followed=user).count(),
-            'following': Follower.objects.filter(follower=user).count(),
-            'is_following': self.request.user.is_authenticated and Follower.objects.filter(follower=self.request.user, followed=user).exists()
-        })
-        return context
+#         context.update({
+#             'user': user,
+#             'posts': Post.objects.filter(author=user).order_by('-created_at'),
+#             'followers': Follower.objects.filter(followed=user).count(),
+#             'following': Follower.objects.filter(follower=user).count(),
+#             'is_following': self.request.user.is_authenticated and Follower.objects.filter(follower=self.request.user, followed=user).exists()
+#         })
+#         return context
 
 class NewsFeedView(LoginRequiredMixin, ListView):
     model = Post
@@ -131,16 +132,24 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     #     return super().form_valid(form)
 
     def form_valid(self, form):
-        form.instance.author = self.request.user  # 投稿の作者を自動的に設定
-        response = super(PostCreateView, self).form_valid(form)  # Postオブジェクトを保存
-        media_files = self.request.FILES.getlist('media')  # フォームから送信されたメディアファイルを取得
-        for file in media_files:
-            Media.objects.create(post=self.object, file=file)  # 各メディアファイルを新しいMediaオブジェクトとして保存
+        form.instance.author = self.request.user
+        response = super().form_valid(form)
         return response
 
+    def post(self, request, *args, **kwargs):
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        files = request.FILES.getlist('file')
+        if form.is_valid():
+            self.object = form.save()
+            for f in files:
+                Media.objects.create(post=self.object, file=f)
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
     def get_form(self, form_class=None):
-        form = super(PostCreateView, self).get_form(form_class)
-        # フォームの動的設定
+        form = super().get_form(form_class)
         if 'content_type' in form.fields:
             form.fields['content_type'].widget.attrs.update({'onchange': 'updateFormFields();'})
         return form

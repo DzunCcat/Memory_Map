@@ -1,0 +1,35 @@
+<!-- ... -->
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="dropzone" id="myDropzone"></div>
+    <button type="submit">Submit</button>
+  </form>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+  <script>
+    Dropzone.options.myDropzone = {
+      url: "{% url 'post_create' %}",
+      autoProcessQueue: false,
+      uploadMultiple: true,
+      parallelUploads: 5,
+      maxFiles: 5,
+      maxFilesize: 5,
+      acceptedFiles: 'image/*,video/*',
+      addRemoveLinks: true,
+      init: function() {
+        dzClosure = this;
+        document.getElementById("post-form").addEventListener("submit", function(e) {
+          if (dzClosure.getQueuedFiles().length > 0) {
+            e.preventDefault();
+            e.stopPropagation();
+            dzClosure.processQueue();
+          }
+        });
+        this.on("complete", function(file) {
+          window.location.href = "{% url 'home' %}";
+        });
+      }
+    };
+  </script>
+  <!-- ... -->

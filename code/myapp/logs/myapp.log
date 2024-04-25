@@ -558,3 +558,1249 @@ DEBUG 2024-04-17 15:30:59,062 utils 92 139882123996032 (0.000) SELECT "django_co
 DEBUG 2024-04-17 15:30:59,064 utils 92 139882123996032 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'sessions' AND "django_content_type"."model" = 'session') LIMIT 21; args=('sessions', 'session')
 DEBUG 2024-04-17 15:30:59,067 utils 92 139882123996032 (0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (8) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(8,)
 DEBUG 2024-04-17 15:30:59,069 utils 92 139882123996032 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',)
+DEBUG 2024-04-24 11:54:55,467 utils 15 139821056846720 (0.005) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-24 11:54:55,473 utils 15 139821056846720 (0.004) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-24 11:54:55,479 utils 15 139821056846720 (0.005) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-24 11:54:55,483 schema 15 139821056846720 CREATE TABLE "django_migrations" ("id" bigserial NOT NULL PRIMARY KEY, "app" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "applied" timestamp with time zone NOT NULL); (params None)
+DEBUG 2024-04-24 11:54:55,530 utils 15 139821056846720 (0.047) CREATE TABLE "django_migrations" ("id" bigserial NOT NULL PRIMARY KEY, "app" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "applied" timestamp with time zone NOT NULL); args=None
+DEBUG 2024-04-24 11:54:55,545 schema 15 139821056846720 CREATE TABLE "django_content_type" ("id" serial NOT NULL PRIMARY KEY, "name" varchar(100) NOT NULL, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL); (params None)
+DEBUG 2024-04-24 11:54:55,552 utils 15 139821056846720 (0.005) CREATE TABLE "django_content_type" ("id" serial NOT NULL PRIMARY KEY, "name" varchar(100) NOT NULL, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL); args=None
+DEBUG 2024-04-24 11:54:55,555 schema 15 139821056846720 ALTER TABLE "django_content_type" ADD CONSTRAINT "django_content_type_app_label_model_76bd3d3b_uniq" UNIQUE ("app_label", "model"); (params ())
+DEBUG 2024-04-24 11:54:55,560 utils 15 139821056846720 (0.003) ALTER TABLE "django_content_type" ADD CONSTRAINT "django_content_type_app_label_model_76bd3d3b_uniq" UNIQUE ("app_label", "model"); args=()
+DEBUG 2024-04-24 11:54:55,563 utils 15 139821056846720 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-24 11:54:55,569 utils 15 139821056846720 (0.001) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('contenttypes', '0001_initial', '2024-04-24T02:54:55.563993+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('contenttypes', '0001_initial', datetime.datetime(2024, 4, 24, 2, 54, 55, 563993, tzinfo=<UTC>))
+DEBUG 2024-04-24 11:54:55,575 schema 15 139821056846720 CREATE TABLE "auth_permission" ("id" serial NOT NULL PRIMARY KEY, "name" varchar(50) NOT NULL, "content_type_id" integer NOT NULL, "codename" varchar(100) NOT NULL); (params None)
+DEBUG 2024-04-24 11:54:55,581 utils 15 139821056846720 (0.005) CREATE TABLE "auth_permission" ("id" serial NOT NULL PRIMARY KEY, "name" varchar(50) NOT NULL, "content_type_id" integer NOT NULL, "codename" varchar(100) NOT NULL); args=None
+DEBUG 2024-04-24 11:54:55,592 schema 15 139821056846720 CREATE TABLE "auth_group" ("id" serial NOT NULL PRIMARY KEY, "name" varchar(80) NOT NULL UNIQUE); (params None)
+DEBUG 2024-04-24 11:54:55,606 utils 15 139821056846720 (0.013) CREATE TABLE "auth_group" ("id" serial NOT NULL PRIMARY KEY, "name" varchar(80) NOT NULL UNIQUE); args=None
+DEBUG 2024-04-24 11:54:55,609 schema 15 139821056846720 CREATE TABLE "auth_group_permissions" ("id" bigserial NOT NULL PRIMARY KEY, "group_id" integer NOT NULL, "permission_id" integer NOT NULL); (params None)
+DEBUG 2024-04-24 11:54:55,616 utils 15 139821056846720 (0.005) CREATE TABLE "auth_group_permissions" ("id" bigserial NOT NULL PRIMARY KEY, "group_id" integer NOT NULL, "permission_id" integer NOT NULL); args=None
+DEBUG 2024-04-24 11:54:55,626 schema 15 139821056846720 CREATE TABLE "auth_user" ("id" serial NOT NULL PRIMARY KEY, "password" varchar(128) NOT NULL, "last_login" timestamp with time zone NOT NULL, "is_superuser" boolean NOT NULL, "username" varchar(30) NOT NULL UNIQUE, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(75) NOT NULL, "is_staff" boolean NOT NULL, "is_active" boolean NOT NULL, "date_joined" timestamp with time zone NOT NULL); (params None)
+DEBUG 2024-04-24 11:54:55,633 utils 15 139821056846720 (0.007) CREATE TABLE "auth_user" ("id" serial NOT NULL PRIMARY KEY, "password" varchar(128) NOT NULL, "last_login" timestamp with time zone NOT NULL, "is_superuser" boolean NOT NULL, "username" varchar(30) NOT NULL UNIQUE, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(75) NOT NULL, "is_staff" boolean NOT NULL, "is_active" boolean NOT NULL, "date_joined" timestamp with time zone NOT NULL); args=None
+DEBUG 2024-04-24 11:54:55,635 schema 15 139821056846720 CREATE TABLE "auth_user_groups" ("id" bigserial NOT NULL PRIMARY KEY, "user_id" integer NOT NULL, "group_id" integer NOT NULL); (params None)
+DEBUG 2024-04-24 11:54:55,639 utils 15 139821056846720 (0.004) CREATE TABLE "auth_user_groups" ("id" bigserial NOT NULL PRIMARY KEY, "user_id" integer NOT NULL, "group_id" integer NOT NULL); args=None
+DEBUG 2024-04-24 11:54:55,640 schema 15 139821056846720 CREATE TABLE "auth_user_user_permissions" ("id" bigserial NOT NULL PRIMARY KEY, "user_id" integer NOT NULL, "permission_id" integer NOT NULL); (params None)
+DEBUG 2024-04-24 11:54:55,645 utils 15 139821056846720 (0.003) CREATE TABLE "auth_user_user_permissions" ("id" bigserial NOT NULL PRIMARY KEY, "user_id" integer NOT NULL, "permission_id" integer NOT NULL); args=None
+DEBUG 2024-04-24 11:54:55,645 schema 15 139821056846720 ALTER TABLE "auth_permission" ADD CONSTRAINT "auth_permission_content_type_id_codename_01ab375a_uniq" UNIQUE ("content_type_id", "codename"); (params ())
+DEBUG 2024-04-24 11:54:55,648 utils 15 139821056846720 (0.002) ALTER TABLE "auth_permission" ADD CONSTRAINT "auth_permission_content_type_id_codename_01ab375a_uniq" UNIQUE ("content_type_id", "codename"); args=()
+DEBUG 2024-04-24 11:54:55,649 schema 15 139821056846720 ALTER TABLE "auth_permission" ADD CONSTRAINT "auth_permission_content_type_id_2f476e4b_fk_django_co" FOREIGN KEY ("content_type_id") REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:55,653 utils 15 139821056846720 (0.003) ALTER TABLE "auth_permission" ADD CONSTRAINT "auth_permission_content_type_id_2f476e4b_fk_django_co" FOREIGN KEY ("content_type_id") REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:55,655 schema 15 139821056846720 CREATE INDEX "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id"); (params ())
+DEBUG 2024-04-24 11:54:55,660 utils 15 139821056846720 (0.004) CREATE INDEX "auth_permission_content_type_id_2f476e4b" ON "auth_permission" ("content_type_id"); args=()
+DEBUG 2024-04-24 11:54:55,662 schema 15 139821056846720 CREATE INDEX "auth_group_name_a6ea08ec_like" ON "auth_group" ("name" varchar_pattern_ops); (params ())
+DEBUG 2024-04-24 11:54:55,667 utils 15 139821056846720 (0.004) CREATE INDEX "auth_group_name_a6ea08ec_like" ON "auth_group" ("name" varchar_pattern_ops); args=()
+DEBUG 2024-04-24 11:54:55,667 schema 15 139821056846720 ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" UNIQUE ("group_id", "permission_id"); (params ())
+DEBUG 2024-04-24 11:54:55,671 utils 15 139821056846720 (0.003) ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissions_group_id_permission_id_0cd325b0_uniq" UNIQUE ("group_id", "permission_id"); args=()
+DEBUG 2024-04-24 11:54:55,672 schema 15 139821056846720 ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissions_group_id_b120cbf9_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:55,681 utils 15 139821056846720 (0.008) ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissions_group_id_b120cbf9_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:55,681 schema 15 139821056846720 ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:55,689 utils 15 139821056846720 (0.007) ALTER TABLE "auth_group_permissions" ADD CONSTRAINT "auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:55,689 schema 15 139821056846720 CREATE INDEX "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id"); (params ())
+DEBUG 2024-04-24 11:54:55,697 utils 15 139821056846720 (0.008) CREATE INDEX "auth_group_permissions_group_id_b120cbf9" ON "auth_group_permissions" ("group_id"); args=()
+DEBUG 2024-04-24 11:54:55,698 schema 15 139821056846720 CREATE INDEX "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id"); (params ())
+DEBUG 2024-04-24 11:54:55,704 utils 15 139821056846720 (0.006) CREATE INDEX "auth_group_permissions_permission_id_84c5c92e" ON "auth_group_permissions" ("permission_id"); args=()
+DEBUG 2024-04-24 11:54:55,705 schema 15 139821056846720 CREATE INDEX "auth_user_username_6821ab7c_like" ON "auth_user" ("username" varchar_pattern_ops); (params ())
+DEBUG 2024-04-24 11:54:55,711 utils 15 139821056846720 (0.006) CREATE INDEX "auth_user_username_6821ab7c_like" ON "auth_user" ("username" varchar_pattern_ops); args=()
+DEBUG 2024-04-24 11:54:55,712 schema 15 139821056846720 ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_user_id_group_id_94350c0c_uniq" UNIQUE ("user_id", "group_id"); (params ())
+DEBUG 2024-04-24 11:54:55,715 utils 15 139821056846720 (0.003) ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_user_id_group_id_94350c0c_uniq" UNIQUE ("user_id", "group_id"); args=()
+DEBUG 2024-04-24 11:54:55,715 schema 15 139821056846720 ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_user_id_6a12ed8b_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:55,717 utils 15 139821056846720 (0.001) ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_user_id_6a12ed8b_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:55,717 schema 15 139821056846720 ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_group_id_97559544_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:55,719 utils 15 139821056846720 (0.002) ALTER TABLE "auth_user_groups" ADD CONSTRAINT "auth_user_groups_group_id_97559544_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:55,719 schema 15 139821056846720 CREATE INDEX "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id"); (params ())
+DEBUG 2024-04-24 11:54:55,722 utils 15 139821056846720 (0.003) CREATE INDEX "auth_user_groups_user_id_6a12ed8b" ON "auth_user_groups" ("user_id"); args=()
+DEBUG 2024-04-24 11:54:55,723 schema 15 139821056846720 CREATE INDEX "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id"); (params ())
+DEBUG 2024-04-24 11:54:55,726 utils 15 139821056846720 (0.003) CREATE INDEX "auth_user_groups_group_id_97559544" ON "auth_user_groups" ("group_id"); args=()
+DEBUG 2024-04-24 11:54:55,726 schema 15 139821056846720 ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" UNIQUE ("user_id", "permission_id"); (params ())
+DEBUG 2024-04-24 11:54:55,729 utils 15 139821056846720 (0.003) ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" UNIQUE ("user_id", "permission_id"); args=()
+DEBUG 2024-04-24 11:54:55,729 schema 15 139821056846720 ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:55,731 utils 15 139821056846720 (0.001) ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id" FOREIGN KEY ("user_id") REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:55,731 schema 15 139821056846720 ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:55,733 utils 15 139821056846720 (0.001) ALTER TABLE "auth_user_user_permissions" ADD CONSTRAINT "auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:55,733 schema 15 139821056846720 CREATE INDEX "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id"); (params ())
+DEBUG 2024-04-24 11:54:55,736 utils 15 139821056846720 (0.003) CREATE INDEX "auth_user_user_permissions_user_id_a95ead1b" ON "auth_user_user_permissions" ("user_id"); args=()
+DEBUG 2024-04-24 11:54:55,736 schema 15 139821056846720 CREATE INDEX "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id"); (params ())
+DEBUG 2024-04-24 11:54:55,739 utils 15 139821056846720 (0.003) CREATE INDEX "auth_user_user_permissions_permission_id_1fbb5f2c" ON "auth_user_user_permissions" ("permission_id"); args=()
+DEBUG 2024-04-24 11:54:55,742 utils 15 139821056846720 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-24 11:54:55,744 utils 15 139821056846720 (0.001) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0001_initial', '2024-04-24T02:54:55.742833+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('auth', '0001_initial', datetime.datetime(2024, 4, 24, 2, 54, 55, 742833, tzinfo=<UTC>))
+DEBUG 2024-04-24 11:54:55,749 schema 15 139821056846720 ALTER TABLE "django_content_type" ALTER COLUMN "name" DROP NOT NULL; (params [])
+DEBUG 2024-04-24 11:54:55,750 utils 15 139821056846720 (0.001) ALTER TABLE "django_content_type" ALTER COLUMN "name" DROP NOT NULL; args=[]
+DEBUG 2024-04-24 11:54:55,760 schema 15 139821056846720 ALTER TABLE "django_content_type" DROP COLUMN "name" CASCADE; (params ())
+DEBUG 2024-04-24 11:54:55,765 utils 15 139821056846720 (0.005) ALTER TABLE "django_content_type" DROP COLUMN "name" CASCADE; args=()
+DEBUG 2024-04-24 11:54:55,767 utils 15 139821056846720 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-24 11:54:55,769 utils 15 139821056846720 (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('contenttypes', '0002_remove_content_type_name', '2024-04-24T02:54:55.768803+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('contenttypes', '0002_remove_content_type_name', datetime.datetime(2024, 4, 24, 2, 54, 55, 768803, tzinfo=<UTC>))
+DEBUG 2024-04-24 11:54:55,778 schema 15 139821056846720 ALTER TABLE "auth_permission" ALTER COLUMN "name" TYPE varchar(255); (params [])
+DEBUG 2024-04-24 11:54:55,779 utils 15 139821056846720 (0.001) ALTER TABLE "auth_permission" ALTER COLUMN "name" TYPE varchar(255); args=[]
+DEBUG 2024-04-24 11:54:55,780 utils 15 139821056846720 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-24 11:54:55,781 utils 15 139821056846720 (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0002_alter_permission_name_max_length', '2024-04-24T02:54:55.781121+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('auth', '0002_alter_permission_name_max_length', datetime.datetime(2024, 4, 24, 2, 54, 55, 781121, tzinfo=<UTC>))
+DEBUG 2024-04-24 11:54:55,793 schema 15 139821056846720 ALTER TABLE "auth_user" ALTER COLUMN "email" TYPE varchar(254); (params [])
+DEBUG 2024-04-24 11:54:55,796 utils 15 139821056846720 (0.001) ALTER TABLE "auth_user" ALTER COLUMN "email" TYPE varchar(254); args=[]
+DEBUG 2024-04-24 11:54:55,798 utils 15 139821056846720 (0.002) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-24 11:54:55,801 utils 15 139821056846720 (0.001) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0003_alter_user_email_max_length', '2024-04-24T02:54:55.799622+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('auth', '0003_alter_user_email_max_length', datetime.datetime(2024, 4, 24, 2, 54, 55, 799622, tzinfo=<UTC>))
+DEBUG 2024-04-24 11:54:55,814 utils 15 139821056846720 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-24 11:54:55,817 utils 15 139821056846720 (0.001) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0004_alter_user_username_opts', '2024-04-24T02:54:55.816601+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('auth', '0004_alter_user_username_opts', datetime.datetime(2024, 4, 24, 2, 54, 55, 816601, tzinfo=<UTC>))
+DEBUG 2024-04-24 11:54:55,830 schema 15 139821056846720 ALTER TABLE "auth_user" ALTER COLUMN "last_login" DROP NOT NULL; (params [])
+DEBUG 2024-04-24 11:54:55,832 utils 15 139821056846720 (0.001) ALTER TABLE "auth_user" ALTER COLUMN "last_login" DROP NOT NULL; args=[]
+DEBUG 2024-04-24 11:54:55,833 utils 15 139821056846720 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-24 11:54:55,835 utils 15 139821056846720 (0.001) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0005_alter_user_last_login_null', '2024-04-24T02:54:55.833899+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('auth', '0005_alter_user_last_login_null', datetime.datetime(2024, 4, 24, 2, 54, 55, 833899, tzinfo=<UTC>))
+DEBUG 2024-04-24 11:54:55,838 utils 15 139821056846720 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-24 11:54:55,840 utils 15 139821056846720 (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0006_require_contenttypes_0002', '2024-04-24T02:54:55.839298+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('auth', '0006_require_contenttypes_0002', datetime.datetime(2024, 4, 24, 2, 54, 55, 839298, tzinfo=<UTC>))
+DEBUG 2024-04-24 11:54:55,852 utils 15 139821056846720 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-24 11:54:55,853 utils 15 139821056846720 (0.001) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0007_alter_validators_add_error_messages', '2024-04-24T02:54:55.852867+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('auth', '0007_alter_validators_add_error_messages', datetime.datetime(2024, 4, 24, 2, 54, 55, 852867, tzinfo=<UTC>))
+DEBUG 2024-04-24 11:54:55,906 schema 15 139821056846720 ALTER TABLE "auth_user" ALTER COLUMN "username" TYPE varchar(150); (params [])
+DEBUG 2024-04-24 11:54:55,916 utils 15 139821056846720 (0.009) ALTER TABLE "auth_user" ALTER COLUMN "username" TYPE varchar(150); args=[]
+DEBUG 2024-04-24 11:54:55,919 utils 15 139821056846720 (0.003) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-24 11:54:55,921 utils 15 139821056846720 (0.001) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0008_alter_user_username_max_length', '2024-04-24T02:54:55.920449+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('auth', '0008_alter_user_username_max_length', datetime.datetime(2024, 4, 24, 2, 54, 55, 920449, tzinfo=<UTC>))
+DEBUG 2024-04-24 11:54:55,932 schema 15 139821056846720 ALTER TABLE "auth_user" ALTER COLUMN "last_name" TYPE varchar(150); (params [])
+DEBUG 2024-04-24 11:54:55,933 utils 15 139821056846720 (0.001) ALTER TABLE "auth_user" ALTER COLUMN "last_name" TYPE varchar(150); args=[]
+DEBUG 2024-04-24 11:54:55,934 utils 15 139821056846720 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-24 11:54:55,936 utils 15 139821056846720 (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0009_alter_user_last_name_max_length', '2024-04-24T02:54:55.935521+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('auth', '0009_alter_user_last_name_max_length', datetime.datetime(2024, 4, 24, 2, 54, 55, 935521, tzinfo=<UTC>))
+DEBUG 2024-04-24 11:54:55,951 schema 15 139821056846720 ALTER TABLE "auth_group" ALTER COLUMN "name" TYPE varchar(150); (params [])
+DEBUG 2024-04-24 11:54:55,953 utils 15 139821056846720 (0.001) ALTER TABLE "auth_group" ALTER COLUMN "name" TYPE varchar(150); args=[]
+DEBUG 2024-04-24 11:54:55,957 utils 15 139821056846720 (0.003) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-24 11:54:55,958 utils 15 139821056846720 (0.001) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0010_alter_group_name_max_length', '2024-04-24T02:54:55.957831+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('auth', '0010_alter_group_name_max_length', datetime.datetime(2024, 4, 24, 2, 54, 55, 957831, tzinfo=<UTC>))
+DEBUG 2024-04-24 11:54:55,969 utils 15 139821056846720 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-24 11:54:55,972 utils 15 139821056846720 (0.002) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0011_update_proxy_permissions', '2024-04-24T02:54:55.970274+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('auth', '0011_update_proxy_permissions', datetime.datetime(2024, 4, 24, 2, 54, 55, 970274, tzinfo=<UTC>))
+DEBUG 2024-04-24 11:54:55,982 schema 15 139821056846720 ALTER TABLE "auth_user" ALTER COLUMN "first_name" TYPE varchar(150); (params [])
+DEBUG 2024-04-24 11:54:55,983 utils 15 139821056846720 (0.001) ALTER TABLE "auth_user" ALTER COLUMN "first_name" TYPE varchar(150); args=[]
+DEBUG 2024-04-24 11:54:55,985 utils 15 139821056846720 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-24 11:54:55,987 utils 15 139821056846720 (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('auth', '0012_alter_user_first_name_max_length', '2024-04-24T02:54:55.986700+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('auth', '0012_alter_user_first_name_max_length', datetime.datetime(2024, 4, 24, 2, 54, 55, 986700, tzinfo=<UTC>))
+DEBUG 2024-04-24 11:54:55,991 schema 15 139821056846720 CREATE TABLE "memorymap_hashtag" ("id" bigserial NOT NULL PRIMARY KEY, "tag" varchar(100) NOT NULL UNIQUE); (params None)
+DEBUG 2024-04-24 11:54:56,008 utils 15 139821056846720 (0.017) CREATE TABLE "memorymap_hashtag" ("id" bigserial NOT NULL PRIMARY KEY, "tag" varchar(100) NOT NULL UNIQUE); args=None
+DEBUG 2024-04-24 11:54:56,012 schema 15 139821056846720 CREATE TABLE "memorymap_post" ("id" bigserial NOT NULL PRIMARY KEY, "content" text NOT NULL, "content_type" varchar(100) NOT NULL, "title" varchar(255) NULL, "visibility" varchar(10) NOT NULL, "created_at" timestamp with time zone NOT NULL, "updated_at" timestamp with time zone NOT NULL, "thumbnail" varchar(100) NULL, "uuid" uuid NOT NULL); (params None)
+DEBUG 2024-04-24 11:54:56,019 utils 15 139821056846720 (0.006) CREATE TABLE "memorymap_post" ("id" bigserial NOT NULL PRIMARY KEY, "content" text NOT NULL, "content_type" varchar(100) NOT NULL, "title" varchar(255) NULL, "visibility" varchar(10) NOT NULL, "created_at" timestamp with time zone NOT NULL, "updated_at" timestamp with time zone NOT NULL, "thumbnail" varchar(100) NULL, "uuid" uuid NOT NULL); args=None
+DEBUG 2024-04-24 11:54:56,021 schema 15 139821056846720 CREATE TABLE "memorymap_tag" ("id" bigserial NOT NULL PRIMARY KEY, "name" varchar(100) NOT NULL); (params None)
+DEBUG 2024-04-24 11:54:56,025 utils 15 139821056846720 (0.004) CREATE TABLE "memorymap_tag" ("id" bigserial NOT NULL PRIMARY KEY, "name" varchar(100) NOT NULL); args=None
+DEBUG 2024-04-24 11:54:56,034 schema 15 139821056846720 CREATE TABLE "memorymap_user" ("id" bigserial NOT NULL PRIMARY KEY, "password" varchar(128) NOT NULL, "last_login" timestamp with time zone NULL, "is_superuser" boolean NOT NULL, "username" varchar(150) NOT NULL UNIQUE, "first_name" varchar(150) NOT NULL, "last_name" varchar(150) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" boolean NOT NULL, "is_active" boolean NOT NULL, "date_joined" timestamp with time zone NOT NULL, "profile_picture" varchar(100) NULL, "bio" text NULL, "birthday" date NULL, "slug" varchar(50) NULL UNIQUE); (params None)
+DEBUG 2024-04-24 11:54:56,046 utils 15 139821056846720 (0.011) CREATE TABLE "memorymap_user" ("id" bigserial NOT NULL PRIMARY KEY, "password" varchar(128) NOT NULL, "last_login" timestamp with time zone NULL, "is_superuser" boolean NOT NULL, "username" varchar(150) NOT NULL UNIQUE, "first_name" varchar(150) NOT NULL, "last_name" varchar(150) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" boolean NOT NULL, "is_active" boolean NOT NULL, "date_joined" timestamp with time zone NOT NULL, "profile_picture" varchar(100) NULL, "bio" text NULL, "birthday" date NULL, "slug" varchar(50) NULL UNIQUE); args=None
+DEBUG 2024-04-24 11:54:56,048 schema 15 139821056846720 CREATE TABLE "memorymap_user_groups" ("id" bigserial NOT NULL PRIMARY KEY, "user_id" bigint NOT NULL, "group_id" integer NOT NULL); (params None)
+DEBUG 2024-04-24 11:54:56,052 utils 15 139821056846720 (0.003) CREATE TABLE "memorymap_user_groups" ("id" bigserial NOT NULL PRIMARY KEY, "user_id" bigint NOT NULL, "group_id" integer NOT NULL); args=None
+DEBUG 2024-04-24 11:54:56,054 schema 15 139821056846720 CREATE TABLE "memorymap_user_user_permissions" ("id" bigserial NOT NULL PRIMARY KEY, "user_id" bigint NOT NULL, "permission_id" integer NOT NULL); (params None)
+DEBUG 2024-04-24 11:54:56,059 utils 15 139821056846720 (0.004) CREATE TABLE "memorymap_user_user_permissions" ("id" bigserial NOT NULL PRIMARY KEY, "user_id" bigint NOT NULL, "permission_id" integer NOT NULL); args=None
+DEBUG 2024-04-24 11:54:56,071 schema 15 139821056846720 CREATE TABLE "memorymap_userposttag" ("id" bigserial NOT NULL PRIMARY KEY, "post_id" bigint NOT NULL, "tag_id" bigint NOT NULL, "user_id" bigint NOT NULL); (params None)
+DEBUG 2024-04-24 11:54:56,077 utils 15 139821056846720 (0.004) CREATE TABLE "memorymap_userposttag" ("id" bigserial NOT NULL PRIMARY KEY, "post_id" bigint NOT NULL, "tag_id" bigint NOT NULL, "user_id" bigint NOT NULL); args=None
+DEBUG 2024-04-24 11:54:56,092 schema 15 139821056846720 CREATE TABLE "memorymap_repost" ("id" bigserial NOT NULL PRIMARY KEY, "created_at" timestamp with time zone NOT NULL, "original_post_id" bigint NOT NULL, "reposted_by_id" bigint NOT NULL); (params None)
+DEBUG 2024-04-24 11:54:56,096 utils 15 139821056846720 (0.003) CREATE TABLE "memorymap_repost" ("id" bigserial NOT NULL PRIMARY KEY, "created_at" timestamp with time zone NOT NULL, "original_post_id" bigint NOT NULL, "reposted_by_id" bigint NOT NULL); args=None
+DEBUG 2024-04-24 11:54:56,109 schema 15 139821056846720 ALTER TABLE "memorymap_post" ADD COLUMN "author_id" bigint NOT NULL CONSTRAINT "memorymap_post_author_id_821b0ceb_fk_memorymap_user_id" REFERENCES "memorymap_user"("id") DEFERRABLE INITIALLY DEFERRED; SET CONSTRAINTS "memorymap_post_author_id_821b0ceb_fk_memorymap_user_id" IMMEDIATE; (params [])
+DEBUG 2024-04-24 11:54:56,111 utils 15 139821056846720 (0.001) ALTER TABLE "memorymap_post" ADD COLUMN "author_id" bigint NOT NULL CONSTRAINT "memorymap_post_author_id_821b0ceb_fk_memorymap_user_id" REFERENCES "memorymap_user"("id") DEFERRABLE INITIALLY DEFERRED; SET CONSTRAINTS "memorymap_post_author_id_821b0ceb_fk_memorymap_user_id" IMMEDIATE; args=[]
+DEBUG 2024-04-24 11:54:56,125 schema 15 139821056846720 CREATE TABLE "memorymap_notification" ("id" bigserial NOT NULL PRIMARY KEY, "notification_type" varchar(10) NOT NULL, "text" text NOT NULL, "created_at" timestamp with time zone NOT NULL, "is_read" boolean NOT NULL, "post_id" bigint NULL, "recipient_id" bigint NOT NULL, "sender_id" bigint NOT NULL); (params None)
+DEBUG 2024-04-24 11:54:56,132 utils 15 139821056846720 (0.007) CREATE TABLE "memorymap_notification" ("id" bigserial NOT NULL PRIMARY KEY, "notification_type" varchar(10) NOT NULL, "text" text NOT NULL, "created_at" timestamp with time zone NOT NULL, "is_read" boolean NOT NULL, "post_id" bigint NULL, "recipient_id" bigint NOT NULL, "sender_id" bigint NOT NULL); args=None
+DEBUG 2024-04-24 11:54:56,148 schema 15 139821056846720 CREATE TABLE "memorymap_media" ("id" bigserial NOT NULL PRIMARY KEY, "media_type" varchar(10) NOT NULL, "file" varchar(100) NOT NULL, "created_at" timestamp with time zone NOT NULL, "post_id" bigint NOT NULL); (params None)
+DEBUG 2024-04-24 11:54:56,152 utils 15 139821056846720 (0.004) CREATE TABLE "memorymap_media" ("id" bigserial NOT NULL PRIMARY KEY, "media_type" varchar(10) NOT NULL, "file" varchar(100) NOT NULL, "created_at" timestamp with time zone NOT NULL, "post_id" bigint NOT NULL); args=None
+DEBUG 2024-04-24 11:54:56,180 schema 15 139821056846720 CREATE TABLE "memorymap_like" ("id" bigserial NOT NULL PRIMARY KEY, "created_at" timestamp with time zone NOT NULL, "post_id" bigint NOT NULL, "user_id" bigint NOT NULL); (params None)
+DEBUG 2024-04-24 11:54:56,184 utils 15 139821056846720 (0.004) CREATE TABLE "memorymap_like" ("id" bigserial NOT NULL PRIMARY KEY, "created_at" timestamp with time zone NOT NULL, "post_id" bigint NOT NULL, "user_id" bigint NOT NULL); args=None
+DEBUG 2024-04-24 11:54:56,202 schema 15 139821056846720 CREATE TABLE "memorymap_follower" ("id" bigserial NOT NULL PRIMARY KEY, "followed_id" bigint NOT NULL, "follower_id" bigint NOT NULL); (params None)
+DEBUG 2024-04-24 11:54:56,206 utils 15 139821056846720 (0.004) CREATE TABLE "memorymap_follower" ("id" bigserial NOT NULL PRIMARY KEY, "followed_id" bigint NOT NULL, "follower_id" bigint NOT NULL); args=None
+DEBUG 2024-04-24 11:54:56,225 schema 15 139821056846720 CREATE TABLE "memorymap_directmessage" ("id" bigserial NOT NULL PRIMARY KEY, "message" text NOT NULL, "sent_at" timestamp with time zone NOT NULL, "read_at" timestamp with time zone NULL, "recipient_id" bigint NOT NULL, "sender_id" bigint NOT NULL); (params None)
+DEBUG 2024-04-24 11:54:56,233 utils 15 139821056846720 (0.007) CREATE TABLE "memorymap_directmessage" ("id" bigserial NOT NULL PRIMARY KEY, "message" text NOT NULL, "sent_at" timestamp with time zone NOT NULL, "read_at" timestamp with time zone NULL, "recipient_id" bigint NOT NULL, "sender_id" bigint NOT NULL); args=None
+DEBUG 2024-04-24 11:54:56,255 schema 15 139821056846720 CREATE TABLE "memorymap_comment" ("id" bigserial NOT NULL PRIMARY KEY, "content" text NOT NULL, "created_at" timestamp with time zone NOT NULL, "lft" integer NOT NULL CHECK ("lft" >= 0), "rght" integer NOT NULL CHECK ("rght" >= 0), "tree_id" integer NOT NULL CHECK ("tree_id" >= 0), "level" integer NOT NULL CHECK ("level" >= 0), "parent_id" bigint NULL, "post_id" bigint NOT NULL, "user_id" bigint NOT NULL); (params None)
+DEBUG 2024-04-24 11:54:56,263 utils 15 139821056846720 (0.007) CREATE TABLE "memorymap_comment" ("id" bigserial NOT NULL PRIMARY KEY, "content" text NOT NULL, "created_at" timestamp with time zone NOT NULL, "lft" integer NOT NULL CHECK ("lft" >= 0), "rght" integer NOT NULL CHECK ("rght" >= 0), "tree_id" integer NOT NULL CHECK ("tree_id" >= 0), "level" integer NOT NULL CHECK ("level" >= 0), "parent_id" bigint NULL, "post_id" bigint NOT NULL, "user_id" bigint NOT NULL); args=None
+DEBUG 2024-04-24 11:54:56,286 schema 15 139821056846720 CREATE TABLE "memorymap_posthashtag" ("id" bigserial NOT NULL PRIMARY KEY, "hashtag_id" bigint NOT NULL, "post_id" bigint NOT NULL); (params None)
+DEBUG 2024-04-24 11:54:56,292 utils 15 139821056846720 (0.005) CREATE TABLE "memorymap_posthashtag" ("id" bigserial NOT NULL PRIMARY KEY, "hashtag_id" bigint NOT NULL, "post_id" bigint NOT NULL); args=None
+DEBUG 2024-04-24 11:54:56,318 schema 15 139821056846720 CREATE INDEX "memorymap_p_created_4261dc_idx" ON "memorymap_post" ("created_at", "author_id"); (params None)
+DEBUG 2024-04-24 11:54:56,322 utils 15 139821056846720 (0.004) CREATE INDEX "memorymap_p_created_4261dc_idx" ON "memorymap_post" ("created_at", "author_id"); args=None
+DEBUG 2024-04-24 11:54:56,336 schema 15 139821056846720 ALTER TABLE "memorymap_like" ADD CONSTRAINT "memorymap_like_post_id_user_id_7c34d051_uniq" UNIQUE ("post_id", "user_id"); (params ())
+DEBUG 2024-04-24 11:54:56,340 utils 15 139821056846720 (0.004) ALTER TABLE "memorymap_like" ADD CONSTRAINT "memorymap_like_post_id_user_id_7c34d051_uniq" UNIQUE ("post_id", "user_id"); args=()
+DEBUG 2024-04-24 11:54:56,356 schema 15 139821056846720 ALTER TABLE "memorymap_follower" ADD CONSTRAINT "memorymap_follower_follower_id_followed_id_97b11ad6_uniq" UNIQUE ("follower_id", "followed_id"); (params ())
+DEBUG 2024-04-24 11:54:56,367 utils 15 139821056846720 (0.011) ALTER TABLE "memorymap_follower" ADD CONSTRAINT "memorymap_follower_follower_id_followed_id_97b11ad6_uniq" UNIQUE ("follower_id", "followed_id"); args=()
+DEBUG 2024-04-24 11:54:56,368 schema 15 139821056846720 CREATE INDEX "memorymap_hashtag_tag_699cf8d8_like" ON "memorymap_hashtag" ("tag" varchar_pattern_ops); (params ())
+DEBUG 2024-04-24 11:54:56,376 utils 15 139821056846720 (0.008) CREATE INDEX "memorymap_hashtag_tag_699cf8d8_like" ON "memorymap_hashtag" ("tag" varchar_pattern_ops); args=()
+DEBUG 2024-04-24 11:54:56,377 schema 15 139821056846720 CREATE INDEX "memorymap_user_username_cf497575_like" ON "memorymap_user" ("username" varchar_pattern_ops); (params ())
+DEBUG 2024-04-24 11:54:56,384 utils 15 139821056846720 (0.006) CREATE INDEX "memorymap_user_username_cf497575_like" ON "memorymap_user" ("username" varchar_pattern_ops); args=()
+DEBUG 2024-04-24 11:54:56,387 schema 15 139821056846720 CREATE INDEX "memorymap_user_slug_30d89be2_like" ON "memorymap_user" ("slug" varchar_pattern_ops); (params ())
+DEBUG 2024-04-24 11:54:56,394 utils 15 139821056846720 (0.003) CREATE INDEX "memorymap_user_slug_30d89be2_like" ON "memorymap_user" ("slug" varchar_pattern_ops); args=()
+DEBUG 2024-04-24 11:54:56,394 schema 15 139821056846720 ALTER TABLE "memorymap_user_groups" ADD CONSTRAINT "memorymap_user_groups_user_id_group_id_a37b120a_uniq" UNIQUE ("user_id", "group_id"); (params ())
+DEBUG 2024-04-24 11:54:56,398 utils 15 139821056846720 (0.003) ALTER TABLE "memorymap_user_groups" ADD CONSTRAINT "memorymap_user_groups_user_id_group_id_a37b120a_uniq" UNIQUE ("user_id", "group_id"); args=()
+DEBUG 2024-04-24 11:54:56,398 schema 15 139821056846720 ALTER TABLE "memorymap_user_groups" ADD CONSTRAINT "memorymap_user_groups_user_id_4e020385_fk_memorymap_user_id" FOREIGN KEY ("user_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,400 utils 15 139821056846720 (0.001) ALTER TABLE "memorymap_user_groups" ADD CONSTRAINT "memorymap_user_groups_user_id_4e020385_fk_memorymap_user_id" FOREIGN KEY ("user_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,401 schema 15 139821056846720 ALTER TABLE "memorymap_user_groups" ADD CONSTRAINT "memorymap_user_groups_group_id_111984d5_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,402 utils 15 139821056846720 (0.001) ALTER TABLE "memorymap_user_groups" ADD CONSTRAINT "memorymap_user_groups_group_id_111984d5_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,403 schema 15 139821056846720 CREATE INDEX "memorymap_user_groups_user_id_4e020385" ON "memorymap_user_groups" ("user_id"); (params ())
+DEBUG 2024-04-24 11:54:56,407 utils 15 139821056846720 (0.003) CREATE INDEX "memorymap_user_groups_user_id_4e020385" ON "memorymap_user_groups" ("user_id"); args=()
+DEBUG 2024-04-24 11:54:56,408 schema 15 139821056846720 CREATE INDEX "memorymap_user_groups_group_id_111984d5" ON "memorymap_user_groups" ("group_id"); (params ())
+DEBUG 2024-04-24 11:54:56,413 utils 15 139821056846720 (0.005) CREATE INDEX "memorymap_user_groups_group_id_111984d5" ON "memorymap_user_groups" ("group_id"); args=()
+DEBUG 2024-04-24 11:54:56,414 schema 15 139821056846720 ALTER TABLE "memorymap_user_user_permissions" ADD CONSTRAINT "memorymap_user_user_perm_user_id_permission_id_a76b7b37_uniq" UNIQUE ("user_id", "permission_id"); (params ())
+DEBUG 2024-04-24 11:54:56,417 utils 15 139821056846720 (0.003) ALTER TABLE "memorymap_user_user_permissions" ADD CONSTRAINT "memorymap_user_user_perm_user_id_permission_id_a76b7b37_uniq" UNIQUE ("user_id", "permission_id"); args=()
+DEBUG 2024-04-24 11:54:56,418 schema 15 139821056846720 ALTER TABLE "memorymap_user_user_permissions" ADD CONSTRAINT "memorymap_user_user__user_id_ea76564f_fk_memorymap" FOREIGN KEY ("user_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,419 utils 15 139821056846720 (0.001) ALTER TABLE "memorymap_user_user_permissions" ADD CONSTRAINT "memorymap_user_user__user_id_ea76564f_fk_memorymap" FOREIGN KEY ("user_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,420 schema 15 139821056846720 ALTER TABLE "memorymap_user_user_permissions" ADD CONSTRAINT "memorymap_user_user__permission_id_f39970b8_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,423 utils 15 139821056846720 (0.001) ALTER TABLE "memorymap_user_user_permissions" ADD CONSTRAINT "memorymap_user_user__permission_id_f39970b8_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,423 schema 15 139821056846720 CREATE INDEX "memorymap_user_user_permissions_user_id_ea76564f" ON "memorymap_user_user_permissions" ("user_id"); (params ())
+DEBUG 2024-04-24 11:54:56,427 utils 15 139821056846720 (0.003) CREATE INDEX "memorymap_user_user_permissions_user_id_ea76564f" ON "memorymap_user_user_permissions" ("user_id"); args=()
+DEBUG 2024-04-24 11:54:56,428 schema 15 139821056846720 CREATE INDEX "memorymap_user_user_permissions_permission_id_f39970b8" ON "memorymap_user_user_permissions" ("permission_id"); (params ())
+DEBUG 2024-04-24 11:54:56,431 utils 15 139821056846720 (0.003) CREATE INDEX "memorymap_user_user_permissions_permission_id_f39970b8" ON "memorymap_user_user_permissions" ("permission_id"); args=()
+DEBUG 2024-04-24 11:54:56,432 schema 15 139821056846720 ALTER TABLE "memorymap_userposttag" ADD CONSTRAINT "memorymap_userposttag_post_id_59f93e1e_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,434 utils 15 139821056846720 (0.002) ALTER TABLE "memorymap_userposttag" ADD CONSTRAINT "memorymap_userposttag_post_id_59f93e1e_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,434 schema 15 139821056846720 ALTER TABLE "memorymap_userposttag" ADD CONSTRAINT "memorymap_userposttag_tag_id_3e1a4467_fk_memorymap_tag_id" FOREIGN KEY ("tag_id") REFERENCES "memorymap_tag" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,436 utils 15 139821056846720 (0.001) ALTER TABLE "memorymap_userposttag" ADD CONSTRAINT "memorymap_userposttag_tag_id_3e1a4467_fk_memorymap_tag_id" FOREIGN KEY ("tag_id") REFERENCES "memorymap_tag" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,437 schema 15 139821056846720 ALTER TABLE "memorymap_userposttag" ADD CONSTRAINT "memorymap_userposttag_user_id_6cd00f74_fk_memorymap_user_id" FOREIGN KEY ("user_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,438 utils 15 139821056846720 (0.001) ALTER TABLE "memorymap_userposttag" ADD CONSTRAINT "memorymap_userposttag_user_id_6cd00f74_fk_memorymap_user_id" FOREIGN KEY ("user_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,439 schema 15 139821056846720 CREATE INDEX "memorymap_userposttag_post_id_59f93e1e" ON "memorymap_userposttag" ("post_id"); (params ())
+DEBUG 2024-04-24 11:54:56,442 utils 15 139821056846720 (0.003) CREATE INDEX "memorymap_userposttag_post_id_59f93e1e" ON "memorymap_userposttag" ("post_id"); args=()
+DEBUG 2024-04-24 11:54:56,442 schema 15 139821056846720 CREATE INDEX "memorymap_userposttag_tag_id_3e1a4467" ON "memorymap_userposttag" ("tag_id"); (params ())
+DEBUG 2024-04-24 11:54:56,446 utils 15 139821056846720 (0.004) CREATE INDEX "memorymap_userposttag_tag_id_3e1a4467" ON "memorymap_userposttag" ("tag_id"); args=()
+DEBUG 2024-04-24 11:54:56,447 schema 15 139821056846720 CREATE INDEX "memorymap_userposttag_user_id_6cd00f74" ON "memorymap_userposttag" ("user_id"); (params ())
+DEBUG 2024-04-24 11:54:56,450 utils 15 139821056846720 (0.003) CREATE INDEX "memorymap_userposttag_user_id_6cd00f74" ON "memorymap_userposttag" ("user_id"); args=()
+DEBUG 2024-04-24 11:54:56,450 schema 15 139821056846720 ALTER TABLE "memorymap_repost" ADD CONSTRAINT "memorymap_repost_original_post_id_787c6adf_fk_memorymap_post_id" FOREIGN KEY ("original_post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,452 utils 15 139821056846720 (0.001) ALTER TABLE "memorymap_repost" ADD CONSTRAINT "memorymap_repost_original_post_id_787c6adf_fk_memorymap_post_id" FOREIGN KEY ("original_post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,452 schema 15 139821056846720 ALTER TABLE "memorymap_repost" ADD CONSTRAINT "memorymap_repost_reposted_by_id_ec9cd24b_fk_memorymap_user_id" FOREIGN KEY ("reposted_by_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,453 utils 15 139821056846720 (0.001) ALTER TABLE "memorymap_repost" ADD CONSTRAINT "memorymap_repost_reposted_by_id_ec9cd24b_fk_memorymap_user_id" FOREIGN KEY ("reposted_by_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,453 schema 15 139821056846720 CREATE INDEX "memorymap_repost_original_post_id_787c6adf" ON "memorymap_repost" ("original_post_id"); (params ())
+DEBUG 2024-04-24 11:54:56,457 utils 15 139821056846720 (0.003) CREATE INDEX "memorymap_repost_original_post_id_787c6adf" ON "memorymap_repost" ("original_post_id"); args=()
+DEBUG 2024-04-24 11:54:56,457 schema 15 139821056846720 CREATE INDEX "memorymap_repost_reposted_by_id_ec9cd24b" ON "memorymap_repost" ("reposted_by_id"); (params ())
+DEBUG 2024-04-24 11:54:56,460 utils 15 139821056846720 (0.003) CREATE INDEX "memorymap_repost_reposted_by_id_ec9cd24b" ON "memorymap_repost" ("reposted_by_id"); args=()
+DEBUG 2024-04-24 11:54:56,460 schema 15 139821056846720 CREATE INDEX "memorymap_post_author_id_821b0ceb" ON "memorymap_post" ("author_id"); (params ())
+DEBUG 2024-04-24 11:54:56,464 utils 15 139821056846720 (0.003) CREATE INDEX "memorymap_post_author_id_821b0ceb" ON "memorymap_post" ("author_id"); args=()
+DEBUG 2024-04-24 11:54:56,464 schema 15 139821056846720 ALTER TABLE "memorymap_notification" ADD CONSTRAINT "memorymap_notification_post_id_0b1d6965_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,467 utils 15 139821056846720 (0.003) ALTER TABLE "memorymap_notification" ADD CONSTRAINT "memorymap_notification_post_id_0b1d6965_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,469 schema 15 139821056846720 ALTER TABLE "memorymap_notification" ADD CONSTRAINT "memorymap_notificati_recipient_id_0eb28d0c_fk_memorymap" FOREIGN KEY ("recipient_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,471 utils 15 139821056846720 (0.001) ALTER TABLE "memorymap_notification" ADD CONSTRAINT "memorymap_notificati_recipient_id_0eb28d0c_fk_memorymap" FOREIGN KEY ("recipient_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,472 schema 15 139821056846720 ALTER TABLE "memorymap_notification" ADD CONSTRAINT "memorymap_notification_sender_id_07b35557_fk_memorymap_user_id" FOREIGN KEY ("sender_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,473 utils 15 139821056846720 (0.001) ALTER TABLE "memorymap_notification" ADD CONSTRAINT "memorymap_notification_sender_id_07b35557_fk_memorymap_user_id" FOREIGN KEY ("sender_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,474 schema 15 139821056846720 CREATE INDEX "memorymap_notification_post_id_0b1d6965" ON "memorymap_notification" ("post_id"); (params ())
+DEBUG 2024-04-24 11:54:56,479 utils 15 139821056846720 (0.004) CREATE INDEX "memorymap_notification_post_id_0b1d6965" ON "memorymap_notification" ("post_id"); args=()
+DEBUG 2024-04-24 11:54:56,479 schema 15 139821056846720 CREATE INDEX "memorymap_notification_recipient_id_0eb28d0c" ON "memorymap_notification" ("recipient_id"); (params ())
+DEBUG 2024-04-24 11:54:56,482 utils 15 139821056846720 (0.003) CREATE INDEX "memorymap_notification_recipient_id_0eb28d0c" ON "memorymap_notification" ("recipient_id"); args=()
+DEBUG 2024-04-24 11:54:56,483 schema 15 139821056846720 CREATE INDEX "memorymap_notification_sender_id_07b35557" ON "memorymap_notification" ("sender_id"); (params ())
+DEBUG 2024-04-24 11:54:56,485 utils 15 139821056846720 (0.003) CREATE INDEX "memorymap_notification_sender_id_07b35557" ON "memorymap_notification" ("sender_id"); args=()
+DEBUG 2024-04-24 11:54:56,486 schema 15 139821056846720 ALTER TABLE "memorymap_media" ADD CONSTRAINT "memorymap_media_post_id_7bf80404_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,488 utils 15 139821056846720 (0.002) ALTER TABLE "memorymap_media" ADD CONSTRAINT "memorymap_media_post_id_7bf80404_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,488 schema 15 139821056846720 CREATE INDEX "memorymap_media_post_id_7bf80404" ON "memorymap_media" ("post_id"); (params ())
+DEBUG 2024-04-24 11:54:56,492 utils 15 139821056846720 (0.003) CREATE INDEX "memorymap_media_post_id_7bf80404" ON "memorymap_media" ("post_id"); args=()
+DEBUG 2024-04-24 11:54:56,492 schema 15 139821056846720 ALTER TABLE "memorymap_like" ADD CONSTRAINT "memorymap_like_post_id_3f81d888_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,493 utils 15 139821056846720 (0.001) ALTER TABLE "memorymap_like" ADD CONSTRAINT "memorymap_like_post_id_3f81d888_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,494 schema 15 139821056846720 ALTER TABLE "memorymap_like" ADD CONSTRAINT "memorymap_like_user_id_e06c4aef_fk_memorymap_user_id" FOREIGN KEY ("user_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,496 utils 15 139821056846720 (0.002) ALTER TABLE "memorymap_like" ADD CONSTRAINT "memorymap_like_user_id_e06c4aef_fk_memorymap_user_id" FOREIGN KEY ("user_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,496 schema 15 139821056846720 CREATE INDEX "memorymap_like_post_id_3f81d888" ON "memorymap_like" ("post_id"); (params ())
+DEBUG 2024-04-24 11:54:56,502 utils 15 139821056846720 (0.005) CREATE INDEX "memorymap_like_post_id_3f81d888" ON "memorymap_like" ("post_id"); args=()
+DEBUG 2024-04-24 11:54:56,502 schema 15 139821056846720 CREATE INDEX "memorymap_like_user_id_e06c4aef" ON "memorymap_like" ("user_id"); (params ())
+DEBUG 2024-04-24 11:54:56,512 utils 15 139821056846720 (0.008) CREATE INDEX "memorymap_like_user_id_e06c4aef" ON "memorymap_like" ("user_id"); args=()
+DEBUG 2024-04-24 11:54:56,513 schema 15 139821056846720 ALTER TABLE "memorymap_follower" ADD CONSTRAINT "memorymap_follower_followed_id_7a39c735_fk_memorymap_user_id" FOREIGN KEY ("followed_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,518 utils 15 139821056846720 (0.003) ALTER TABLE "memorymap_follower" ADD CONSTRAINT "memorymap_follower_followed_id_7a39c735_fk_memorymap_user_id" FOREIGN KEY ("followed_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,518 schema 15 139821056846720 ALTER TABLE "memorymap_follower" ADD CONSTRAINT "memorymap_follower_follower_id_28886d00_fk_memorymap_user_id" FOREIGN KEY ("follower_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,523 utils 15 139821056846720 (0.004) ALTER TABLE "memorymap_follower" ADD CONSTRAINT "memorymap_follower_follower_id_28886d00_fk_memorymap_user_id" FOREIGN KEY ("follower_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,524 schema 15 139821056846720 CREATE INDEX "memorymap_follower_followed_id_7a39c735" ON "memorymap_follower" ("followed_id"); (params ())
+DEBUG 2024-04-24 11:54:56,528 utils 15 139821056846720 (0.003) CREATE INDEX "memorymap_follower_followed_id_7a39c735" ON "memorymap_follower" ("followed_id"); args=()
+DEBUG 2024-04-24 11:54:56,529 schema 15 139821056846720 CREATE INDEX "memorymap_follower_follower_id_28886d00" ON "memorymap_follower" ("follower_id"); (params ())
+DEBUG 2024-04-24 11:54:56,537 utils 15 139821056846720 (0.008) CREATE INDEX "memorymap_follower_follower_id_28886d00" ON "memorymap_follower" ("follower_id"); args=()
+DEBUG 2024-04-24 11:54:56,537 schema 15 139821056846720 ALTER TABLE "memorymap_directmessage" ADD CONSTRAINT "memorymap_directmess_recipient_id_2060b065_fk_memorymap" FOREIGN KEY ("recipient_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,541 utils 15 139821056846720 (0.004) ALTER TABLE "memorymap_directmessage" ADD CONSTRAINT "memorymap_directmess_recipient_id_2060b065_fk_memorymap" FOREIGN KEY ("recipient_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,542 schema 15 139821056846720 ALTER TABLE "memorymap_directmessage" ADD CONSTRAINT "memorymap_directmessage_sender_id_1d43e742_fk_memorymap_user_id" FOREIGN KEY ("sender_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,544 utils 15 139821056846720 (0.002) ALTER TABLE "memorymap_directmessage" ADD CONSTRAINT "memorymap_directmessage_sender_id_1d43e742_fk_memorymap_user_id" FOREIGN KEY ("sender_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,544 schema 15 139821056846720 CREATE INDEX "memorymap_directmessage_recipient_id_2060b065" ON "memorymap_directmessage" ("recipient_id"); (params ())
+DEBUG 2024-04-24 11:54:56,553 utils 15 139821056846720 (0.009) CREATE INDEX "memorymap_directmessage_recipient_id_2060b065" ON "memorymap_directmessage" ("recipient_id"); args=()
+DEBUG 2024-04-24 11:54:56,554 schema 15 139821056846720 CREATE INDEX "memorymap_directmessage_sender_id_1d43e742" ON "memorymap_directmessage" ("sender_id"); (params ())
+DEBUG 2024-04-24 11:54:56,565 utils 15 139821056846720 (0.006) CREATE INDEX "memorymap_directmessage_sender_id_1d43e742" ON "memorymap_directmessage" ("sender_id"); args=()
+DEBUG 2024-04-24 11:54:56,566 schema 15 139821056846720 ALTER TABLE "memorymap_comment" ADD CONSTRAINT "memorymap_comment_parent_id_34fa2f71_fk_memorymap_comment_id" FOREIGN KEY ("parent_id") REFERENCES "memorymap_comment" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,571 utils 15 139821056846720 (0.005) ALTER TABLE "memorymap_comment" ADD CONSTRAINT "memorymap_comment_parent_id_34fa2f71_fk_memorymap_comment_id" FOREIGN KEY ("parent_id") REFERENCES "memorymap_comment" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,573 schema 15 139821056846720 ALTER TABLE "memorymap_comment" ADD CONSTRAINT "memorymap_comment_post_id_bbe170d1_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,578 utils 15 139821056846720 (0.004) ALTER TABLE "memorymap_comment" ADD CONSTRAINT "memorymap_comment_post_id_bbe170d1_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,578 schema 15 139821056846720 ALTER TABLE "memorymap_comment" ADD CONSTRAINT "memorymap_comment_user_id_51ea9eb4_fk_memorymap_user_id" FOREIGN KEY ("user_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,580 utils 15 139821056846720 (0.002) ALTER TABLE "memorymap_comment" ADD CONSTRAINT "memorymap_comment_user_id_51ea9eb4_fk_memorymap_user_id" FOREIGN KEY ("user_id") REFERENCES "memorymap_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,581 schema 15 139821056846720 CREATE INDEX "memorymap_comment_tree_id_45415237" ON "memorymap_comment" ("tree_id"); (params ())
+DEBUG 2024-04-24 11:54:56,591 utils 15 139821056846720 (0.010) CREATE INDEX "memorymap_comment_tree_id_45415237" ON "memorymap_comment" ("tree_id"); args=()
+DEBUG 2024-04-24 11:54:56,593 schema 15 139821056846720 CREATE INDEX "memorymap_comment_parent_id_34fa2f71" ON "memorymap_comment" ("parent_id"); (params ())
+DEBUG 2024-04-24 11:54:56,606 utils 15 139821056846720 (0.009) CREATE INDEX "memorymap_comment_parent_id_34fa2f71" ON "memorymap_comment" ("parent_id"); args=()
+DEBUG 2024-04-24 11:54:56,607 schema 15 139821056846720 CREATE INDEX "memorymap_comment_post_id_bbe170d1" ON "memorymap_comment" ("post_id"); (params ())
+DEBUG 2024-04-24 11:54:56,622 utils 15 139821056846720 (0.013) CREATE INDEX "memorymap_comment_post_id_bbe170d1" ON "memorymap_comment" ("post_id"); args=()
+DEBUG 2024-04-24 11:54:56,625 schema 15 139821056846720 CREATE INDEX "memorymap_comment_user_id_51ea9eb4" ON "memorymap_comment" ("user_id"); (params ())
+DEBUG 2024-04-24 11:54:56,632 utils 15 139821056846720 (0.005) CREATE INDEX "memorymap_comment_user_id_51ea9eb4" ON "memorymap_comment" ("user_id"); args=()
+DEBUG 2024-04-24 11:54:56,632 schema 15 139821056846720 ALTER TABLE "memorymap_posthashtag" ADD CONSTRAINT "memorymap_posthashtag_post_id_hashtag_id_c8ca4891_uniq" UNIQUE ("post_id", "hashtag_id"); (params ())
+DEBUG 2024-04-24 11:54:56,640 utils 15 139821056846720 (0.007) ALTER TABLE "memorymap_posthashtag" ADD CONSTRAINT "memorymap_posthashtag_post_id_hashtag_id_c8ca4891_uniq" UNIQUE ("post_id", "hashtag_id"); args=()
+DEBUG 2024-04-24 11:54:56,640 schema 15 139821056846720 ALTER TABLE "memorymap_posthashtag" ADD CONSTRAINT "memorymap_posthashta_hashtag_id_bd0be59c_fk_memorymap" FOREIGN KEY ("hashtag_id") REFERENCES "memorymap_hashtag" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,642 utils 15 139821056846720 (0.001) ALTER TABLE "memorymap_posthashtag" ADD CONSTRAINT "memorymap_posthashta_hashtag_id_bd0be59c_fk_memorymap" FOREIGN KEY ("hashtag_id") REFERENCES "memorymap_hashtag" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,642 schema 15 139821056846720 ALTER TABLE "memorymap_posthashtag" ADD CONSTRAINT "memorymap_posthashtag_post_id_748291a6_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-24 11:54:56,644 utils 15 139821056846720 (0.001) ALTER TABLE "memorymap_posthashtag" ADD CONSTRAINT "memorymap_posthashtag_post_id_748291a6_fk_memorymap_post_id" FOREIGN KEY ("post_id") REFERENCES "memorymap_post" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-24 11:54:56,644 schema 15 139821056846720 CREATE INDEX "memorymap_posthashtag_hashtag_id_bd0be59c" ON "memorymap_posthashtag" ("hashtag_id"); (params ())
+DEBUG 2024-04-24 11:54:56,647 utils 15 139821056846720 (0.003) CREATE INDEX "memorymap_posthashtag_hashtag_id_bd0be59c" ON "memorymap_posthashtag" ("hashtag_id"); args=()
+DEBUG 2024-04-24 11:54:56,648 schema 15 139821056846720 CREATE INDEX "memorymap_posthashtag_post_id_748291a6" ON "memorymap_posthashtag" ("post_id"); (params ())
+DEBUG 2024-04-24 11:54:56,651 utils 15 139821056846720 (0.003) CREATE INDEX "memorymap_posthashtag_post_id_748291a6" ON "memorymap_posthashtag" ("post_id"); args=()
+DEBUG 2024-04-24 11:54:56,663 utils 15 139821056846720 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-24 11:54:56,666 utils 15 139821056846720 (0.002) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('memorymap', '0001_initial', '2024-04-24T02:54:56.663639+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('memorymap', '0001_initial', datetime.datetime(2024, 4, 24, 2, 54, 56, 663639, tzinfo=<UTC>))
+DEBUG 2024-04-24 11:54:56,667 utils 15 139821056846720 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-24 11:54:56,669 utils 15 139821056846720 (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-04-24 11:54:56,692 utils 15 139821056846720 (0.003) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'memorymap'; args=('memorymap',)
+DEBUG 2024-04-24 11:54:56,698 utils 15 139821056846720 (0.003) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('memorymap', 'hashtag'), ('memorymap', 'post'), ('memorymap', 'tag'), ('memorymap', 'user'), ('memorymap', 'userposttag'), ('memorymap', 'repost'), ('memorymap', 'notification'), ('memorymap', 'media'), ('memorymap', 'like'), ('memorymap', 'follower'), ('memorymap', 'directmessage'), ('memorymap', 'comment'), ('memorymap', 'posthashtag') RETURNING "django_content_type"."id"; args=('memorymap', 'hashtag', 'memorymap', 'post', 'memorymap', 'tag', 'memorymap', 'user', 'memorymap', 'userposttag', 'memorymap', 'repost', 'memorymap', 'notification', 'memorymap', 'media', 'memorymap', 'like', 'memorymap', 'follower', 'memorymap', 'directmessage', 'memorymap', 'comment', 'memorymap', 'posthashtag')
+DEBUG 2024-04-24 11:54:56,708 utils 15 139821056846720 (0.005) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'hashtag') LIMIT 21; args=('memorymap', 'hashtag')
+DEBUG 2024-04-24 11:54:56,714 utils 15 139821056846720 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'post') LIMIT 21; args=('memorymap', 'post')
+DEBUG 2024-04-24 11:54:56,723 utils 15 139821056846720 (0.003) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'tag') LIMIT 21; args=('memorymap', 'tag')
+DEBUG 2024-04-24 11:54:56,730 utils 15 139821056846720 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'user') LIMIT 21; args=('memorymap', 'user')
+DEBUG 2024-04-24 11:54:56,740 utils 15 139821056846720 (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'userposttag') LIMIT 21; args=('memorymap', 'userposttag')
+DEBUG 2024-04-24 11:54:56,744 utils 15 139821056846720 (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'repost') LIMIT 21; args=('memorymap', 'repost')
+DEBUG 2024-04-24 11:54:56,756 utils 15 139821056846720 (0.003) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'notification') LIMIT 21; args=('memorymap', 'notification')
+DEBUG 2024-04-24 11:54:56,762 utils 15 139821056846720 (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'media') LIMIT 21; args=('memorymap', 'media')
+DEBUG 2024-04-24 11:54:56,768 utils 15 139821056846720 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'like') LIMIT 21; args=('memorymap', 'like')
+DEBUG 2024-04-24 11:54:56,775 utils 15 139821056846720 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'follower') LIMIT 21; args=('memorymap', 'follower')
+DEBUG 2024-04-24 11:54:56,781 utils 15 139821056846720 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'directmessage') LIMIT 21; args=('memorymap', 'directmessage')
+DEBUG 2024-04-24 11:54:56,792 utils 15 139821056846720 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'comment') LIMIT 21; args=('memorymap', 'comment')
+DEBUG 2024-04-24 11:54:56,796 utils 15 139821056846720 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'posthashtag') LIMIT 21; args=('memorymap', 'posthashtag')
+DEBUG 2024-04-24 11:54:56,804 utils 15 139821056846720 (0.002) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)
+DEBUG 2024-04-24 11:54:56,809 utils 15 139821056846720 (0.001) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add hashtag', 1, 'add_hashtag'), ('Can change hashtag', 1, 'change_hashtag'), ('Can delete hashtag', 1, 'delete_hashtag'), ('Can view hashtag', 1, 'view_hashtag'), ('Can add Post', 2, 'add_post'), ('Can change Post', 2, 'change_post'), ('Can delete Post', 2, 'delete_post'), ('Can view Post', 2, 'view_post'), ('Can add tag', 3, 'add_tag'), ('Can change tag', 3, 'change_tag'), ('Can delete tag', 3, 'delete_tag'), ('Can view tag', 3, 'view_tag'), ('Can add user', 4, 'add_user'), ('Can change user', 4, 'change_user'), ('Can delete user', 4, 'delete_user'), ('Can view user', 4, 'view_user'), ('Can add user post tag', 5, 'add_userposttag'), ('Can change user post tag', 5, 'change_userposttag'), ('Can delete user post tag', 5, 'delete_userposttag'), ('Can view user post tag', 5, 'view_userposttag'), ('Can add repost', 6, 'add_repost'), ('Can change repost', 6, 'change_repost'), ('Can delete repost', 6, 'delete_repost'), ('Can view repost', 6, 'view_repost'), ('Can add notification', 7, 'add_notification'), ('Can change notification', 7, 'change_notification'), ('Can delete notification', 7, 'delete_notification'), ('Can view notification', 7, 'view_notification'), ('Can add Media', 8, 'add_media'), ('Can change Media', 8, 'change_media'), ('Can delete Media', 8, 'delete_media'), ('Can view Media', 8, 'view_media'), ('Can add like', 9, 'add_like'), ('Can change like', 9, 'change_like'), ('Can delete like', 9, 'delete_like'), ('Can view like', 9, 'view_like'), ('Can add follower', 10, 'add_follower'), ('Can change follower', 10, 'change_follower'), ('Can delete follower', 10, 'delete_follower'), ('Can view follower', 10, 'view_follower'), ('Can add direct message', 11, 'add_directmessage'), ('Can change direct message', 11, 'change_directmessage'), ('Can delete direct message', 11, 'delete_directmessage'), ('Can view direct message', 11, 'view_directmessage'), ('Can add comment', 12, 'add_comment'), ('Can change comment', 12, 'change_comment'), ('Can delete comment', 12, 'delete_comment'), ('Can view comment', 12, 'view_comment'), ('Can add post hashtag', 13, 'add_posthashtag'), ('Can change post hashtag', 13, 'change_posthashtag'), ('Can delete post hashtag', 13, 'delete_posthashtag'), ('Can view post hashtag', 13, 'view_posthashtag') RETURNING "auth_permission"."id"; args=('Can add hashtag', 1, 'add_hashtag', 'Can change hashtag', 1, 'change_hashtag', 'Can delete hashtag', 1, 'delete_hashtag', 'Can view hashtag', 1, 'view_hashtag', 'Can add Post', 2, 'add_post', 'Can change Post', 2, 'change_post', 'Can delete Post', 2, 'delete_post', 'Can view Post', 2, 'view_post', 'Can add tag', 3, 'add_tag', 'Can change tag', 3, 'change_tag', 'Can delete tag', 3, 'delete_tag', 'Can view tag', 3, 'view_tag', 'Can add user', 4, 'add_user', 'Can change user', 4, 'change_user', 'Can delete user', 4, 'delete_user', 'Can view user', 4, 'view_user', 'Can add user post tag', 5, 'add_userposttag', 'Can change user post tag', 5, 'change_userposttag', 'Can delete user post tag', 5, 'delete_userposttag', 'Can view user post tag', 5, 'view_userposttag', 'Can add repost', 6, 'add_repost', 'Can change repost', 6, 'change_repost', 'Can delete repost', 6, 'delete_repost', 'Can view repost', 6, 'view_repost', 'Can add notification', 7, 'add_notification', 'Can change notification', 7, 'change_notification', 'Can delete notification', 7, 'delete_notification', 'Can view notification', 7, 'view_notification', 'Can add Media', 8, 'add_media', 'Can change Media', 8, 'change_media', 'Can delete Media', 8, 'delete_media', 'Can view Media', 8, 'view_media', 'Can add like', 9, 'add_like', 'Can change like', 9, 'change_like', 'Can delete like', 9, 'delete_like', 'Can view like', 9, 'view_like', 'Can add follower', 10, 'add_follower', 'Can change follower', 10, 'change_follower', 'Can delete follower', 10, 'delete_follower', 'Can view follower', 10, 'view_follower', 'Can add direct message', 11, 'add_directmessage', 'Can change direct message', 11, 'change_directmessage', 'Can delete direct message', 11, 'delete_directmessage', 'Can view direct message', 11, 'view_directmessage', 'Can add comment', 12, 'add_comment', 'Can change comment', 12, 'change_comment', 'Can delete comment', 12, 'delete_comment', 'Can view comment', 12, 'view_comment', 'Can add post hashtag', 13, 'add_posthashtag', 'Can change post hashtag', 13, 'change_posthashtag', 'Can delete post hashtag', 13, 'delete_posthashtag', 'Can view post hashtag', 13, 'view_posthashtag')
+DEBUG 2024-04-24 11:54:56,814 utils 15 139821056846720 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'memorymap'; args=('memorymap',)
+DEBUG 2024-04-24 11:54:56,817 utils 15 139821056846720 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'mptt'; args=('mptt',)
+DEBUG 2024-04-24 11:54:56,820 utils 15 139821056846720 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'mptt'; args=('mptt',)
+DEBUG 2024-04-24 11:54:56,822 utils 15 139821056846720 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',)
+DEBUG 2024-04-24 11:54:56,824 utils 15 139821056846720 (0.000) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('auth', 'permission'), ('auth', 'group'), ('auth', 'user') RETURNING "django_content_type"."id"; args=('auth', 'permission', 'auth', 'group', 'auth', 'user')
+DEBUG 2024-04-24 11:54:56,827 utils 15 139821056846720 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'permission') LIMIT 21; args=('auth', 'permission')
+DEBUG 2024-04-24 11:54:56,830 utils 15 139821056846720 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'group') LIMIT 21; args=('auth', 'group')
+DEBUG 2024-04-24 11:54:56,835 utils 15 139821056846720 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'user') LIMIT 21; args=('auth', 'user')
+DEBUG 2024-04-24 11:54:56,839 utils 15 139821056846720 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (16, 14, 15) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(16, 14, 15)
+DEBUG 2024-04-24 11:54:56,844 utils 15 139821056846720 (0.001) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add permission', 14, 'add_permission'), ('Can change permission', 14, 'change_permission'), ('Can delete permission', 14, 'delete_permission'), ('Can view permission', 14, 'view_permission'), ('Can add group', 15, 'add_group'), ('Can change group', 15, 'change_group'), ('Can delete group', 15, 'delete_group'), ('Can view group', 15, 'view_group'), ('Can add user', 16, 'add_user'), ('Can change user', 16, 'change_user'), ('Can delete user', 16, 'delete_user'), ('Can view user', 16, 'view_user') RETURNING "auth_permission"."id"; args=('Can add permission', 14, 'add_permission', 'Can change permission', 14, 'change_permission', 'Can delete permission', 14, 'delete_permission', 'Can view permission', 14, 'view_permission', 'Can add group', 15, 'add_group', 'Can change group', 15, 'change_group', 'Can delete group', 15, 'delete_group', 'Can view group', 15, 'view_group', 'Can add user', 16, 'add_user', 'Can change user', 16, 'change_user', 'Can delete user', 16, 'delete_user', 'Can view user', 16, 'view_user')
+DEBUG 2024-04-24 11:54:56,848 utils 15 139821056846720 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',)
+DEBUG 2024-04-24 11:54:56,852 utils 15 139821056846720 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',)
+DEBUG 2024-04-24 11:54:56,855 utils 15 139821056846720 (0.002) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('contenttypes', 'contenttype') RETURNING "django_content_type"."id"; args=('contenttypes', 'contenttype')
+DEBUG 2024-04-24 11:54:56,859 utils 15 139821056846720 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'contenttypes' AND "django_content_type"."model" = 'contenttype') LIMIT 21; args=('contenttypes', 'contenttype')
+DEBUG 2024-04-24 11:54:56,862 utils 15 139821056846720 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (17) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(17,)
+DEBUG 2024-04-24 11:54:56,864 utils 15 139821056846720 (0.000) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add content type', 17, 'add_contenttype'), ('Can change content type', 17, 'change_contenttype'), ('Can delete content type', 17, 'delete_contenttype'), ('Can view content type', 17, 'view_contenttype') RETURNING "auth_permission"."id"; args=('Can add content type', 17, 'add_contenttype', 'Can change content type', 17, 'change_contenttype', 'Can delete content type', 17, 'delete_contenttype', 'Can view content type', 17, 'view_contenttype')
+DEBUG 2024-04-24 11:54:56,866 utils 15 139821056846720 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',)
+DEBUG 2024-04-25 09:50:31,780 utils 18 140069909810048 (0.055) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-25 09:50:31,797 utils 18 140069909810048 (0.009) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-04-25 09:52:26,960 utils 19 139965881248640 (0.002) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-25 09:52:26,965 utils 19 139965881248640 (0.001) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-04-25 09:52:26,967 utils 19 139965881248640 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-25 09:52:26,968 utils 19 139965881248640 (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-04-25 09:52:26,993 utils 19 139965881248640 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-25 09:52:27,022 schema 19 139965881248640 CREATE TABLE "accounts_user" ("id" bigserial NOT NULL PRIMARY KEY, "password" varchar(128) NOT NULL, "last_login" timestamp with time zone NULL, "is_superuser" boolean NOT NULL, "username" varchar(150) NOT NULL UNIQUE, "first_name" varchar(150) NOT NULL, "last_name" varchar(150) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" boolean NOT NULL, "is_active" boolean NOT NULL, "date_joined" timestamp with time zone NOT NULL, "profile_picture" varchar(100) NULL, "bio" text NULL, "birthday" date NULL, "slug" varchar(50) NOT NULL UNIQUE); (params None)
+DEBUG 2024-04-25 09:52:27,053 utils 19 139965881248640 (0.031) CREATE TABLE "accounts_user" ("id" bigserial NOT NULL PRIMARY KEY, "password" varchar(128) NOT NULL, "last_login" timestamp with time zone NULL, "is_superuser" boolean NOT NULL, "username" varchar(150) NOT NULL UNIQUE, "first_name" varchar(150) NOT NULL, "last_name" varchar(150) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" boolean NOT NULL, "is_active" boolean NOT NULL, "date_joined" timestamp with time zone NOT NULL, "profile_picture" varchar(100) NULL, "bio" text NULL, "birthday" date NULL, "slug" varchar(50) NOT NULL UNIQUE); args=None
+DEBUG 2024-04-25 09:52:27,055 schema 19 139965881248640 CREATE TABLE "accounts_user_groups" ("id" bigserial NOT NULL PRIMARY KEY, "user_id" bigint NOT NULL, "group_id" integer NOT NULL); (params None)
+DEBUG 2024-04-25 09:52:27,060 utils 19 139965881248640 (0.004) CREATE TABLE "accounts_user_groups" ("id" bigserial NOT NULL PRIMARY KEY, "user_id" bigint NOT NULL, "group_id" integer NOT NULL); args=None
+DEBUG 2024-04-25 09:52:27,060 schema 19 139965881248640 CREATE TABLE "accounts_user_user_permissions" ("id" bigserial NOT NULL PRIMARY KEY, "user_id" bigint NOT NULL, "permission_id" integer NOT NULL); (params None)
+DEBUG 2024-04-25 09:52:27,064 utils 19 139965881248640 (0.003) CREATE TABLE "accounts_user_user_permissions" ("id" bigserial NOT NULL PRIMARY KEY, "user_id" bigint NOT NULL, "permission_id" integer NOT NULL); args=None
+DEBUG 2024-04-25 09:52:27,065 schema 19 139965881248640 CREATE INDEX "accounts_user_username_6088629e_like" ON "accounts_user" ("username" varchar_pattern_ops); (params ())
+DEBUG 2024-04-25 09:52:27,070 utils 19 139965881248640 (0.004) CREATE INDEX "accounts_user_username_6088629e_like" ON "accounts_user" ("username" varchar_pattern_ops); args=()
+DEBUG 2024-04-25 09:52:27,070 schema 19 139965881248640 CREATE INDEX "accounts_user_slug_b5afb108_like" ON "accounts_user" ("slug" varchar_pattern_ops); (params ())
+DEBUG 2024-04-25 09:52:27,073 utils 19 139965881248640 (0.003) CREATE INDEX "accounts_user_slug_b5afb108_like" ON "accounts_user" ("slug" varchar_pattern_ops); args=()
+DEBUG 2024-04-25 09:52:27,074 schema 19 139965881248640 ALTER TABLE "accounts_user_groups" ADD CONSTRAINT "accounts_user_groups_user_id_group_id_59c0b32f_uniq" UNIQUE ("user_id", "group_id"); (params ())
+DEBUG 2024-04-25 09:52:27,077 utils 19 139965881248640 (0.003) ALTER TABLE "accounts_user_groups" ADD CONSTRAINT "accounts_user_groups_user_id_group_id_59c0b32f_uniq" UNIQUE ("user_id", "group_id"); args=()
+DEBUG 2024-04-25 09:52:27,078 schema 19 139965881248640 ALTER TABLE "accounts_user_groups" ADD CONSTRAINT "accounts_user_groups_user_id_52b62117_fk_accounts_user_id" FOREIGN KEY ("user_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-25 09:52:27,085 utils 19 139965881248640 (0.007) ALTER TABLE "accounts_user_groups" ADD CONSTRAINT "accounts_user_groups_user_id_52b62117_fk_accounts_user_id" FOREIGN KEY ("user_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-25 09:52:27,085 schema 19 139965881248640 ALTER TABLE "accounts_user_groups" ADD CONSTRAINT "accounts_user_groups_group_id_bd11a704_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-25 09:52:27,090 utils 19 139965881248640 (0.004) ALTER TABLE "accounts_user_groups" ADD CONSTRAINT "accounts_user_groups_group_id_bd11a704_fk_auth_group_id" FOREIGN KEY ("group_id") REFERENCES "auth_group" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-25 09:52:27,090 schema 19 139965881248640 CREATE INDEX "accounts_user_groups_user_id_52b62117" ON "accounts_user_groups" ("user_id"); (params ())
+DEBUG 2024-04-25 09:52:27,093 utils 19 139965881248640 (0.003) CREATE INDEX "accounts_user_groups_user_id_52b62117" ON "accounts_user_groups" ("user_id"); args=()
+DEBUG 2024-04-25 09:52:27,094 schema 19 139965881248640 CREATE INDEX "accounts_user_groups_group_id_bd11a704" ON "accounts_user_groups" ("group_id"); (params ())
+DEBUG 2024-04-25 09:52:27,097 utils 19 139965881248640 (0.003) CREATE INDEX "accounts_user_groups_group_id_bd11a704" ON "accounts_user_groups" ("group_id"); args=()
+DEBUG 2024-04-25 09:52:27,098 schema 19 139965881248640 ALTER TABLE "accounts_user_user_permissions" ADD CONSTRAINT "accounts_user_user_permi_user_id_permission_id_2ab516c2_uniq" UNIQUE ("user_id", "permission_id"); (params ())
+DEBUG 2024-04-25 09:52:27,103 utils 19 139965881248640 (0.003) ALTER TABLE "accounts_user_user_permissions" ADD CONSTRAINT "accounts_user_user_permi_user_id_permission_id_2ab516c2_uniq" UNIQUE ("user_id", "permission_id"); args=()
+DEBUG 2024-04-25 09:52:27,103 schema 19 139965881248640 ALTER TABLE "accounts_user_user_permissions" ADD CONSTRAINT "accounts_user_user_p_user_id_e4f0a161_fk_accounts_" FOREIGN KEY ("user_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-25 09:52:27,105 utils 19 139965881248640 (0.002) ALTER TABLE "accounts_user_user_permissions" ADD CONSTRAINT "accounts_user_user_p_user_id_e4f0a161_fk_accounts_" FOREIGN KEY ("user_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-25 09:52:27,106 schema 19 139965881248640 ALTER TABLE "accounts_user_user_permissions" ADD CONSTRAINT "accounts_user_user_p_permission_id_113bb443_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-25 09:52:27,111 utils 19 139965881248640 (0.005) ALTER TABLE "accounts_user_user_permissions" ADD CONSTRAINT "accounts_user_user_p_permission_id_113bb443_fk_auth_perm" FOREIGN KEY ("permission_id") REFERENCES "auth_permission" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-25 09:52:27,112 schema 19 139965881248640 CREATE INDEX "accounts_user_user_permissions_user_id_e4f0a161" ON "accounts_user_user_permissions" ("user_id"); (params ())
+DEBUG 2024-04-25 09:52:27,115 utils 19 139965881248640 (0.003) CREATE INDEX "accounts_user_user_permissions_user_id_e4f0a161" ON "accounts_user_user_permissions" ("user_id"); args=()
+DEBUG 2024-04-25 09:52:27,115 schema 19 139965881248640 CREATE INDEX "accounts_user_user_permissions_permission_id_113bb443" ON "accounts_user_user_permissions" ("permission_id"); (params ())
+DEBUG 2024-04-25 09:52:27,118 utils 19 139965881248640 (0.003) CREATE INDEX "accounts_user_user_permissions_permission_id_113bb443" ON "accounts_user_user_permissions" ("permission_id"); args=()
+DEBUG 2024-04-25 09:52:27,123 utils 19 139965881248640 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-25 09:52:27,127 utils 19 139965881248640 (0.002) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('accounts', '0001_initial', '2024-04-25T00:52:27.123915+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('accounts', '0001_initial', datetime.datetime(2024, 4, 25, 0, 52, 27, 123915, tzinfo=<UTC>))
+DEBUG 2024-04-25 09:52:27,181 schema 19 139965881248640 CREATE TABLE "django_admin_log" ("id" serial NOT NULL PRIMARY KEY, "action_time" timestamp with time zone NOT NULL, "object_id" text NULL, "object_repr" varchar(200) NOT NULL, "action_flag" smallint NOT NULL CHECK ("action_flag" >= 0), "change_message" text NOT NULL, "content_type_id" integer NULL, "user_id" bigint NOT NULL); (params None)
+DEBUG 2024-04-25 09:52:27,189 utils 19 139965881248640 (0.008) CREATE TABLE "django_admin_log" ("id" serial NOT NULL PRIMARY KEY, "action_time" timestamp with time zone NOT NULL, "object_id" text NULL, "object_repr" varchar(200) NOT NULL, "action_flag" smallint NOT NULL CHECK ("action_flag" >= 0), "change_message" text NOT NULL, "content_type_id" integer NULL, "user_id" bigint NOT NULL); args=None
+DEBUG 2024-04-25 09:52:27,190 schema 19 139965881248640 ALTER TABLE "django_admin_log" ADD CONSTRAINT "django_admin_log_content_type_id_c4bce8eb_fk_django_co" FOREIGN KEY ("content_type_id") REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-25 09:52:27,194 utils 19 139965881248640 (0.003) ALTER TABLE "django_admin_log" ADD CONSTRAINT "django_admin_log_content_type_id_c4bce8eb_fk_django_co" FOREIGN KEY ("content_type_id") REFERENCES "django_content_type" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-25 09:52:27,194 schema 19 139965881248640 ALTER TABLE "django_admin_log" ADD CONSTRAINT "django_admin_log_user_id_c564eba6_fk_accounts_user_id" FOREIGN KEY ("user_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-25 09:52:27,197 utils 19 139965881248640 (0.002) ALTER TABLE "django_admin_log" ADD CONSTRAINT "django_admin_log_user_id_c564eba6_fk_accounts_user_id" FOREIGN KEY ("user_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-25 09:52:27,198 schema 19 139965881248640 CREATE INDEX "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id"); (params ())
+DEBUG 2024-04-25 09:52:27,201 utils 19 139965881248640 (0.003) CREATE INDEX "django_admin_log_content_type_id_c4bce8eb" ON "django_admin_log" ("content_type_id"); args=()
+DEBUG 2024-04-25 09:52:27,202 schema 19 139965881248640 CREATE INDEX "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id"); (params ())
+DEBUG 2024-04-25 09:52:27,205 utils 19 139965881248640 (0.003) CREATE INDEX "django_admin_log_user_id_c564eba6" ON "django_admin_log" ("user_id"); args=()
+DEBUG 2024-04-25 09:52:27,208 utils 19 139965881248640 (0.002) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-25 09:52:27,211 utils 19 139965881248640 (0.002) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('admin', '0001_initial', '2024-04-25T00:52:27.209241+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('admin', '0001_initial', datetime.datetime(2024, 4, 25, 0, 52, 27, 209241, tzinfo=<UTC>))
+DEBUG 2024-04-25 09:52:27,222 utils 19 139965881248640 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-25 09:52:27,224 utils 19 139965881248640 (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('admin', '0002_logentry_remove_auto_add', '2024-04-25T00:52:27.223450+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('admin', '0002_logentry_remove_auto_add', datetime.datetime(2024, 4, 25, 0, 52, 27, 223450, tzinfo=<UTC>))
+DEBUG 2024-04-25 09:52:27,237 utils 19 139965881248640 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-25 09:52:27,239 utils 19 139965881248640 (0.001) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('admin', '0003_logentry_add_action_flag_choices', '2024-04-25T00:52:27.238639+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('admin', '0003_logentry_add_action_flag_choices', datetime.datetime(2024, 4, 25, 0, 52, 27, 238639, tzinfo=<UTC>))
+DEBUG 2024-04-25 09:52:27,269 utils 19 139965881248640 (0.004) 
+            SELECT
+                c.conname,
+                array(
+                    SELECT attname
+                    FROM unnest(c.conkey) WITH ORDINALITY cols(colid, arridx)
+                    JOIN pg_attribute AS ca ON cols.colid = ca.attnum
+                    WHERE ca.attrelid = c.conrelid
+                    ORDER BY cols.arridx
+                ),
+                c.contype,
+                (SELECT fkc.relname || '.' || fka.attname
+                FROM pg_attribute AS fka
+                JOIN pg_class AS fkc ON fka.attrelid = fkc.oid
+                WHERE fka.attrelid = c.confrelid AND fka.attnum = c.confkey[1]),
+                cl.reloptions
+            FROM pg_constraint AS c
+            JOIN pg_class AS cl ON c.conrelid = cl.oid
+            WHERE cl.relname = 'memorymap_comment' AND pg_catalog.pg_table_is_visible(cl.oid)
+        ; args=['memorymap_comment']
+DEBUG 2024-04-25 09:52:27,276 utils 19 139965881248640 (0.006) 
+            SELECT
+                indexname, array_agg(attname ORDER BY arridx), indisunique, indisprimary,
+                array_agg(ordering ORDER BY arridx), amname, exprdef, s2.attoptions
+            FROM (
+                SELECT
+                    c2.relname as indexname, idx.*, attr.attname, am.amname,
+                    CASE
+                        WHEN idx.indexprs IS NOT NULL THEN
+                            pg_get_indexdef(idx.indexrelid)
+                    END AS exprdef,
+                    CASE am.amname
+                        WHEN 'btree' THEN
+                            CASE (option & 1)
+                                WHEN 1 THEN 'DESC' ELSE 'ASC'
+                            END
+                    END as ordering,
+                    c2.reloptions as attoptions
+                FROM (
+                    SELECT *
+                    FROM pg_index i, unnest(i.indkey, i.indoption) WITH ORDINALITY koi(key, option, arridx)
+                ) idx
+                LEFT JOIN pg_class c ON idx.indrelid = c.oid
+                LEFT JOIN pg_class c2 ON idx.indexrelid = c2.oid
+                LEFT JOIN pg_am am ON c2.relam = am.oid
+                LEFT JOIN pg_attribute attr ON attr.attrelid = c.oid AND attr.attnum = idx.key
+                WHERE c.relname = 'memorymap_comment' AND pg_catalog.pg_table_is_visible(c.oid)
+            ) s2
+            GROUP BY indexname, indisunique, indisprimary, amname, exprdef, attoptions;
+        ; args=['btree', 'memorymap_comment']
+DEBUG 2024-04-25 09:52:27,276 schema 19 139965881248640 SET CONSTRAINTS "memorymap_comment_user_id_51ea9eb4_fk_memorymap_user_id" IMMEDIATE; ALTER TABLE "memorymap_comment" DROP CONSTRAINT "memorymap_comment_user_id_51ea9eb4_fk_memorymap_user_id"; (params ())
+DEBUG 2024-04-25 09:52:27,282 utils 19 139965881248640 (0.004) SET CONSTRAINTS "memorymap_comment_user_id_51ea9eb4_fk_memorymap_user_id" IMMEDIATE; ALTER TABLE "memorymap_comment" DROP CONSTRAINT "memorymap_comment_user_id_51ea9eb4_fk_memorymap_user_id"; args=()
+DEBUG 2024-04-25 09:52:27,282 schema 19 139965881248640 ALTER TABLE "memorymap_comment" ADD CONSTRAINT "memorymap_comment_user_id_51ea9eb4_fk_accounts_user_id" FOREIGN KEY ("user_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-25 09:52:27,294 utils 19 139965881248640 (0.012) ALTER TABLE "memorymap_comment" ADD CONSTRAINT "memorymap_comment_user_id_51ea9eb4_fk_accounts_user_id" FOREIGN KEY ("user_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-25 09:52:27,318 utils 19 139965881248640 (0.001) 
+            SELECT
+                c.conname,
+                array(
+                    SELECT attname
+                    FROM unnest(c.conkey) WITH ORDINALITY cols(colid, arridx)
+                    JOIN pg_attribute AS ca ON cols.colid = ca.attnum
+                    WHERE ca.attrelid = c.conrelid
+                    ORDER BY cols.arridx
+                ),
+                c.contype,
+                (SELECT fkc.relname || '.' || fka.attname
+                FROM pg_attribute AS fka
+                JOIN pg_class AS fkc ON fka.attrelid = fkc.oid
+                WHERE fka.attrelid = c.confrelid AND fka.attnum = c.confkey[1]),
+                cl.reloptions
+            FROM pg_constraint AS c
+            JOIN pg_class AS cl ON c.conrelid = cl.oid
+            WHERE cl.relname = 'memorymap_directmessage' AND pg_catalog.pg_table_is_visible(cl.oid)
+        ; args=['memorymap_directmessage']
+DEBUG 2024-04-25 09:52:27,321 utils 19 139965881248640 (0.002) 
+            SELECT
+                indexname, array_agg(attname ORDER BY arridx), indisunique, indisprimary,
+                array_agg(ordering ORDER BY arridx), amname, exprdef, s2.attoptions
+            FROM (
+                SELECT
+                    c2.relname as indexname, idx.*, attr.attname, am.amname,
+                    CASE
+                        WHEN idx.indexprs IS NOT NULL THEN
+                            pg_get_indexdef(idx.indexrelid)
+                    END AS exprdef,
+                    CASE am.amname
+                        WHEN 'btree' THEN
+                            CASE (option & 1)
+                                WHEN 1 THEN 'DESC' ELSE 'ASC'
+                            END
+                    END as ordering,
+                    c2.reloptions as attoptions
+                FROM (
+                    SELECT *
+                    FROM pg_index i, unnest(i.indkey, i.indoption) WITH ORDINALITY koi(key, option, arridx)
+                ) idx
+                LEFT JOIN pg_class c ON idx.indrelid = c.oid
+                LEFT JOIN pg_class c2 ON idx.indexrelid = c2.oid
+                LEFT JOIN pg_am am ON c2.relam = am.oid
+                LEFT JOIN pg_attribute attr ON attr.attrelid = c.oid AND attr.attnum = idx.key
+                WHERE c.relname = 'memorymap_directmessage' AND pg_catalog.pg_table_is_visible(c.oid)
+            ) s2
+            GROUP BY indexname, indisunique, indisprimary, amname, exprdef, attoptions;
+        ; args=['btree', 'memorymap_directmessage']
+DEBUG 2024-04-25 09:52:27,321 schema 19 139965881248640 SET CONSTRAINTS "memorymap_directmess_recipient_id_2060b065_fk_memorymap" IMMEDIATE; ALTER TABLE "memorymap_directmessage" DROP CONSTRAINT "memorymap_directmess_recipient_id_2060b065_fk_memorymap"; (params ())
+DEBUG 2024-04-25 09:52:27,323 utils 19 139965881248640 (0.001) SET CONSTRAINTS "memorymap_directmess_recipient_id_2060b065_fk_memorymap" IMMEDIATE; ALTER TABLE "memorymap_directmessage" DROP CONSTRAINT "memorymap_directmess_recipient_id_2060b065_fk_memorymap"; args=()
+DEBUG 2024-04-25 09:52:27,323 schema 19 139965881248640 ALTER TABLE "memorymap_directmessage" ADD CONSTRAINT "memorymap_directmess_recipient_id_2060b065_fk_accounts_" FOREIGN KEY ("recipient_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-25 09:52:27,328 utils 19 139965881248640 (0.004) ALTER TABLE "memorymap_directmessage" ADD CONSTRAINT "memorymap_directmess_recipient_id_2060b065_fk_accounts_" FOREIGN KEY ("recipient_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-25 09:52:27,352 utils 19 139965881248640 (0.002) 
+            SELECT
+                c.conname,
+                array(
+                    SELECT attname
+                    FROM unnest(c.conkey) WITH ORDINALITY cols(colid, arridx)
+                    JOIN pg_attribute AS ca ON cols.colid = ca.attnum
+                    WHERE ca.attrelid = c.conrelid
+                    ORDER BY cols.arridx
+                ),
+                c.contype,
+                (SELECT fkc.relname || '.' || fka.attname
+                FROM pg_attribute AS fka
+                JOIN pg_class AS fkc ON fka.attrelid = fkc.oid
+                WHERE fka.attrelid = c.confrelid AND fka.attnum = c.confkey[1]),
+                cl.reloptions
+            FROM pg_constraint AS c
+            JOIN pg_class AS cl ON c.conrelid = cl.oid
+            WHERE cl.relname = 'memorymap_directmessage' AND pg_catalog.pg_table_is_visible(cl.oid)
+        ; args=['memorymap_directmessage']
+DEBUG 2024-04-25 09:52:27,357 utils 19 139965881248640 (0.004) 
+            SELECT
+                indexname, array_agg(attname ORDER BY arridx), indisunique, indisprimary,
+                array_agg(ordering ORDER BY arridx), amname, exprdef, s2.attoptions
+            FROM (
+                SELECT
+                    c2.relname as indexname, idx.*, attr.attname, am.amname,
+                    CASE
+                        WHEN idx.indexprs IS NOT NULL THEN
+                            pg_get_indexdef(idx.indexrelid)
+                    END AS exprdef,
+                    CASE am.amname
+                        WHEN 'btree' THEN
+                            CASE (option & 1)
+                                WHEN 1 THEN 'DESC' ELSE 'ASC'
+                            END
+                    END as ordering,
+                    c2.reloptions as attoptions
+                FROM (
+                    SELECT *
+                    FROM pg_index i, unnest(i.indkey, i.indoption) WITH ORDINALITY koi(key, option, arridx)
+                ) idx
+                LEFT JOIN pg_class c ON idx.indrelid = c.oid
+                LEFT JOIN pg_class c2 ON idx.indexrelid = c2.oid
+                LEFT JOIN pg_am am ON c2.relam = am.oid
+                LEFT JOIN pg_attribute attr ON attr.attrelid = c.oid AND attr.attnum = idx.key
+                WHERE c.relname = 'memorymap_directmessage' AND pg_catalog.pg_table_is_visible(c.oid)
+            ) s2
+            GROUP BY indexname, indisunique, indisprimary, amname, exprdef, attoptions;
+        ; args=['btree', 'memorymap_directmessage']
+DEBUG 2024-04-25 09:52:27,359 schema 19 139965881248640 SET CONSTRAINTS "memorymap_directmessage_sender_id_1d43e742_fk_memorymap_user_id" IMMEDIATE; ALTER TABLE "memorymap_directmessage" DROP CONSTRAINT "memorymap_directmessage_sender_id_1d43e742_fk_memorymap_user_id"; (params ())
+DEBUG 2024-04-25 09:52:27,361 utils 19 139965881248640 (0.001) SET CONSTRAINTS "memorymap_directmessage_sender_id_1d43e742_fk_memorymap_user_id" IMMEDIATE; ALTER TABLE "memorymap_directmessage" DROP CONSTRAINT "memorymap_directmessage_sender_id_1d43e742_fk_memorymap_user_id"; args=()
+DEBUG 2024-04-25 09:52:27,361 schema 19 139965881248640 ALTER TABLE "memorymap_directmessage" ADD CONSTRAINT "memorymap_directmessage_sender_id_1d43e742_fk_accounts_user_id" FOREIGN KEY ("sender_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-25 09:52:27,364 utils 19 139965881248640 (0.002) ALTER TABLE "memorymap_directmessage" ADD CONSTRAINT "memorymap_directmessage_sender_id_1d43e742_fk_accounts_user_id" FOREIGN KEY ("sender_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-25 09:52:27,391 utils 19 139965881248640 (0.001) 
+            SELECT
+                c.conname,
+                array(
+                    SELECT attname
+                    FROM unnest(c.conkey) WITH ORDINALITY cols(colid, arridx)
+                    JOIN pg_attribute AS ca ON cols.colid = ca.attnum
+                    WHERE ca.attrelid = c.conrelid
+                    ORDER BY cols.arridx
+                ),
+                c.contype,
+                (SELECT fkc.relname || '.' || fka.attname
+                FROM pg_attribute AS fka
+                JOIN pg_class AS fkc ON fka.attrelid = fkc.oid
+                WHERE fka.attrelid = c.confrelid AND fka.attnum = c.confkey[1]),
+                cl.reloptions
+            FROM pg_constraint AS c
+            JOIN pg_class AS cl ON c.conrelid = cl.oid
+            WHERE cl.relname = 'memorymap_follower' AND pg_catalog.pg_table_is_visible(cl.oid)
+        ; args=['memorymap_follower']
+DEBUG 2024-04-25 09:52:27,394 utils 19 139965881248640 (0.002) 
+            SELECT
+                indexname, array_agg(attname ORDER BY arridx), indisunique, indisprimary,
+                array_agg(ordering ORDER BY arridx), amname, exprdef, s2.attoptions
+            FROM (
+                SELECT
+                    c2.relname as indexname, idx.*, attr.attname, am.amname,
+                    CASE
+                        WHEN idx.indexprs IS NOT NULL THEN
+                            pg_get_indexdef(idx.indexrelid)
+                    END AS exprdef,
+                    CASE am.amname
+                        WHEN 'btree' THEN
+                            CASE (option & 1)
+                                WHEN 1 THEN 'DESC' ELSE 'ASC'
+                            END
+                    END as ordering,
+                    c2.reloptions as attoptions
+                FROM (
+                    SELECT *
+                    FROM pg_index i, unnest(i.indkey, i.indoption) WITH ORDINALITY koi(key, option, arridx)
+                ) idx
+                LEFT JOIN pg_class c ON idx.indrelid = c.oid
+                LEFT JOIN pg_class c2 ON idx.indexrelid = c2.oid
+                LEFT JOIN pg_am am ON c2.relam = am.oid
+                LEFT JOIN pg_attribute attr ON attr.attrelid = c.oid AND attr.attnum = idx.key
+                WHERE c.relname = 'memorymap_follower' AND pg_catalog.pg_table_is_visible(c.oid)
+            ) s2
+            GROUP BY indexname, indisunique, indisprimary, amname, exprdef, attoptions;
+        ; args=['btree', 'memorymap_follower']
+DEBUG 2024-04-25 09:52:27,394 schema 19 139965881248640 SET CONSTRAINTS "memorymap_follower_followed_id_7a39c735_fk_memorymap_user_id" IMMEDIATE; ALTER TABLE "memorymap_follower" DROP CONSTRAINT "memorymap_follower_followed_id_7a39c735_fk_memorymap_user_id"; (params ())
+DEBUG 2024-04-25 09:52:27,396 utils 19 139965881248640 (0.001) SET CONSTRAINTS "memorymap_follower_followed_id_7a39c735_fk_memorymap_user_id" IMMEDIATE; ALTER TABLE "memorymap_follower" DROP CONSTRAINT "memorymap_follower_followed_id_7a39c735_fk_memorymap_user_id"; args=()
+DEBUG 2024-04-25 09:52:27,397 schema 19 139965881248640 ALTER TABLE "memorymap_follower" ADD CONSTRAINT "memorymap_follower_followed_id_7a39c735_fk_accounts_user_id" FOREIGN KEY ("followed_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-25 09:52:27,401 utils 19 139965881248640 (0.004) ALTER TABLE "memorymap_follower" ADD CONSTRAINT "memorymap_follower_followed_id_7a39c735_fk_accounts_user_id" FOREIGN KEY ("followed_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-25 09:52:27,431 utils 19 139965881248640 (0.001) 
+            SELECT
+                c.conname,
+                array(
+                    SELECT attname
+                    FROM unnest(c.conkey) WITH ORDINALITY cols(colid, arridx)
+                    JOIN pg_attribute AS ca ON cols.colid = ca.attnum
+                    WHERE ca.attrelid = c.conrelid
+                    ORDER BY cols.arridx
+                ),
+                c.contype,
+                (SELECT fkc.relname || '.' || fka.attname
+                FROM pg_attribute AS fka
+                JOIN pg_class AS fkc ON fka.attrelid = fkc.oid
+                WHERE fka.attrelid = c.confrelid AND fka.attnum = c.confkey[1]),
+                cl.reloptions
+            FROM pg_constraint AS c
+            JOIN pg_class AS cl ON c.conrelid = cl.oid
+            WHERE cl.relname = 'memorymap_follower' AND pg_catalog.pg_table_is_visible(cl.oid)
+        ; args=['memorymap_follower']
+DEBUG 2024-04-25 09:52:27,434 utils 19 139965881248640 (0.003) 
+            SELECT
+                indexname, array_agg(attname ORDER BY arridx), indisunique, indisprimary,
+                array_agg(ordering ORDER BY arridx), amname, exprdef, s2.attoptions
+            FROM (
+                SELECT
+                    c2.relname as indexname, idx.*, attr.attname, am.amname,
+                    CASE
+                        WHEN idx.indexprs IS NOT NULL THEN
+                            pg_get_indexdef(idx.indexrelid)
+                    END AS exprdef,
+                    CASE am.amname
+                        WHEN 'btree' THEN
+                            CASE (option & 1)
+                                WHEN 1 THEN 'DESC' ELSE 'ASC'
+                            END
+                    END as ordering,
+                    c2.reloptions as attoptions
+                FROM (
+                    SELECT *
+                    FROM pg_index i, unnest(i.indkey, i.indoption) WITH ORDINALITY koi(key, option, arridx)
+                ) idx
+                LEFT JOIN pg_class c ON idx.indrelid = c.oid
+                LEFT JOIN pg_class c2 ON idx.indexrelid = c2.oid
+                LEFT JOIN pg_am am ON c2.relam = am.oid
+                LEFT JOIN pg_attribute attr ON attr.attrelid = c.oid AND attr.attnum = idx.key
+                WHERE c.relname = 'memorymap_follower' AND pg_catalog.pg_table_is_visible(c.oid)
+            ) s2
+            GROUP BY indexname, indisunique, indisprimary, amname, exprdef, attoptions;
+        ; args=['btree', 'memorymap_follower']
+DEBUG 2024-04-25 09:52:27,435 schema 19 139965881248640 SET CONSTRAINTS "memorymap_follower_follower_id_28886d00_fk_memorymap_user_id" IMMEDIATE; ALTER TABLE "memorymap_follower" DROP CONSTRAINT "memorymap_follower_follower_id_28886d00_fk_memorymap_user_id"; (params ())
+DEBUG 2024-04-25 09:52:27,437 utils 19 139965881248640 (0.001) SET CONSTRAINTS "memorymap_follower_follower_id_28886d00_fk_memorymap_user_id" IMMEDIATE; ALTER TABLE "memorymap_follower" DROP CONSTRAINT "memorymap_follower_follower_id_28886d00_fk_memorymap_user_id"; args=()
+DEBUG 2024-04-25 09:52:27,437 schema 19 139965881248640 ALTER TABLE "memorymap_follower" ADD CONSTRAINT "memorymap_follower_follower_id_28886d00_fk_accounts_user_id" FOREIGN KEY ("follower_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-25 09:52:27,440 utils 19 139965881248640 (0.002) ALTER TABLE "memorymap_follower" ADD CONSTRAINT "memorymap_follower_follower_id_28886d00_fk_accounts_user_id" FOREIGN KEY ("follower_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-25 09:52:27,466 utils 19 139965881248640 (0.001) 
+            SELECT
+                c.conname,
+                array(
+                    SELECT attname
+                    FROM unnest(c.conkey) WITH ORDINALITY cols(colid, arridx)
+                    JOIN pg_attribute AS ca ON cols.colid = ca.attnum
+                    WHERE ca.attrelid = c.conrelid
+                    ORDER BY cols.arridx
+                ),
+                c.contype,
+                (SELECT fkc.relname || '.' || fka.attname
+                FROM pg_attribute AS fka
+                JOIN pg_class AS fkc ON fka.attrelid = fkc.oid
+                WHERE fka.attrelid = c.confrelid AND fka.attnum = c.confkey[1]),
+                cl.reloptions
+            FROM pg_constraint AS c
+            JOIN pg_class AS cl ON c.conrelid = cl.oid
+            WHERE cl.relname = 'memorymap_like' AND pg_catalog.pg_table_is_visible(cl.oid)
+        ; args=['memorymap_like']
+DEBUG 2024-04-25 09:52:27,470 utils 19 139965881248640 (0.003) 
+            SELECT
+                indexname, array_agg(attname ORDER BY arridx), indisunique, indisprimary,
+                array_agg(ordering ORDER BY arridx), amname, exprdef, s2.attoptions
+            FROM (
+                SELECT
+                    c2.relname as indexname, idx.*, attr.attname, am.amname,
+                    CASE
+                        WHEN idx.indexprs IS NOT NULL THEN
+                            pg_get_indexdef(idx.indexrelid)
+                    END AS exprdef,
+                    CASE am.amname
+                        WHEN 'btree' THEN
+                            CASE (option & 1)
+                                WHEN 1 THEN 'DESC' ELSE 'ASC'
+                            END
+                    END as ordering,
+                    c2.reloptions as attoptions
+                FROM (
+                    SELECT *
+                    FROM pg_index i, unnest(i.indkey, i.indoption) WITH ORDINALITY koi(key, option, arridx)
+                ) idx
+                LEFT JOIN pg_class c ON idx.indrelid = c.oid
+                LEFT JOIN pg_class c2 ON idx.indexrelid = c2.oid
+                LEFT JOIN pg_am am ON c2.relam = am.oid
+                LEFT JOIN pg_attribute attr ON attr.attrelid = c.oid AND attr.attnum = idx.key
+                WHERE c.relname = 'memorymap_like' AND pg_catalog.pg_table_is_visible(c.oid)
+            ) s2
+            GROUP BY indexname, indisunique, indisprimary, amname, exprdef, attoptions;
+        ; args=['btree', 'memorymap_like']
+DEBUG 2024-04-25 09:52:27,470 schema 19 139965881248640 SET CONSTRAINTS "memorymap_like_user_id_e06c4aef_fk_memorymap_user_id" IMMEDIATE; ALTER TABLE "memorymap_like" DROP CONSTRAINT "memorymap_like_user_id_e06c4aef_fk_memorymap_user_id"; (params ())
+DEBUG 2024-04-25 09:52:27,472 utils 19 139965881248640 (0.001) SET CONSTRAINTS "memorymap_like_user_id_e06c4aef_fk_memorymap_user_id" IMMEDIATE; ALTER TABLE "memorymap_like" DROP CONSTRAINT "memorymap_like_user_id_e06c4aef_fk_memorymap_user_id"; args=()
+DEBUG 2024-04-25 09:52:27,472 schema 19 139965881248640 ALTER TABLE "memorymap_like" ADD CONSTRAINT "memorymap_like_user_id_e06c4aef_fk_accounts_user_id" FOREIGN KEY ("user_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-25 09:52:27,477 utils 19 139965881248640 (0.004) ALTER TABLE "memorymap_like" ADD CONSTRAINT "memorymap_like_user_id_e06c4aef_fk_accounts_user_id" FOREIGN KEY ("user_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-25 09:52:27,504 utils 19 139965881248640 (0.001) 
+            SELECT
+                c.conname,
+                array(
+                    SELECT attname
+                    FROM unnest(c.conkey) WITH ORDINALITY cols(colid, arridx)
+                    JOIN pg_attribute AS ca ON cols.colid = ca.attnum
+                    WHERE ca.attrelid = c.conrelid
+                    ORDER BY cols.arridx
+                ),
+                c.contype,
+                (SELECT fkc.relname || '.' || fka.attname
+                FROM pg_attribute AS fka
+                JOIN pg_class AS fkc ON fka.attrelid = fkc.oid
+                WHERE fka.attrelid = c.confrelid AND fka.attnum = c.confkey[1]),
+                cl.reloptions
+            FROM pg_constraint AS c
+            JOIN pg_class AS cl ON c.conrelid = cl.oid
+            WHERE cl.relname = 'memorymap_notification' AND pg_catalog.pg_table_is_visible(cl.oid)
+        ; args=['memorymap_notification']
+DEBUG 2024-04-25 09:52:27,508 utils 19 139965881248640 (0.003) 
+            SELECT
+                indexname, array_agg(attname ORDER BY arridx), indisunique, indisprimary,
+                array_agg(ordering ORDER BY arridx), amname, exprdef, s2.attoptions
+            FROM (
+                SELECT
+                    c2.relname as indexname, idx.*, attr.attname, am.amname,
+                    CASE
+                        WHEN idx.indexprs IS NOT NULL THEN
+                            pg_get_indexdef(idx.indexrelid)
+                    END AS exprdef,
+                    CASE am.amname
+                        WHEN 'btree' THEN
+                            CASE (option & 1)
+                                WHEN 1 THEN 'DESC' ELSE 'ASC'
+                            END
+                    END as ordering,
+                    c2.reloptions as attoptions
+                FROM (
+                    SELECT *
+                    FROM pg_index i, unnest(i.indkey, i.indoption) WITH ORDINALITY koi(key, option, arridx)
+                ) idx
+                LEFT JOIN pg_class c ON idx.indrelid = c.oid
+                LEFT JOIN pg_class c2 ON idx.indexrelid = c2.oid
+                LEFT JOIN pg_am am ON c2.relam = am.oid
+                LEFT JOIN pg_attribute attr ON attr.attrelid = c.oid AND attr.attnum = idx.key
+                WHERE c.relname = 'memorymap_notification' AND pg_catalog.pg_table_is_visible(c.oid)
+            ) s2
+            GROUP BY indexname, indisunique, indisprimary, amname, exprdef, attoptions;
+        ; args=['btree', 'memorymap_notification']
+DEBUG 2024-04-25 09:52:27,508 schema 19 139965881248640 SET CONSTRAINTS "memorymap_notificati_recipient_id_0eb28d0c_fk_memorymap" IMMEDIATE; ALTER TABLE "memorymap_notification" DROP CONSTRAINT "memorymap_notificati_recipient_id_0eb28d0c_fk_memorymap"; (params ())
+DEBUG 2024-04-25 09:52:27,510 utils 19 139965881248640 (0.001) SET CONSTRAINTS "memorymap_notificati_recipient_id_0eb28d0c_fk_memorymap" IMMEDIATE; ALTER TABLE "memorymap_notification" DROP CONSTRAINT "memorymap_notificati_recipient_id_0eb28d0c_fk_memorymap"; args=()
+DEBUG 2024-04-25 09:52:27,510 schema 19 139965881248640 ALTER TABLE "memorymap_notification" ADD CONSTRAINT "memorymap_notificati_recipient_id_0eb28d0c_fk_accounts_" FOREIGN KEY ("recipient_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-25 09:52:27,515 utils 19 139965881248640 (0.005) ALTER TABLE "memorymap_notification" ADD CONSTRAINT "memorymap_notificati_recipient_id_0eb28d0c_fk_accounts_" FOREIGN KEY ("recipient_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-25 09:52:27,542 utils 19 139965881248640 (0.001) 
+            SELECT
+                c.conname,
+                array(
+                    SELECT attname
+                    FROM unnest(c.conkey) WITH ORDINALITY cols(colid, arridx)
+                    JOIN pg_attribute AS ca ON cols.colid = ca.attnum
+                    WHERE ca.attrelid = c.conrelid
+                    ORDER BY cols.arridx
+                ),
+                c.contype,
+                (SELECT fkc.relname || '.' || fka.attname
+                FROM pg_attribute AS fka
+                JOIN pg_class AS fkc ON fka.attrelid = fkc.oid
+                WHERE fka.attrelid = c.confrelid AND fka.attnum = c.confkey[1]),
+                cl.reloptions
+            FROM pg_constraint AS c
+            JOIN pg_class AS cl ON c.conrelid = cl.oid
+            WHERE cl.relname = 'memorymap_notification' AND pg_catalog.pg_table_is_visible(cl.oid)
+        ; args=['memorymap_notification']
+DEBUG 2024-04-25 09:52:27,545 utils 19 139965881248640 (0.002) 
+            SELECT
+                indexname, array_agg(attname ORDER BY arridx), indisunique, indisprimary,
+                array_agg(ordering ORDER BY arridx), amname, exprdef, s2.attoptions
+            FROM (
+                SELECT
+                    c2.relname as indexname, idx.*, attr.attname, am.amname,
+                    CASE
+                        WHEN idx.indexprs IS NOT NULL THEN
+                            pg_get_indexdef(idx.indexrelid)
+                    END AS exprdef,
+                    CASE am.amname
+                        WHEN 'btree' THEN
+                            CASE (option & 1)
+                                WHEN 1 THEN 'DESC' ELSE 'ASC'
+                            END
+                    END as ordering,
+                    c2.reloptions as attoptions
+                FROM (
+                    SELECT *
+                    FROM pg_index i, unnest(i.indkey, i.indoption) WITH ORDINALITY koi(key, option, arridx)
+                ) idx
+                LEFT JOIN pg_class c ON idx.indrelid = c.oid
+                LEFT JOIN pg_class c2 ON idx.indexrelid = c2.oid
+                LEFT JOIN pg_am am ON c2.relam = am.oid
+                LEFT JOIN pg_attribute attr ON attr.attrelid = c.oid AND attr.attnum = idx.key
+                WHERE c.relname = 'memorymap_notification' AND pg_catalog.pg_table_is_visible(c.oid)
+            ) s2
+            GROUP BY indexname, indisunique, indisprimary, amname, exprdef, attoptions;
+        ; args=['btree', 'memorymap_notification']
+DEBUG 2024-04-25 09:52:27,545 schema 19 139965881248640 SET CONSTRAINTS "memorymap_notification_sender_id_07b35557_fk_memorymap_user_id" IMMEDIATE; ALTER TABLE "memorymap_notification" DROP CONSTRAINT "memorymap_notification_sender_id_07b35557_fk_memorymap_user_id"; (params ())
+DEBUG 2024-04-25 09:52:27,547 utils 19 139965881248640 (0.001) SET CONSTRAINTS "memorymap_notification_sender_id_07b35557_fk_memorymap_user_id" IMMEDIATE; ALTER TABLE "memorymap_notification" DROP CONSTRAINT "memorymap_notification_sender_id_07b35557_fk_memorymap_user_id"; args=()
+DEBUG 2024-04-25 09:52:27,548 schema 19 139965881248640 ALTER TABLE "memorymap_notification" ADD CONSTRAINT "memorymap_notification_sender_id_07b35557_fk_accounts_user_id" FOREIGN KEY ("sender_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-25 09:52:27,549 utils 19 139965881248640 (0.001) ALTER TABLE "memorymap_notification" ADD CONSTRAINT "memorymap_notification_sender_id_07b35557_fk_accounts_user_id" FOREIGN KEY ("sender_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-25 09:52:27,577 utils 19 139965881248640 (0.002) 
+            SELECT
+                c.conname,
+                array(
+                    SELECT attname
+                    FROM unnest(c.conkey) WITH ORDINALITY cols(colid, arridx)
+                    JOIN pg_attribute AS ca ON cols.colid = ca.attnum
+                    WHERE ca.attrelid = c.conrelid
+                    ORDER BY cols.arridx
+                ),
+                c.contype,
+                (SELECT fkc.relname || '.' || fka.attname
+                FROM pg_attribute AS fka
+                JOIN pg_class AS fkc ON fka.attrelid = fkc.oid
+                WHERE fka.attrelid = c.confrelid AND fka.attnum = c.confkey[1]),
+                cl.reloptions
+            FROM pg_constraint AS c
+            JOIN pg_class AS cl ON c.conrelid = cl.oid
+            WHERE cl.relname = 'memorymap_post' AND pg_catalog.pg_table_is_visible(cl.oid)
+        ; args=['memorymap_post']
+DEBUG 2024-04-25 09:52:27,580 utils 19 139965881248640 (0.003) 
+            SELECT
+                indexname, array_agg(attname ORDER BY arridx), indisunique, indisprimary,
+                array_agg(ordering ORDER BY arridx), amname, exprdef, s2.attoptions
+            FROM (
+                SELECT
+                    c2.relname as indexname, idx.*, attr.attname, am.amname,
+                    CASE
+                        WHEN idx.indexprs IS NOT NULL THEN
+                            pg_get_indexdef(idx.indexrelid)
+                    END AS exprdef,
+                    CASE am.amname
+                        WHEN 'btree' THEN
+                            CASE (option & 1)
+                                WHEN 1 THEN 'DESC' ELSE 'ASC'
+                            END
+                    END as ordering,
+                    c2.reloptions as attoptions
+                FROM (
+                    SELECT *
+                    FROM pg_index i, unnest(i.indkey, i.indoption) WITH ORDINALITY koi(key, option, arridx)
+                ) idx
+                LEFT JOIN pg_class c ON idx.indrelid = c.oid
+                LEFT JOIN pg_class c2 ON idx.indexrelid = c2.oid
+                LEFT JOIN pg_am am ON c2.relam = am.oid
+                LEFT JOIN pg_attribute attr ON attr.attrelid = c.oid AND attr.attnum = idx.key
+                WHERE c.relname = 'memorymap_post' AND pg_catalog.pg_table_is_visible(c.oid)
+            ) s2
+            GROUP BY indexname, indisunique, indisprimary, amname, exprdef, attoptions;
+        ; args=['btree', 'memorymap_post']
+DEBUG 2024-04-25 09:52:27,581 schema 19 139965881248640 SET CONSTRAINTS "memorymap_post_author_id_821b0ceb_fk_memorymap_user_id" IMMEDIATE; ALTER TABLE "memorymap_post" DROP CONSTRAINT "memorymap_post_author_id_821b0ceb_fk_memorymap_user_id"; (params ())
+DEBUG 2024-04-25 09:52:27,582 utils 19 139965881248640 (0.001) SET CONSTRAINTS "memorymap_post_author_id_821b0ceb_fk_memorymap_user_id" IMMEDIATE; ALTER TABLE "memorymap_post" DROP CONSTRAINT "memorymap_post_author_id_821b0ceb_fk_memorymap_user_id"; args=()
+DEBUG 2024-04-25 09:52:27,583 schema 19 139965881248640 ALTER TABLE "memorymap_post" ADD CONSTRAINT "memorymap_post_author_id_821b0ceb_fk_accounts_user_id" FOREIGN KEY ("author_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-25 09:52:27,587 utils 19 139965881248640 (0.004) ALTER TABLE "memorymap_post" ADD CONSTRAINT "memorymap_post_author_id_821b0ceb_fk_accounts_user_id" FOREIGN KEY ("author_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-25 09:52:27,619 utils 19 139965881248640 (0.001) 
+            SELECT
+                c.conname,
+                array(
+                    SELECT attname
+                    FROM unnest(c.conkey) WITH ORDINALITY cols(colid, arridx)
+                    JOIN pg_attribute AS ca ON cols.colid = ca.attnum
+                    WHERE ca.attrelid = c.conrelid
+                    ORDER BY cols.arridx
+                ),
+                c.contype,
+                (SELECT fkc.relname || '.' || fka.attname
+                FROM pg_attribute AS fka
+                JOIN pg_class AS fkc ON fka.attrelid = fkc.oid
+                WHERE fka.attrelid = c.confrelid AND fka.attnum = c.confkey[1]),
+                cl.reloptions
+            FROM pg_constraint AS c
+            JOIN pg_class AS cl ON c.conrelid = cl.oid
+            WHERE cl.relname = 'memorymap_repost' AND pg_catalog.pg_table_is_visible(cl.oid)
+        ; args=['memorymap_repost']
+DEBUG 2024-04-25 09:52:27,621 utils 19 139965881248640 (0.003) 
+            SELECT
+                indexname, array_agg(attname ORDER BY arridx), indisunique, indisprimary,
+                array_agg(ordering ORDER BY arridx), amname, exprdef, s2.attoptions
+            FROM (
+                SELECT
+                    c2.relname as indexname, idx.*, attr.attname, am.amname,
+                    CASE
+                        WHEN idx.indexprs IS NOT NULL THEN
+                            pg_get_indexdef(idx.indexrelid)
+                    END AS exprdef,
+                    CASE am.amname
+                        WHEN 'btree' THEN
+                            CASE (option & 1)
+                                WHEN 1 THEN 'DESC' ELSE 'ASC'
+                            END
+                    END as ordering,
+                    c2.reloptions as attoptions
+                FROM (
+                    SELECT *
+                    FROM pg_index i, unnest(i.indkey, i.indoption) WITH ORDINALITY koi(key, option, arridx)
+                ) idx
+                LEFT JOIN pg_class c ON idx.indrelid = c.oid
+                LEFT JOIN pg_class c2 ON idx.indexrelid = c2.oid
+                LEFT JOIN pg_am am ON c2.relam = am.oid
+                LEFT JOIN pg_attribute attr ON attr.attrelid = c.oid AND attr.attnum = idx.key
+                WHERE c.relname = 'memorymap_repost' AND pg_catalog.pg_table_is_visible(c.oid)
+            ) s2
+            GROUP BY indexname, indisunique, indisprimary, amname, exprdef, attoptions;
+        ; args=['btree', 'memorymap_repost']
+DEBUG 2024-04-25 09:52:27,622 schema 19 139965881248640 SET CONSTRAINTS "memorymap_repost_reposted_by_id_ec9cd24b_fk_memorymap_user_id" IMMEDIATE; ALTER TABLE "memorymap_repost" DROP CONSTRAINT "memorymap_repost_reposted_by_id_ec9cd24b_fk_memorymap_user_id"; (params ())
+DEBUG 2024-04-25 09:52:27,624 utils 19 139965881248640 (0.001) SET CONSTRAINTS "memorymap_repost_reposted_by_id_ec9cd24b_fk_memorymap_user_id" IMMEDIATE; ALTER TABLE "memorymap_repost" DROP CONSTRAINT "memorymap_repost_reposted_by_id_ec9cd24b_fk_memorymap_user_id"; args=()
+DEBUG 2024-04-25 09:52:27,624 schema 19 139965881248640 ALTER TABLE "memorymap_repost" ADD CONSTRAINT "memorymap_repost_reposted_by_id_ec9cd24b_fk_accounts_user_id" FOREIGN KEY ("reposted_by_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-25 09:52:27,633 utils 19 139965881248640 (0.008) ALTER TABLE "memorymap_repost" ADD CONSTRAINT "memorymap_repost_reposted_by_id_ec9cd24b_fk_accounts_user_id" FOREIGN KEY ("reposted_by_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-25 09:52:27,667 utils 19 139965881248640 (0.001) 
+            SELECT
+                c.conname,
+                array(
+                    SELECT attname
+                    FROM unnest(c.conkey) WITH ORDINALITY cols(colid, arridx)
+                    JOIN pg_attribute AS ca ON cols.colid = ca.attnum
+                    WHERE ca.attrelid = c.conrelid
+                    ORDER BY cols.arridx
+                ),
+                c.contype,
+                (SELECT fkc.relname || '.' || fka.attname
+                FROM pg_attribute AS fka
+                JOIN pg_class AS fkc ON fka.attrelid = fkc.oid
+                WHERE fka.attrelid = c.confrelid AND fka.attnum = c.confkey[1]),
+                cl.reloptions
+            FROM pg_constraint AS c
+            JOIN pg_class AS cl ON c.conrelid = cl.oid
+            WHERE cl.relname = 'memorymap_userposttag' AND pg_catalog.pg_table_is_visible(cl.oid)
+        ; args=['memorymap_userposttag']
+DEBUG 2024-04-25 09:52:27,670 utils 19 139965881248640 (0.003) 
+            SELECT
+                indexname, array_agg(attname ORDER BY arridx), indisunique, indisprimary,
+                array_agg(ordering ORDER BY arridx), amname, exprdef, s2.attoptions
+            FROM (
+                SELECT
+                    c2.relname as indexname, idx.*, attr.attname, am.amname,
+                    CASE
+                        WHEN idx.indexprs IS NOT NULL THEN
+                            pg_get_indexdef(idx.indexrelid)
+                    END AS exprdef,
+                    CASE am.amname
+                        WHEN 'btree' THEN
+                            CASE (option & 1)
+                                WHEN 1 THEN 'DESC' ELSE 'ASC'
+                            END
+                    END as ordering,
+                    c2.reloptions as attoptions
+                FROM (
+                    SELECT *
+                    FROM pg_index i, unnest(i.indkey, i.indoption) WITH ORDINALITY koi(key, option, arridx)
+                ) idx
+                LEFT JOIN pg_class c ON idx.indrelid = c.oid
+                LEFT JOIN pg_class c2 ON idx.indexrelid = c2.oid
+                LEFT JOIN pg_am am ON c2.relam = am.oid
+                LEFT JOIN pg_attribute attr ON attr.attrelid = c.oid AND attr.attnum = idx.key
+                WHERE c.relname = 'memorymap_userposttag' AND pg_catalog.pg_table_is_visible(c.oid)
+            ) s2
+            GROUP BY indexname, indisunique, indisprimary, amname, exprdef, attoptions;
+        ; args=['btree', 'memorymap_userposttag']
+DEBUG 2024-04-25 09:52:27,671 schema 19 139965881248640 SET CONSTRAINTS "memorymap_userposttag_user_id_6cd00f74_fk_memorymap_user_id" IMMEDIATE; ALTER TABLE "memorymap_userposttag" DROP CONSTRAINT "memorymap_userposttag_user_id_6cd00f74_fk_memorymap_user_id"; (params ())
+DEBUG 2024-04-25 09:52:27,672 utils 19 139965881248640 (0.001) SET CONSTRAINTS "memorymap_userposttag_user_id_6cd00f74_fk_memorymap_user_id" IMMEDIATE; ALTER TABLE "memorymap_userposttag" DROP CONSTRAINT "memorymap_userposttag_user_id_6cd00f74_fk_memorymap_user_id"; args=()
+DEBUG 2024-04-25 09:52:27,672 schema 19 139965881248640 ALTER TABLE "memorymap_userposttag" ADD CONSTRAINT "memorymap_userposttag_user_id_6cd00f74_fk_accounts_user_id" FOREIGN KEY ("user_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-04-25 09:52:27,676 utils 19 139965881248640 (0.004) ALTER TABLE "memorymap_userposttag" ADD CONSTRAINT "memorymap_userposttag_user_id_6cd00f74_fk_accounts_user_id" FOREIGN KEY ("user_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-04-25 09:52:27,678 schema 19 139965881248640 DROP TABLE "memorymap_user_groups" CASCADE; (params ())
+DEBUG 2024-04-25 09:52:27,681 utils 19 139965881248640 (0.002) DROP TABLE "memorymap_user_groups" CASCADE; args=()
+DEBUG 2024-04-25 09:52:27,682 schema 19 139965881248640 DROP TABLE "memorymap_user_user_permissions" CASCADE; (params ())
+DEBUG 2024-04-25 09:52:27,684 utils 19 139965881248640 (0.002) DROP TABLE "memorymap_user_user_permissions" CASCADE; args=()
+DEBUG 2024-04-25 09:52:27,684 schema 19 139965881248640 DROP TABLE "memorymap_user" CASCADE; (params ())
+DEBUG 2024-04-25 09:52:27,686 utils 19 139965881248640 (0.002) DROP TABLE "memorymap_user" CASCADE; args=()
+DEBUG 2024-04-25 09:52:27,688 utils 19 139965881248640 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-25 09:52:27,690 utils 19 139965881248640 (0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('memorymap', '0002_auto_20240425_0950', '2024-04-25T00:52:27.689440+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('memorymap', '0002_auto_20240425_0950', datetime.datetime(2024, 4, 25, 0, 52, 27, 689440, tzinfo=<UTC>))
+DEBUG 2024-04-25 09:52:27,696 schema 19 139965881248640 CREATE TABLE "django_session" ("session_key" varchar(40) NOT NULL PRIMARY KEY, "session_data" text NOT NULL, "expire_date" timestamp with time zone NOT NULL); (params None)
+DEBUG 2024-04-25 09:52:27,704 utils 19 139965881248640 (0.009) CREATE TABLE "django_session" ("session_key" varchar(40) NOT NULL PRIMARY KEY, "session_data" text NOT NULL, "expire_date" timestamp with time zone NOT NULL); args=None
+DEBUG 2024-04-25 09:52:27,705 schema 19 139965881248640 CREATE INDEX "django_session_session_key_c0390e0f_like" ON "django_session" ("session_key" varchar_pattern_ops); (params ())
+DEBUG 2024-04-25 09:52:27,708 utils 19 139965881248640 (0.002) CREATE INDEX "django_session_session_key_c0390e0f_like" ON "django_session" ("session_key" varchar_pattern_ops); args=()
+DEBUG 2024-04-25 09:52:27,708 schema 19 139965881248640 CREATE INDEX "django_session_expire_date_a5c62663" ON "django_session" ("expire_date"); (params ())
+DEBUG 2024-04-25 09:52:27,711 utils 19 139965881248640 (0.003) CREATE INDEX "django_session_expire_date_a5c62663" ON "django_session" ("expire_date"); args=()
+DEBUG 2024-04-25 09:52:27,714 utils 19 139965881248640 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-25 09:52:27,716 utils 19 139965881248640 (0.002) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('sessions', '0001_initial', '2024-04-25T00:52:27.714882+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('sessions', '0001_initial', datetime.datetime(2024, 4, 25, 0, 52, 27, 714882, tzinfo=<UTC>))
+DEBUG 2024-04-25 09:52:27,718 utils 19 139965881248640 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-04-25 09:52:27,720 utils 19 139965881248640 (0.001) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-04-25 09:52:27,740 utils 19 139965881248640 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'accounts'; args=('accounts',)
+DEBUG 2024-04-25 09:52:27,743 utils 19 139965881248640 (0.002) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('accounts', 'user') RETURNING "django_content_type"."id"; args=('accounts', 'user')
+DEBUG 2024-04-25 09:52:27,748 utils 19 139965881248640 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'accounts' AND "django_content_type"."model" = 'user') LIMIT 21; args=('accounts', 'user')
+DEBUG 2024-04-25 09:52:27,752 utils 19 139965881248640 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (18) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(18,)
+DEBUG 2024-04-25 09:52:27,755 utils 19 139965881248640 (0.001) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add user', 18, 'add_user'), ('Can change user', 18, 'change_user'), ('Can delete user', 18, 'delete_user'), ('Can view user', 18, 'view_user') RETURNING "auth_permission"."id"; args=('Can add user', 18, 'add_user', 'Can change user', 18, 'change_user', 'Can delete user', 18, 'delete_user', 'Can view user', 18, 'view_user')
+DEBUG 2024-04-25 09:52:27,758 utils 19 139965881248640 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'accounts'; args=('accounts',)
+DEBUG 2024-04-25 09:52:27,760 utils 19 139965881248640 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'memorymap'; args=('memorymap',)
+DEBUG 2024-04-25 09:52:27,763 utils 19 139965881248640 (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'hashtag') LIMIT 21; args=('memorymap', 'hashtag')
+DEBUG 2024-04-25 09:52:27,765 utils 19 139965881248640 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'post') LIMIT 21; args=('memorymap', 'post')
+DEBUG 2024-04-25 09:52:27,767 utils 19 139965881248640 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'tag') LIMIT 21; args=('memorymap', 'tag')
+DEBUG 2024-04-25 09:52:27,770 utils 19 139965881248640 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'userposttag') LIMIT 21; args=('memorymap', 'userposttag')
+DEBUG 2024-04-25 09:52:27,773 utils 19 139965881248640 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'repost') LIMIT 21; args=('memorymap', 'repost')
+DEBUG 2024-04-25 09:52:27,776 utils 19 139965881248640 (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'notification') LIMIT 21; args=('memorymap', 'notification')
+DEBUG 2024-04-25 09:52:27,782 utils 19 139965881248640 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'media') LIMIT 21; args=('memorymap', 'media')
+DEBUG 2024-04-25 09:52:27,789 utils 19 139965881248640 (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'like') LIMIT 21; args=('memorymap', 'like')
+DEBUG 2024-04-25 09:52:27,797 utils 19 139965881248640 (0.005) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'follower') LIMIT 21; args=('memorymap', 'follower')
+DEBUG 2024-04-25 09:52:27,799 utils 19 139965881248640 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'directmessage') LIMIT 21; args=('memorymap', 'directmessage')
+DEBUG 2024-04-25 09:52:27,802 utils 19 139965881248640 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'comment') LIMIT 21; args=('memorymap', 'comment')
+DEBUG 2024-04-25 09:52:27,805 utils 19 139965881248640 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'posthashtag') LIMIT 21; args=('memorymap', 'posthashtag')
+DEBUG 2024-04-25 09:52:27,809 utils 19 139965881248640 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13)
+DEBUG 2024-04-25 09:52:27,811 utils 19 139965881248640 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'memorymap'; args=('memorymap',)
+DEBUG 2024-04-25 09:52:27,812 utils 19 139965881248640 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'mptt'; args=('mptt',)
+DEBUG 2024-04-25 09:52:27,815 utils 19 139965881248640 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'mptt'; args=('mptt',)
+DEBUG 2024-04-25 09:52:27,817 utils 19 139965881248640 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',)
+DEBUG 2024-04-25 09:52:27,818 utils 19 139965881248640 (0.000) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('admin', 'logentry') RETURNING "django_content_type"."id"; args=('admin', 'logentry')
+DEBUG 2024-04-25 09:52:27,820 utils 19 139965881248640 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'admin' AND "django_content_type"."model" = 'logentry') LIMIT 21; args=('admin', 'logentry')
+DEBUG 2024-04-25 09:52:27,823 utils 19 139965881248640 (0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (19) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(19,)
+DEBUG 2024-04-25 09:52:27,824 utils 19 139965881248640 (0.001) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add log entry', 19, 'add_logentry'), ('Can change log entry', 19, 'change_logentry'), ('Can delete log entry', 19, 'delete_logentry'), ('Can view log entry', 19, 'view_logentry') RETURNING "auth_permission"."id"; args=('Can add log entry', 19, 'add_logentry', 'Can change log entry', 19, 'change_logentry', 'Can delete log entry', 19, 'delete_logentry', 'Can view log entry', 19, 'view_logentry')
+DEBUG 2024-04-25 09:52:27,828 utils 19 139965881248640 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',)
+DEBUG 2024-04-25 09:52:27,833 utils 19 139965881248640 (0.003) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',)
+DEBUG 2024-04-25 09:52:27,836 utils 19 139965881248640 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'permission') LIMIT 21; args=('auth', 'permission')
+DEBUG 2024-04-25 09:52:27,845 utils 19 139965881248640 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'group') LIMIT 21; args=('auth', 'group')
+DEBUG 2024-04-25 09:52:27,854 utils 19 139965881248640 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (14, 15) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(14, 15)
+DEBUG 2024-04-25 09:52:27,856 utils 19 139965881248640 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',)
+DEBUG 2024-04-25 09:52:27,858 utils 19 139965881248640 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',)
+DEBUG 2024-04-25 09:52:27,868 utils 19 139965881248640 (0.002) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'contenttypes' AND "django_content_type"."model" = 'contenttype') LIMIT 21; args=('contenttypes', 'contenttype')
+DEBUG 2024-04-25 09:52:27,871 utils 19 139965881248640 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (17) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(17,)
+DEBUG 2024-04-25 09:52:27,875 utils 19 139965881248640 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',)
+DEBUG 2024-04-25 09:52:27,878 utils 19 139965881248640 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',)
+DEBUG 2024-04-25 09:52:27,880 utils 19 139965881248640 (0.000) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('sessions', 'session') RETURNING "django_content_type"."id"; args=('sessions', 'session')
+DEBUG 2024-04-25 09:52:27,882 utils 19 139965881248640 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'sessions' AND "django_content_type"."model" = 'session') LIMIT 21; args=('sessions', 'session')
+DEBUG 2024-04-25 09:52:27,885 utils 19 139965881248640 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (20) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(20,)
+DEBUG 2024-04-25 09:52:27,888 utils 19 139965881248640 (0.000) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add session', 20, 'add_session'), ('Can change session', 20, 'change_session'), ('Can delete session', 20, 'delete_session'), ('Can view session', 20, 'view_session') RETURNING "auth_permission"."id"; args=('Can add session', 20, 'add_session', 'Can change session', 20, 'change_session', 'Can delete session', 20, 'delete_session', 'Can view session', 20, 'view_session')
+DEBUG 2024-04-25 09:52:27,890 utils 19 139965881248640 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',)

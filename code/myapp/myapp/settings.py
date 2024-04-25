@@ -125,6 +125,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+AUTH_USER_MODEL = 'accounts.User'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -194,6 +195,11 @@ LOGGING = {
         'memorymap': {
             'handlers': ['file', 'console'],
             'level': 'INFO',
+            'propagate': False,
+        },
+        'accounts': {  # これが追加された新しいロガー設定
+            'handlers': ['file', 'console'],
+            'level': 'DEBUG',  # または INFO、ERROR など、必要に応じてログレベルを設定
             'propagate': False,
         },
     }

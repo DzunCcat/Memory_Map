@@ -4,7 +4,7 @@
 # class Category(models.Model):
 #     name = models.CharField(max_length=255)
 #     author = models.ForeignKey(
-#         'auth.User',
+#         'auth.settings.AUTH_USER_MODEL',
 #         on_delete=models.CASCADE,
 #     )
 #     created_at = models.DateTimeField(auto_now_add=True)
@@ -22,7 +22,7 @@
 #     updated_at = models.DateTimeField(auto_now=True)
 
 #     author = models.ForeignKey(
-#         'auth.User',
+#         'auth.settings.AUTH_USER_MODEL',
 #         on_delete=models.CASCADE
 #     )
 
@@ -41,15 +41,15 @@
 #         return reverse('memorymap:detail', kwargs={'pk': self.pk})
 
 
-from django.db import models,IntegrityError
-from django.contrib.auth.models import AbstractUser,Group, Permission
+from django.db import models
+from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.utils.deconstruct import deconstructible
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from django.utils import timezone
-from autoslug import AutoSlugField
 from mptt.models import MPTTModel, TreeForeignKey
+from django.contrib.auth import get_user_model
 
 import re
 import uuid
@@ -58,34 +58,8 @@ import logging
 
 logger = logging.getLogger('memorymap')
 
-# User Model
-class User(AbstractUser):
 
-    groups = models.ManyToManyField(
-        Group,
-        related_name="memorymap_user_groups",  # memorymapアプリのUserモデル専用の逆参照名
-        help_text="The groups this user belongs to."
-    )
-    user_permissions = models.ManyToManyField(
-        Permission,
-        related_name="memorymap_user_permissions",  # memorymapアプリのUserモデル専用の逆参照名
-        help_text="Specific permissions for this user."
-    )
-    # Djangoのデフォルトユーザーモデルを拡張
-    # 必要に応じて追加のフィールドをここに定義
-    profile_picture = models.ImageField(upload_to='profile_pics/',default='profile_pics/default.jpg', blank=True, null=True)
-    bio = models.TextField(blank=True, null=True)
-    birthday = models.DateField(blank=True, null=True)
-    slug = AutoSlugField(populate_from='username', unique=True, always_update=True)
-
-def save(self, *args, **kwargs):
-    try:
-        super(User, self).save(*args, **kwargs)
-        
-    except IntegrityError as e:
-        logger.error(f"Error saving user: {e}")
-        raise ValidationError("Database error, unable to save the user.")
-
+User = get_user_model()
 
 # Post Model
 class Post(models.Model):
@@ -100,7 +74,7 @@ class Post(models.Model):
         ('custom', _('Custom')),
     )
     
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='posts')
     content = models.TextField(max_length=1000)
     content_type = models.CharField(max_length=100, choices=CONTENT_TYPES)
     title = models.CharField(max_length=255, blank=True, null=True)
@@ -162,7 +136,7 @@ class PostHashtag(models.Model):
 # Like Model
 class Like(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='likes')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='liked_posts')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='liked_posts')
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -215,13 +189,13 @@ class Media(models.Model):
 # Repost Model
 class Repost(models.Model):
     original_post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='original_posts')
-    reposted_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reposts')
+    reposted_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='reposts')
     created_at = models.DateTimeField(auto_now_add=True)
 
 # Comment Model
 class Comment(MPTTModel):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='comments')
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
@@ -238,14 +212,14 @@ class Tag(models.Model):
 
 # UserPostTag Model
 class UserPostTag(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_post_tags')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_post_tags')
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='user_post_tags')
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name='post_tags')
 
 # Followers Model
 class Follower(models.Model):
-    follower = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following')
-    followed = models.ForeignKey(User, on_delete=models.CASCADE, related_name='followers')
+    follower = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='following')
+    followed = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='followers')
     
 
     class Meta:
@@ -260,8 +234,8 @@ class Notification(models.Model):
         ('follow', _('Follow')),
     )
     
-    recipient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notifications')
-    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_notifications')
+    recipient = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='notifications')
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='sent_notifications')
     post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True, blank=True)
     notification_type = models.CharField(max_length=10, choices=TYPE_CHOICES)
     text = models.TextField()
@@ -273,8 +247,8 @@ class Notification(models.Model):
 
 # DirectMessage Model
 class DirectMessage(models.Model):
-    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_messages')
-    recipient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='received_messages')
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='sent_messages')
+    recipient = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='received_messages')
     message = models.TextField()
     sent_at = models.DateTimeField(auto_now_add=True)
     read_at = models.DateTimeField(null=True, blank=True)
