@@ -70,15 +70,19 @@ from django.core.exceptions import PermissionDenied
 
 from django.urls import reverse_lazy
 
-from .models import Post, Media, Follower, Comment
+from .models import Post, Media, Comment, Like
+# from .models import Follower
 from .forms import  PostForm, CommentForm
 # from .forms import CustomUserCreationForm
 
+from django.db.models import Q
+from django.contrib.auth.decorators import login_required
+
 class HomeView(LoginRequiredMixin,ListView):
     model = Post
-    template_name = 'home.html'
+    template_name = 'memorymap/home.html'
     context_object_name = 'posts'
-    login_url  = '/login/'
+    login_url  = '/accounts/login/'
 
 # class LoginView(LoginView):
 #     template_name = 'login.html'
@@ -113,17 +117,19 @@ class HomeView(LoginRequiredMixin,ListView):
 
 class NewsFeedView(LoginRequiredMixin, ListView):
     model = Post
-    template_name = 'news_feed.html'
+    template_name = 'memorymap/news_feed.html'
     context_object_name = 'posts'
     login_url = '/login/'
 
     def get_queryset(self):
-        return Post.objects.filter(author__in=self.request.user.followed.all())
+        return Post.objects.filter(
+            Q(author__in=self.request.user.following.all()) | Q(author=self.request.user)
+        ).order_by('-created_at')
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     form_class = PostForm
-    template_name = 'posts/post_form.html'
+    template_name = 'memorymap/post_form.html'
     success_url = reverse_lazy('home')  # Homeページにリダイレクト
 
     # old code
@@ -156,7 +162,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostDetailView(DetailView):
     model = Post
-    template_name = 'post_detail.html'
+    template_name = 'memorymap/post_detail.html'
     context_object_name = 'post'
 
     def get_context_data(self, **kwargs):
@@ -190,7 +196,7 @@ class CommentDetailView(DetailView):
 class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     form_class = PostForm
-    template_name = 'posts/post_form.html'
+    template_name = 'memorymap/post_form.html'
     success_url = reverse_lazy('home')
 
     def dispatch(self, request, *args, **kwargs):
@@ -202,7 +208,7 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
-    template_name = 'posts/post_confirm_delete.html'
+    template_name = 'memorymap/post_confirm_delete.html'
     success_url = reverse_lazy('home')
 
     def dispatch(self, request, *args, **kwargs):
@@ -210,3 +216,25 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
         if obj.author != self.request.user:
             raise PermissionDenied('You do not have permission to delete this post.')
         return super().dispatch(request, *args, **kwargs)
+    
+
+@login_required
+def like_post(request, post_uuid):
+    post = get_object_or_404(Post, uuid=post_uuid)
+    like, created = Like.objects.get_or_create(user=request.user, post=post)
+    if not created:
+        like.delete()
+    return redirect('memorymap:post_detail', username=post.author.username, uuid=post.uuid)
+
+
+def search_posts(request):
+    query = request.GET.get('query', '')
+    posts = Post.objects.filter(
+        Q(title__icontains=query) |
+        Q(content__icontains=query) | 
+        Q(hashtags__tag__icontains=query) |
+        Q(author__username__icontains=query) 
+        # Q(post_hashtags__hashtag__tag__icontains=query)
+        
+    ).distinct()
+    return render(request, 'memorymap/search_results.html', {'posts': posts, 'query': query})

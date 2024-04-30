@@ -1,15 +1,30 @@
-<!-- ... -->
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <div class="dropzone" id="myDropzone"></div>
-    <button type="submit">Submit</button>
-  </form>
-  
+{% extends 'base.html' %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css">
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <h1 class="my-4">{% if form.instance.pk %}投稿を編集{% else %}新しい投稿を作成{% endif %}</h1>
+        <form method="post" enctype="multipart/form-data" id="post-form">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <div class="dropzone" id="myDropzone"></div>
+          <button type="submit" class="btn btn-primary">{% if form.instance.pk %}更新{% else %}投稿{% endif %}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
   <script>
     Dropzone.options.myDropzone = {
-      url: "{% url 'post_create' %}",
+      url: "{% url 'memorymap:post_create' user.username %}",
       autoProcessQueue: false,
       uploadMultiple: true,
       parallelUploads: 5,
@@ -27,9 +42,11 @@
           }
         });
         this.on("complete", function(file) {
-          window.location.href = "{% url 'home' %}";
+          if (file.status == "success") {
+            window.location.href = "{% url 'memorymap:post_detail' user.username form.instance.uuid %}";
+          }
         });
       }
     };
   </script>
-  <!-- ... -->
+{% endblock %}

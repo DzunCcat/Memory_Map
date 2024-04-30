@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ query }} 検索結果 - {{ block.super }}{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h2>検索結果: "{{ query }}"</h2>
+    {% for post in posts %}
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <p class="card-text">{{ post.content|truncatewords:30 }}</p>
+          <a href="{% url 'memorymap:post_detail' post.author.username post.uuid %}" class="btn btn-primary">詳細を見る</a>
+        </div>
+      </div>
+    {% empty %}
+      <p>検索結果はありません。</p>
+    {% endfor %}
+  </div>
+{% endblock %}

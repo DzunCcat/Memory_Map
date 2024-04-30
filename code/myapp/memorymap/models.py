@@ -50,6 +50,7 @@ from django.urls import reverse
 from django.utils import timezone
 from mptt.models import MPTTModel, TreeForeignKey
 from django.contrib.auth import get_user_model
+from django.dispatch import receiver
 
 import re
 import uuid
@@ -117,6 +118,17 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('post_detail', kwargs={'user_id': self.author.id, 'content_type': self.content_type, 'uuid': self.uuid})
+    
+    def delete(self, *args, **kwargs):
+    # 関連するMediaファイルを削除
+        self.media.all().delete()
+        super().delete(*args, **kwargs)
+
+@receiver(models.signals.post_delete, sender=Post)
+def delete_media_when_post_deleted(sender, instance, **kwargs):
+    # 関連するMediaファイルを削除
+    instance.media.all().delete()
+    
 
     # Add indentation to the code block inside the Post class
     # Add your code here

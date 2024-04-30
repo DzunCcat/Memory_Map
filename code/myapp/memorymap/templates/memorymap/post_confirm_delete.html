@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <h1 class="my-4">投稿を削除</h1>
+        <p>本当に以下の投稿を削除しますか？関連するメディアファイルも削除されます。</p>
+        <article class="card my-4">
+          {% if post.thumbnail %}
+            <img src="{{ post.thumbnail.url }}" class="card-img-top" alt="{{ post.title }}">
+          {% endif %}
+          <div class="card-body">
+            <h2 class="card-title">{{ post.title }}</h2>
+            <p class="card-text">{{ post.content|truncatewords:50 }}</p>
+          </div>
+        </article>
+        <form method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">削除</button>
+          <a href="{% url 'memorymap:post_detail' post.author.username post.uuid %}" class="btn btn-secondary">キャンセル</a>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

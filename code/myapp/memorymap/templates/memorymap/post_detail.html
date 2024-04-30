@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <article class="card my-4">
+          {% if post.thumbnail %}
+            <img src="{{ post.thumbnail.url }}" class="card-img-top" alt="{{ post.title }}">
+          {% endif %}
+          <div class="card-body">
+            <h1 class="card-title">{{ post.title }}</h1>
+            <p class="card-text">{{ post.content|linebreaks }}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                {% if request.user.is_authenticated %}
+                  {% if request.user in post.likes.all %}
+                    <a href="{% url 'memorymap:like_post' post.uuid %}" class="btn btn-sm btn-danger">いいね解除</a>
+                  {% else %}
+                    <a href="{% url 'memorymap:like_post' post.uuid %}" class="btn btn-sm btn-primary">いいね</a>
+                  {% endif %}
+                {% endif %}
+                <span class="ml-2">{{ post.likes.count }}人がいいねしました</span>
+              </div>
+              <small class="text-muted">{{ post.created_at|date:"Y/m/d H:i" }}</small>
+              {% if request.user == post.author %}
+                <div>
+                  <a href="{% url 'memorymap:post_update' post.author.username post.uuid %}" class="btn btn-sm btn-outline-secondary">編集</a>
+                  <a href="{% url 'memorymap:post_delete' post.author.username post.uuid %}" class="btn btn-sm btn-outline-danger" onclick="return confirm('本当に削除しますか？')">削除</a>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </article>
+        <h2 class="my-4">コメント</h2>
+        {% for comment in post.comments.all %}
+          <div class="media mb-4">
+            <img src="{{ comment.user.profile_picture.url }}" class="mr-3 rounded-circle" alt="{{ comment.user.username }}" width="50" height="50">
+            <div class="media-body">
+              <h5 class="mt-0">{{ comment.user.username }} <small class="text-muted">{{ comment.created_at|date:"Y/m/d H:i" }}</small></h5>
+              {{ comment.content|linebreaks }}
+            </div>
+          </div>
+        {% empty %}
+          <p>まだコメントはありません。</p>
+        {% endfor %}
+
+        {% if request.user.is_authenticated %}
+          <h3 class="my-4">コメントを書く</h3>
+          <form method="post" action="{% url 'memorymap:post_detail' post.author.username post.uuid %}">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit" class="btn btn-primary">コメントを投稿</button>
+          </form>
+        {% else %}
+          <p>コメントを書くには<a href="{% url 'accounts:login' %}">ログイン</a>してください。</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

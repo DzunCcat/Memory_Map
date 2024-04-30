@@ -1,5 +1,16 @@
 from django.urls import path
-from .views import LoginView, LogoutView, RegisterView, ProfileView
+from django.conf import settings
+from django.conf.urls.static import static
+
+from .views import (
+    LoginView, 
+    LogoutView, 
+    RegisterView, 
+    ProfileView, 
+    profile_edit, 
+    follow, 
+    unfollow,
+)
 
 app_name = 'accounts'
 
@@ -8,4 +19,7 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('register/', RegisterView.as_view(), name='register'),
     path('profile/<username>/', ProfileView.as_view(), name='profile'),
+    path('profile/edit/<username>/', profile_edit, name='profile_edit'),
+    path('follow/<username>/', follow, name='follow'),
+    path('unfollow/<username>/', unfollow, name='unfollow'),
 ]

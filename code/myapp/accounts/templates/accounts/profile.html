@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ user.username }}のプロフィール - {{block.super}}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                {% if user.profile_picture %}
+                    <img src="{{ user.profile_picture.url }}" alt="{{ user.username }}のプロフィール画像">
+                {% else %}
+                    <img src="{% static 'images/default_profile.jpg' %}" alt="デフォルトのプロフィール画像">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ user.username }}</h5>
+                    <p class="card-text">{{ user.bio }}</p>
+                    <p class="card-text">フォロワー： {{ followers }} | フォロー中： {{ following }}</p>
+                    {% if request.user == user %}
+                        <a href="{% url 'accounts:profile_edit' username=user.username  %}" class="btn btn-primary">プロフィールを編集</a>
+                    {% else %}
+                        {% if is_following %}
+                            <a href="{% url 'accounts:unfollow' user.username %}" class="btn btn-secondary">フォロー解除</a>
+                        {% else %}
+                            <a href="{% url 'accounts:follow' user.username %}" class="btn btn-primary">フォローする</a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h2>{{ user.username }}の投稿</h2>
+            {% for post in posts %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.content|truncatewords:30 }}</p>
+                        <a href="{% url 'memorymap:post_detail' post.author.username post.uuid %}" class="btn btn-primary">詳細を見る</a>
+                    </div>
+                </div>
+            {% empty %}
+                <p>まだ投稿がありません。</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
