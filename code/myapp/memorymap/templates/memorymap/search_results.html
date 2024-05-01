@@ -5,16 +5,20 @@
 {% block content %}
   <div class="container">
     <h2>検索結果: "{{ query }}"</h2>
-    {% for post in posts %}
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title">{{ post.title }}</h5>
-          <p class="card-text">{{ post.content|truncatewords:30 }}</p>
-          <a href="{% url 'memorymap:post_detail' post.author.username post.uuid %}" class="btn btn-primary">詳細を見る</a>
+    {% if posts %}
+      <p>{{ posts|length }} 件の投稿が見つかりました。</p>
+
+      {% for post in posts %}
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-text">{{ post.content|truncatewords:30 }}</p>
+            <a href="{% url 'memorymap:post_detail' post.author.username post.uuid %}" class="btn btn-primary">詳細を見る</a>
+          </div>
         </div>
-      </div>
-    {% empty %}
+      {% endfor %}
+    {% else %}
       <p>検索結果はありません。</p>
-    {% endfor %}
+    {% endif %}
   </div>
 {% endblock %}

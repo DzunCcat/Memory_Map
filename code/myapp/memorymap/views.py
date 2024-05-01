@@ -130,7 +130,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     form_class = PostForm
     template_name = 'memorymap/post_form.html'
-    success_url = reverse_lazy('home')  # Homeページにリダイレクト
+    success_url = reverse_lazy('memorymap:home')  # Homeページにリダイレクト
 
     # old code
     # def form_valid(self, form):
@@ -147,7 +147,10 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         form = self.get_form(form_class)
         files = request.FILES.getlist('file')
         if form.is_valid():
-            self.object = form.save()
+            self.object = form.save(commit=False)
+            self.object.author = request.user
+            self.object.save()
+
             for f in files:
                 Media.objects.create(post=self.object, file=f)
             return self.form_valid(form)
@@ -164,6 +167,8 @@ class PostDetailView(DetailView):
     model = Post
     template_name = 'memorymap/post_detail.html'
     context_object_name = 'post'
+    slug_field = 'uuid'  
+    slug_url_kwarg = 'uuid'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -197,7 +202,9 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     form_class = PostForm
     template_name = 'memorymap/post_form.html'
-    success_url = reverse_lazy('home')
+    slug_field = 'uuid'  
+    slug_url_kwarg = 'uuid'  
+    success_url = reverse_lazy('memorymap:home')
 
     def dispatch(self, request, *args, **kwargs):
         obj = self.get_object()
@@ -209,7 +216,9 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
 class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     template_name = 'memorymap/post_confirm_delete.html'
-    success_url = reverse_lazy('home')
+    slug_field = 'uuid'  
+    slug_url_kwarg = 'uuid'  
+    success_url = reverse_lazy('memorymap:home')
 
     def dispatch(self, request, *args, **kwargs):
         obj = self.get_object()
@@ -219,8 +228,8 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     
 
 @login_required
-def like_post(request, post_uuid):
-    post = get_object_or_404(Post, uuid=post_uuid)
+def like_post(request, uuid):
+    post = get_object_or_404(Post, uuid=uuid)
     like, created = Like.objects.get_or_create(user=request.user, post=post)
     if not created:
         like.delete()
@@ -229,12 +238,16 @@ def like_post(request, post_uuid):
 
 def search_posts(request):
     query = request.GET.get('query', '')
-    posts = Post.objects.filter(
-        Q(title__icontains=query) |
-        Q(content__icontains=query) | 
-        Q(hashtags__tag__icontains=query) |
-        Q(author__username__icontains=query) 
-        # Q(post_hashtags__hashtag__tag__icontains=query)
+    if query:
+        posts = Post.objects.filter(
+            Q(title__icontains=query) |
+            Q(content__icontains=query) | 
+            Q(author__username__icontains=query) 
+            # Q(hashtags__tag__icontains=query) |
+            # Q(post_hashtags__hashtag__tag__icontains=query) 
         
-    ).distinct()
+        ).distinct()
+    else:
+        posts = []
+
     return render(request, 'memorymap/search_results.html', {'posts': posts, 'query': query})

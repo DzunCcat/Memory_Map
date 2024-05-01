@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from logging.handlers import TimedRotatingFileHandler
 import os 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -172,7 +173,10 @@ LOGGING = {
     'handlers': {
         'file': {
             'level': 'DEBUG',
-            'class': 'logging.FileHandler',
+            'class': 'logging.handlers.TimedRotatingFileHandler',
+            'when': 'midnight', 
+            'interval': 1,  # 1日ごとにログファイルをローテーション
+            'backupCount': 30, # 保存しておくログファイルの数
             'filename': os.path.join(BASE_DIR, 'logs', 'myapp.log'),
             'formatter': 'verbose',
         },

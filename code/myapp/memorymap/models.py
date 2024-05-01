@@ -117,7 +117,7 @@ class Post(models.Model):
     #post_detail should be set in view.
 
     def get_absolute_url(self):
-        return reverse('post_detail', kwargs={'user_id': self.author.id, 'content_type': self.content_type, 'uuid': self.uuid})
+        return reverse('memorymap:post_detail', kwargs={'username': self.author.username, 'uuid': self.uuid})
     
     def delete(self, *args, **kwargs):
     # 関連するMediaファイルを削除
@@ -127,6 +127,8 @@ class Post(models.Model):
 @receiver(models.signals.post_delete, sender=Post)
 def delete_media_when_post_deleted(sender, instance, **kwargs):
     # 関連するMediaファイルを削除
+    for media in instance.media.all():
+        media.file.delete(save=False)
     instance.media.all().delete()
     
 
