@@ -174,6 +174,7 @@ class PostDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['comment_form'] = CommentForm()  # コメントフォームをコンテキストに追加
         context['comments'] = Comment.objects.filter(post=self.object).order_by('-created_at')  # コメントを新しいものから順に表示
+        context['like_count'] = self.object.likes.exclude(user=self.object.author).count()
         return context
 
     def post(self, request, *args, **kwargs):
@@ -230,9 +231,10 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 @login_required
 def like_post(request, uuid):
     post = get_object_or_404(Post, uuid=uuid)
-    like, created = Like.objects.get_or_create(user=request.user, post=post)
-    if not created:
-        like.delete()
+    if request.user != post.author:
+        like, created = Like.objects.get_or_create(user=request.user, post=post)
+        if not created:
+            like.delete()
     return redirect('memorymap:post_detail', username=post.author.username, uuid=post.uuid)
 
 

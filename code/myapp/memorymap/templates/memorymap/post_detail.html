@@ -13,14 +13,14 @@
             <p class="card-text">{{ post.content|linebreaks }}</p>
             <div class="d-flex justify-content-between align-items-center">
               <div>
-                {% if request.user.is_authenticated %}
+                {% if request.user.is_authenticated and request.user != post.author %}
                   {% if request.user in post.likes.all %}
                     <a href="{% url 'memorymap:like_post' post.uuid %}" class="btn btn-sm btn-danger">いいね解除</a>
                   {% else %}
                     <a href="{% url 'memorymap:like_post' post.uuid %}" class="btn btn-sm btn-primary">いいね</a>
                   {% endif %}
                 {% endif %}
-                <span class="ml-2">{{ post.likes.count }}人がいいねしました</span>
+                <span class="ml-2">{{ like_count  }}人がいいねしました</span>
               </div>
               <small class="text-muted">{{ post.created_at|date:"Y/m/d H:i" }}</small>
               {% if request.user == post.author %}
