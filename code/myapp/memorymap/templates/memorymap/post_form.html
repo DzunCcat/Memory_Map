@@ -21,32 +21,45 @@
 {% endblock %}
 
 {% block extra_js %}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
-  <script>
-    Dropzone.options.myDropzone = {
-      url: "{% url 'memorymap:post_create' user.username %}",
-      autoProcessQueue: false,
-      uploadMultiple: true,
-      parallelUploads: 5,
-      maxFiles: 5,
-      maxFilesize: 5,
-      acceptedFiles: 'image/*,video/*',
-      addRemoveLinks: true,
-      init: function() {
-        dzClosure = this;
-        document.getElementById("post-form").addEventListener("submit", function(e) {
-          if (dzClosure.getQueuedFiles().length > 0) {
-            e.preventDefault();
-            e.stopPropagation();
-            dzClosure.processQueue();
-          }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+<script>
+var csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+Dropzone.autoDiscover = false;
+var myDropzone = new Dropzone("#myDropzone", {
+    url: "{% url 'memorymap:post_create' user.username %}",
+    paramName: "file",
+    maxFilesize: 5,
+    maxFiles: 5,
+    acceptedFiles: 'image/*,video/*',
+    addRemoveLinks: true,
+    dictDefaultMessage: "画像またはビデオをドロップするか、クリックしてファイルを選択してください。",
+    init: function() {
+        this.on("sending", function(file, xhr, formData) {
+            // 送信前にCSRFトークンを追加
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
         });
-        this.on("complete", function(file) {
-          if (file.status == "success") {
-            window.location.href = "{% url 'memorymap:post_detail' user.username form.instance.uuid %}";
-          }
-        });
+    }
+});
+</script>
+
+<script>
+  function updateFormFields() {
+      var contentType = document.getElementById("id_content_type").value;
+      var titleField = document.getElementById("id_title").parentNode;
+      var thumbnailField = document.getElementById("id_thumbnail").parentNode;
+  
+      if (contentType === "tweet") {
+          titleField.style.display = "none";
+          thumbnailField.style.display = "none";
+      } else {
+          titleField.style.display = "block";
+          thumbnailField.style.display = "block";
       }
-    };
-  </script>
+  }
+
+  window.addEventListener('DOMContentLoaded', (event) => {
+    updateFormFields();
+  });
+</script>
 {% endblock %}

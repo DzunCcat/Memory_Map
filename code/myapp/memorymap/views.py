@@ -77,6 +77,8 @@ from .forms import  PostForm, CommentForm
 
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from django.http import Http404
+from django.http import JsonResponse
 
 class HomeView(LoginRequiredMixin,ListView):
     model = Post
@@ -132,36 +134,29 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     template_name = 'memorymap/post_form.html'
     success_url = reverse_lazy('memorymap:home')  # Homeページにリダイレクト
 
-    # old code
-    # def form_valid(self, form):
-    #     form.instance.author = self.request.user  # 投稿の作者を自動的に設定
-    #     return super().form_valid(form)
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        response = super().form_valid(form)
-        return response
-
     def post(self, request, *args, **kwargs):
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
+        self.object = None
+        # form_class = self.get_form_class()
+        form = self.get_form()
         files = request.FILES.getlist('file')
+        print("test:")
+        print(files)
         if form.is_valid():
             self.object = form.save(commit=False)
             self.object.author = request.user
             self.object.save()
-
-            for f in files:
-                Media.objects.create(post=self.object, file=f)
+            for file in files:
+                Media.objects.create(post=self.object, file=file)
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
-
+        
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
         if 'content_type' in form.fields:
             form.fields['content_type'].widget.attrs.update({'onchange': 'updateFormFields();'})
         return form
+    
 
 class PostDetailView(DetailView):
     model = Post
@@ -175,6 +170,7 @@ class PostDetailView(DetailView):
         context['comment_form'] = CommentForm()  # コメントフォームをコンテキストに追加
         context['comments'] = Comment.objects.filter(post=self.object).order_by('-created_at')  # コメントを新しいものから順に表示
         context['like_count'] = self.object.likes.exclude(user=self.object.author).count()
+        context['media'] = Media.objects.filter(post=self.object) 
         return context
 
     def post(self, request, *args, **kwargs):
@@ -188,6 +184,30 @@ class PostDetailView(DetailView):
             return redirect(self.object.get_absolute_url())
         return self.get(request, *args, **kwargs)
     
+    def get_object(self, queryset=None):
+        if queryset is None:
+            queryset = self.get_queryset()
+
+        uuid = self.kwargs.get('uuid')
+        if uuid is not None:
+            queryset = queryset.filter(uuid=uuid)
+
+        try:
+            obj = queryset.get()
+        except queryset.model.DoesNotExist:
+            raise Http404("No post found matching the query")
+
+        return obj
+    
+
+def delete_media(request):
+        media_id = request.GET.get('media_id')
+        media = get_object_or_404(Media, id=media_id)
+        media.delete()
+        return JsonResponse({'status': 'success'})
+
+
+
 class CommentDetailView(DetailView):
     model = Comment
     template_name = 'comment_detail.html'
