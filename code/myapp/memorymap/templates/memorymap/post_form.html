@@ -23,27 +23,38 @@
 {% block extra_js %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
 <script>
-var csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+  var csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+  Dropzone.options.myDropzone = {
+      url: "{% url 'memorymap:post_create' user.username %}",
+      paramName: "file",
+      maxFilesize: 5,
+      maxFiles: 5,
+      acceptedFiles: 'image/*,video/*',
+      addRemoveLinks: true,
+      dictDefaultMessage: "画像またはビデオをドロップするか、クリックしてファイルを選択してください。",
+      init: function() {
+          dzClosure = this;
+          document.getElementById("post-form").addEventListener("submit", function(e) {
+              if (dzClosure.getQueuedFiles().length > 0) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  dzClosure.processQueue();
+              } else {
+                  dzClosure.uploadFiles([]);
+              }
+          });
+          this.on("sending", function(file, xhr, formData) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            });
+          this.on("sendingmultiple", function(data, xhr, formData) {
+                formData.append("content", $("#id_content").val());
+                formData.append("content_type", $("#id_content_type").val());
+                formData.append("title", $("#id_title").val());
+                formData.append("visibility", $("#id_visibility").val());
+            });
+      }
+  };
 
-Dropzone.autoDiscover = false;
-var myDropzone = new Dropzone("#myDropzone", {
-    url: "{% url 'memorymap:post_create' user.username %}",
-    paramName: "file",
-    maxFilesize: 5,
-    maxFiles: 5,
-    acceptedFiles: 'image/*,video/*',
-    addRemoveLinks: true,
-    dictDefaultMessage: "画像またはビデオをドロップするか、クリックしてファイルを選択してください。",
-    init: function() {
-        this.on("sending", function(file, xhr, formData) {
-            // 送信前にCSRFトークンを追加
-            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-        });
-    }
-});
-</script>
-
-<script>
   function updateFormFields() {
       var contentType = document.getElementById("id_content_type").value;
       var titleField = document.getElementById("id_title").parentNode;

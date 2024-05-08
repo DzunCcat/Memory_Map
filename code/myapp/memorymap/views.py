@@ -135,9 +135,8 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('memorymap:home')  # Homeページにリダイレクト
 
     def post(self, request, *args, **kwargs):
-        self.object = None
-        # form_class = self.get_form_class()
-        form = self.get_form()
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
         files = request.FILES.getlist('file')
         print("test:")
         print(files)
@@ -145,11 +144,11 @@ class PostCreateView(LoginRequiredMixin, CreateView):
             self.object = form.save(commit=False)
             self.object.author = request.user
             self.object.save()
-            for file in files:
-                Media.objects.create(post=self.object, file=file)
+            for f in files:
+                Media.objects.create(post=self.object, file=f)
             return self.form_valid(form)
         else:
-            return self.form_invalid(form)
+            return render(request, self.template_name, {'form': form})
         
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
