@@ -13,6 +13,7 @@
           {% csrf_token %}
           {{ form.as_p }}
           <div class="dropzone" id="myDropzone"></div>
+          <input type="hidden" id="file_ids" name="file_ids" value="">
           <button type="submit" class="btn btn-primary">{% if form.instance.pk %}更新{% else %}投稿{% endif %}</button>
         </form>
       </div>
@@ -23,37 +24,40 @@
 {% block extra_js %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
 <script>
-  var csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-  Dropzone.options.myDropzone = {
-      url: "{% url 'memorymap:post_create' user.username %}",
-      paramName: "file",
-      maxFilesize: 5,
-      maxFiles: 5,
-      acceptedFiles: 'image/*,video/*',
-      addRemoveLinks: true,
-      dictDefaultMessage: "画像またはビデオをドロップするか、クリックしてファイルを選択してください。",
-      init: function() {
-          dzClosure = this;
-          document.getElementById("post-form").addEventListener("submit", function(e) {
-              if (dzClosure.getQueuedFiles().length > 0) {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  dzClosure.processQueue();
-              } else {
-                  dzClosure.uploadFiles([]);
-              }
-          });
-          this.on("sending", function(file, xhr, formData) {
+    var csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    Dropzone.options.myDropzone = {
+        url: "{% url 'memorymap:file_upload'%}",
+        paramName: "file",
+        maxFilesize: 5,
+        maxFiles: 5,
+        acceptedFiles: 'image/*,video/*',
+        addRemoveLinks: true,
+        dictDefaultMessage: "画像またはビデオをドロップするか、クリックしてファイルを選択してください。",
+        init: function() {
+            var myDropzone = this;  
+            document.getElementById("post-form").addEventListener("submit", function(e) {
+                e.preventDefault();
+                if (myDropzone.getQueuedFiles().length > 0) {
+                    myDropzone.processQueue();
+                } else {
+                    this.submit();
+                }
+            });
+            this.on("sending", function(file, xhr, formData) {
                 xhr.setRequestHeader("X-CSRFToken", csrftoken);
             });
-          this.on("sendingmultiple", function(data, xhr, formData) {
-                formData.append("content", $("#id_content").val());
-                formData.append("content_type", $("#id_content_type").val());
-                formData.append("title", $("#id_title").val());
-                formData.append("visibility", $("#id_visibility").val());
+            this.on("success", function(file, response) {
+                if (response.status === 'success') {
+                    var file_ids_input = document.getElementById("file_ids");
+                    file_ids_input.value += response.file_id + ",";
+                    file_ids_input.value = file_ids_input.value.slice(0, -1);  // 最後のカンマを削除
+                }
             });
-      }
-  };
+            this.on("successmultiple", function(files, response) {
+                document.getElementById("post-form").submit();  // 全てのファイルがアップロードされた後にフォームを送信
+            });
+        }
+    };
 
   function updateFormFields() {
       var contentType = document.getElementById("id_content_type").value;

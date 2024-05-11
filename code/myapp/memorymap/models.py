@@ -120,16 +120,21 @@ class Post(models.Model):
         return reverse('memorymap:post_detail', kwargs={'username': self.author.username, 'uuid': self.uuid})
     
     def delete(self, *args, **kwargs):
-    # 関連するMediaファイルを削除
-        self.media.all().delete()
+        media_files = self.media_post.all()
+        for media in media_files:
+            media.file.delete()
+        media_files.delete()
+        
         super().delete(*args, **kwargs)
 
 @receiver(models.signals.post_delete, sender=Post)
 def delete_media_when_post_deleted(sender, instance, **kwargs):
+    media_files = instance.media_post.all()
     # 関連するMediaファイルを削除
-    for media in instance.media.all():
-        media.file.delete(save=False)
-    instance.media.all().delete()
+    for media in media_files:
+        media.file.delete()
+
+    media_files.delete()
     
 
     # Add indentation to the code block inside the Post class
@@ -190,7 +195,8 @@ class Media(models.Model):
         ('gif', _('GIF')),
         ('video', _('Video')),
     )
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='media')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='media_post', null=True, blank=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='media_user')
     media_type = models.CharField(max_length=10, choices=MEDIA_TYPES)
     file = models.FileField(upload_to=MediaPath(), validators=[validate_file_extension])
     created_at = models.DateTimeField(auto_now_add=True)

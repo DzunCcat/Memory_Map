@@ -63,59 +63,25 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
 
-# from django.contrib.auth.views import LoginView, LogoutView
-# from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 
 from django.urls import reverse_lazy
 
 from .models import Post, Media, Comment, Like
-# from .models import Follower
 from .forms import  PostForm, CommentForm
-# from .forms import CustomUserCreationForm
 
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-from django.http import Http404
-from django.http import JsonResponse
+from django.http import Http404, JsonResponse
+from django.core.exceptions import ValidationError
+
 
 class HomeView(LoginRequiredMixin,ListView):
     model = Post
     template_name = 'memorymap/home.html'
     context_object_name = 'posts'
     login_url  = '/accounts/login/'
-
-# class LoginView(LoginView):
-#     template_name = 'login.html'
-#     redirect_authenticated_user = True
-
-#     def get_success_url(self):
-#         return reverse_lazy('home')
-
-# class LogoutView(LogoutView):
-#     next_page = '/login/'
-
-# class RegisterView(CreateView):
-#     form_class = CustomUserCreationForm
-#     template_name = 'registration/register.html'
-#     success_url = reverse_lazy('login')
-
-# class ProfileView(LoginRequiredMixin, TemplateView):
-#     template_name = 'profile.html'
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         user = get_object_or_404(User, username=self.kwargs.get('username', self.request.user.username))
-
-#         context.update({
-#             'user': user,
-#             'posts': Post.objects.filter(author=user).order_by('-created_at'),
-#             'followers': Follower.objects.filter(followed=user).count(),
-#             'following': Follower.objects.filter(follower=user).count(),
-#             'is_following': self.request.user.is_authenticated and Follower.objects.filter(follower=self.request.user, followed=user).exists()
-#         })
-#         return context
 
 class NewsFeedView(LoginRequiredMixin, ListView):
     model = Post
@@ -137,18 +103,27 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     def post(self, request, *args, **kwargs):
         form_class = self.get_form_class()
         form = self.get_form(form_class)
-        files = request.FILES.getlist('file')
-        print("test:")
-        print(files)
         if form.is_valid():
             self.object = form.save(commit=False)
-            self.object.author = request.user
+            self.object.author = self.request.user
             self.object.save()
-            for f in files:
-                Media.objects.create(post=self.object, file=f)
+
+            file_ids = self.request.POST.get('file_ids', '').split(',')
+            file_ids = [file_id for file_id in file_ids if file_id]
+
+            print("test:")
+            print(file_ids)
+
+            for file_id in file_ids:
+                try:
+                    file = Media.objects.get(id=file_id,user=self.request.user,post__isnull=True)
+                    file.post = self.object 
+                    file.save()
+                except Media.DoesNotExist:
+                    continue
             return self.form_valid(form)
         else:
-            return render(request, self.template_name, {'form': form})
+            return self.form_invalid(form)
         
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
@@ -255,6 +230,19 @@ def like_post(request, uuid):
         if not created:
             like.delete()
     return redirect('memorymap:post_detail', username=post.author.username, uuid=post.uuid)
+
+@login_required
+def file_upload(request):
+    if request.method == 'POST' and request.FILES.get('file'):
+        file = request.FILES['file']
+        media_type = request.POST.get('media_type', 'image')  # フォームからメディアタイプを受け取る
+
+        try:
+            uploaded_file = Media.objects.create(file=file, media_type=media_type, user=request.user)  # postは後で関連付け
+            return JsonResponse({'status': 'success', 'file_id': uploaded_file.id}, status=201)
+        except ValidationError as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    return JsonResponse({'status': 'error', 'message': _('Invalid request')}, status=400)
 
 
 def search_posts(request):

@@ -10,6 +10,7 @@ from .views import (
     like_post,
     search_posts,
     delete_media,
+    file_upload,
 )
 
 
@@ -26,4 +27,5 @@ urlpatterns = [
     path('post/<uuid:uuid>/like/', like_post, name='like_post'),
     path('search/', search_posts, name='search_posts'),
     path('delete_media/', delete_media, name='delete_media'),
+    path('api/upload/', file_upload, name='file_upload'),
 ]
