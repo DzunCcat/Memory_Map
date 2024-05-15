@@ -169,7 +169,8 @@ def validate_file_extension(value):
         'text': ['.txt', '.doc', '.docx', '.pdf'],
         'image': ['.jpg', '.jpeg', '.png'],
         'gif': ['.gif'],
-        'video': ['.mp4', '.mov', '.avi']
+        'video': ['.mp4', '.mov', '.avi'],
+        'audio': ['.mp3', '.wav', '.m4a'],
     }
     # メディアタイプに応じてバリデーション
     if not any(ext in valid_extensions[media_type] for media_type in valid_extensions):
@@ -194,6 +195,7 @@ class Media(models.Model):
         ('image', _('Image')),
         ('gif', _('GIF')),
         ('video', _('Video')),
+        ('audio', _('Audio')),
     )
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='media_post', null=True, blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='media_user')
@@ -222,6 +224,10 @@ class Comment(MPTTModel):
 
     class MPTTMeta:
         order_insertion_by = ['created_at']
+
+    class Meta:
+        verbose_name = _('Comment')
+        verbose_name_plural = _('Comments')
 
     def __str__(self):
         return f"{self.user.username}: {self.content[:20]}"

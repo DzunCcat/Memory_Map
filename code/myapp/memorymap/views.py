@@ -101,26 +101,20 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('memorymap:home')  # Homeページにリダイレクト
 
     def post(self, request, *args, **kwargs):
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
+        form = self.get_form()
         if form.is_valid():
             self.object = form.save(commit=False)
             self.object.author = self.request.user
             self.object.save()
 
-            file_ids = self.request.POST.get('file_ids', '').split(',')
-            file_ids = [file_id for file_id in file_ids if file_id]
+            file_ids = [file_id for file_id in self.request.POST.get('file_ids', '').split(',') if file_id]
 
-            print("test:")
-            print(file_ids)
+            media_files = Media.objects.filter(id__in=file_ids, user=self.request.user, post__isnull=True)
+            for file in media_files:
+                file.post = self.object
+                file.save()
+            Media.objects.filter(user=self.request.user, post__isnull=True).delete()
 
-            for file_id in file_ids:
-                try:
-                    file = Media.objects.get(id=file_id,user=self.request.user,post__isnull=True)
-                    file.post = self.object 
-                    file.save()
-                except Media.DoesNotExist:
-                    continue
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
@@ -130,6 +124,19 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         if 'content_type' in form.fields:
             form.fields['content_type'].widget.attrs.update({'onchange': 'updateFormFields();'})
         return form
+
+@login_required
+def file_upload(request):
+    if request.method == 'POST' and request.FILES.get('file'):
+        file = request.FILES['file']
+        media_type = request.POST.get('media_type', 'image')  # フォームからメディアタイプを受け取る
+
+        try:
+            uploaded_file = Media.objects.create(file=file, media_type=media_type, user=request.user)  # postは後で関連付け
+            return JsonResponse({'status': 'success', 'file_id': uploaded_file.id}, status=201)
+        except ValidationError as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    return JsonResponse({'status': 'error', 'message': _('Invalid request')}, status=400)
     
 
 class PostDetailView(DetailView):
@@ -230,20 +237,6 @@ def like_post(request, uuid):
         if not created:
             like.delete()
     return redirect('memorymap:post_detail', username=post.author.username, uuid=post.uuid)
-
-@login_required
-def file_upload(request):
-    if request.method == 'POST' and request.FILES.get('file'):
-        file = request.FILES['file']
-        media_type = request.POST.get('media_type', 'image')  # フォームからメディアタイプを受け取る
-
-        try:
-            uploaded_file = Media.objects.create(file=file, media_type=media_type, user=request.user)  # postは後で関連付け
-            return JsonResponse({'status': 'success', 'file_id': uploaded_file.id}, status=201)
-        except ValidationError as e:
-            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
-    return JsonResponse({'status': 'error', 'message': _('Invalid request')}, status=400)
-
 
 def search_posts(request):
     query = request.GET.get('query', '')

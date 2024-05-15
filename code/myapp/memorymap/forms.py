@@ -25,6 +25,8 @@ class PostForm(forms.ModelForm):
     #old code :ClearableFileInput(attrs={'multiple': True}) ->  new code :DropzoneJS
     # media = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}), required=False, label='Media Files')
 
+    
+
     class Meta:
         model = Post
         fields = ['title', 'thumbnail', 'content', 'content_type', 'visibility',]
