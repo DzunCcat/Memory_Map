@@ -52,7 +52,6 @@ from mptt.models import MPTTModel, TreeForeignKey
 from django.contrib.auth import get_user_model
 from django.dispatch import receiver
 
-import re
 import uuid
 import logging
 
@@ -62,6 +61,13 @@ logger = logging.getLogger('memorymap')
 
 User = get_user_model()
 
+@deconstructible
+class ThumbnailPath(object):
+    def __call__(self, instance, filename):
+        ext = filename.split('.')[-1]
+        filename = f'{uuid.uuid4()}.{ext}'
+        return f'media/thumbnails/{filename}'
+    
 # Post Model
 class Post(models.Model):
     CONTENT_TYPES = (
@@ -83,7 +89,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)   
     # form setting: content_types = article  add thumbnail 
-    thumbnail = models.ImageField(blank=True, null=True)
+    thumbnail = models.ImageField(upload_to=ThumbnailPath(), blank=True, null=True)
     uuid = models.UUIDField(default=uuid.uuid4, editable=False)  # UUIDフィールドを追加
 
 

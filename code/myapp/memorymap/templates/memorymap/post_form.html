@@ -24,8 +24,7 @@
 {% block extra_js %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
 <script>
-var uploadedFilesCount = 0;
-var totalFiles = 0;
+var formSubmitted = false;
 var csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
 Dropzone.options.myDropzone = {
@@ -44,11 +43,14 @@ Dropzone.options.myDropzone = {
         // 投稿ボタンがクリックされたときの処理を変更
         document.getElementById("post-form").addEventListener("submit", function(e) {
             e.preventDefault();
-            if (myDropzone.getQueuedFiles().length > 0 && !myDropzone.processing) {
-                console.log("All files added. Processing queue...");
-                myDropzone.processQueue();
-            } else {
-                this.submit();
+            if (!formSubmitted) { // フラグをチェック
+                formSubmitted = true; // フラグを設定
+                if (myDropzone.getQueuedFiles().length > 0 && !myDropzone.processing) {
+                    console.log("All files added. Processing queue...");
+                    myDropzone.processQueue();
+                } else {
+                    this.submit();
+                }
             }
         });
         this.on("sending", function(file, xhr, formData) {
@@ -67,6 +69,7 @@ Dropzone.options.myDropzone = {
         });
         this.on("queuecomplete", function() {
             document.getElementById("post-form").submit();
+            formSubmitted = false;
         });
     }
 };

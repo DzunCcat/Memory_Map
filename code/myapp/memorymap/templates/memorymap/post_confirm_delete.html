@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
   <div class="container">
     <div class="row">
@@ -15,12 +16,26 @@
             <p class="card-text">{{ post.content|truncatewords:50 }}</p>
           </div>
         </article>
-        <form method="post">
+        <form method="post" id="delete-form">
           {% csrf_token %}
-          <button type="submit" class="btn btn-danger">削除</button>
+          <button type="submit" class="btn btn-danger" id="delete-btn">削除</button>
           <a href="{% url 'memorymap:post_detail' post.author.username post.uuid %}" class="btn btn-secondary">キャンセル</a>
         </form>
       </div>
     </div>
   </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  var deleteSubmitted = false; // フラグ変数
+
+  document.getElementById("delete-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    if (!deleteSubmitted) { // フラグをチェック
+      deleteSubmitted = true; // フラグを設定
+      this.submit();
+    }
+  });
+</script>
 {% endblock %}
