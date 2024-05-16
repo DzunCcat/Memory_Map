@@ -83,16 +83,25 @@ class HomeView(LoginRequiredMixin,ListView):
     context_object_name = 'posts'
     login_url  = '/accounts/login/'
 
+    def get_queryset(self):
+        return Post.objects.filter(
+            Q(visibility="public") | 
+            Q(visibility = "private", author=self.request.user) |
+            # Q(visibility="friends", author__in=self.request.user.following.all()) | 
+            Q(visibility="custom", author=self.request.user) 
+        ).order_by('-created_at')    
+
 class NewsFeedView(LoginRequiredMixin, ListView):
     model = Post
     template_name = 'memorymap/news_feed.html'
     context_object_name = 'posts'
-    login_url = '/login/'
+    login_url = '/accounts/login/'
 
     def get_queryset(self):
         return Post.objects.filter(
-            Q(author__in=self.request.user.following.all()) | Q(author=self.request.user)
-        ).order_by('-created_at')
+        Q(visibility='public', author__in=self.request.user.following.all()) |
+        Q(visibility='private', author=self.request.user)
+    ).order_by('-created_at')
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
@@ -242,9 +251,18 @@ def search_posts(request):
     query = request.GET.get('query', '')
     if query:
         posts = Post.objects.filter(
-            Q(title__icontains=query) |
-            Q(content__icontains=query) | 
-            Q(author__username__icontains=query) 
+            (
+                Q(title__icontains=query) |
+                Q(content__icontains=query) | 
+                Q(author__username__icontains=query) 
+            ) & (
+                Q(visibility = "public") |
+                Q(visibility = "private", author=request.user) |
+                Q(visibility = "custom", author=request.user) 
+            )
+
+            #Todo follower hashtag機能追加後
+            # Q(visibility = "friends", author__in=request.user.following.all()) 
             # Q(hashtags__tag__icontains=query) |
             # Q(post_hashtags__hashtag__tag__icontains=query) 
         

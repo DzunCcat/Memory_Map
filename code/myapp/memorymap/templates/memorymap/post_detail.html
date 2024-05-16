@@ -9,7 +9,11 @@
             <img src="{{ post.thumbnail.url }}" class="card-img-top" alt="{{ post.title }}">
           {% endif %}
           <div class="card-body">
-            <h1 class="card-title">{{ post.title }}</h1>
+            {% if post.content_type == 'article' %}
+              <h1 class="card-title">{{ post.title }}</h1>
+            {% elif post.content_type == 'tweet' %}
+              <h1 class="card-title">{{ post.author.username }}</h1>
+            {% endif %}
             <p class="card-text">{{ post.content|linebreaks }}</p>
             <div class="media-preview">
               {% for media in post.media_post.all %}
