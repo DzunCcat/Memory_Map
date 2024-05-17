@@ -133,6 +133,14 @@ class Post(models.Model):
         
         super().delete(*args, **kwargs)
 
+class PostAccess(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    last_access_time = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ('user', 'post')
+
 @receiver(models.signals.post_delete, sender=Post)
 def delete_media_when_post_deleted(sender, instance, **kwargs):
     media_files = instance.media_post.all()

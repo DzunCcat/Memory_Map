@@ -68,7 +68,7 @@ from django.core.exceptions import PermissionDenied
 
 from django.urls import reverse_lazy
 
-from .models import Post, Media, Comment, Like
+from .models import Post, Media, Comment, Like, PostAccess
 from .forms import  PostForm, CommentForm
 
 from django.db.models import Q
@@ -98,10 +98,23 @@ class NewsFeedView(LoginRequiredMixin, ListView):
     login_url = '/accounts/login/'
 
     def get_queryset(self):
-        return Post.objects.filter(
-        Q(visibility='public', author__in=self.request.user.following.all()) |
-        Q(visibility='private', author=self.request.user)
-    ).order_by('-created_at')
+        following_users = self.request.user.following.values_list('followed', flat=True)
+        last_access_time = PostAccess.objects.filter(user=self.request.user).order_by('-last_access_time').first()
+        if last_access_time:
+            queryset = Post.objects.filter(
+                Q(visibility='public', author__in=following_users) |
+                Q(visibility='private', author=self.request.user) |
+                Q(author=self.request.user),
+                created_at__gt=last_access_time.last_access_time
+            ).order_by('-created_at')
+        else:
+            queryset = Post.objects.filter(
+                Q(visibility='public', author__in=following_users) |
+                Q(visibility='private', author=self.request.user) |
+                Q(author=self.request.user)
+            ).order_by('-created_at')
+
+        return queryset
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
@@ -161,6 +174,12 @@ class PostDetailView(DetailView):
         context['comments'] = Comment.objects.filter(post=self.object).order_by('-created_at')  # コメントを新しいものから順に表示
         context['like_count'] = self.object.likes.exclude(user=self.object.author).count()
         context['media'] = Media.objects.filter(post=self.object) 
+
+        post_access, created = PostAccess.objects.get_or_create(user=self.request.user, post=self.object)
+        context['last_access_time'] = post_access.last_access_time
+        context['is_new_visitor'] = created  # createdの値をコンテキストに追加
+        
+
         return context
 
     def post(self, request, *args, **kwargs):

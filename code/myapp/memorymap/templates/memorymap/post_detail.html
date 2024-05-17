@@ -44,6 +44,12 @@
                 <span class="ml-2">{{ like_count  }}人がいいねしました</span>
               </div>
               <small class="text-muted">{{ post.created_at|date:"Y/m/d H:i" }}</small>
+              <div class="mt-2">
+                {% if is_new_visitor %}
+                  <p class="text-success">ようこそ！この投稿を初めて閲覧しています。</p>
+                {% else %}
+                  <p class="text-muted">前回の閲覧から{{ last_access_time|timesince }}が経過しました。</p>
+                {% endif %}
               {% if request.user == post.author %}
                 <div>
                   <a href="{% url 'memorymap:post_update' post.author.username post.uuid %}" class="btn btn-sm btn-outline-secondary">編集</a>
