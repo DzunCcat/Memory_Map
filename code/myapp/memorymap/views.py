@@ -67,6 +67,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 
 from .models import Post, Media, Comment, Like, PostAccess
 from .forms import  PostForm, CommentForm
@@ -75,6 +76,7 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, JsonResponse
 from django.core.exceptions import ValidationError
+
 
 
 class HomeView(LoginRequiredMixin,ListView):
@@ -265,6 +267,19 @@ def like_post(request, uuid):
         if not created:
             like.delete()
     return redirect('memorymap:post_detail', username=post.author.username, uuid=post.uuid)
+
+@login_required
+def follow_user(request, username):
+    user = get_object_or_404(User, username=username)
+    request.user.following.add(user)
+    return redirect('memorymap:profile', username=username)
+
+@login_required
+def unfollow_user(request, username):
+    user = get_object_or_404(User, username=username)
+    request.user.following.remove(user)
+    return redirect('memorymap:profile', username=username)
+
 
 def search_posts(request):
     query = request.GET.get('query', '')

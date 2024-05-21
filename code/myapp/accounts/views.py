@@ -7,8 +7,8 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
-from .models import User
-from memorymap.models import Post, Follower
+from .models import User, Follower
+from memorymap.models import Post
 from .forms import CustomUserCreationForm, ProfileEditForm
 
 class LoginView(LoginView):

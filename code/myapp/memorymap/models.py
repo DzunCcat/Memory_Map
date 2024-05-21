@@ -256,15 +256,6 @@ class UserPostTag(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='user_post_tags')
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name='post_tags')
 
-# Followers Model
-class Follower(models.Model):
-    follower = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='following')
-    followed = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='followers')
-    
-
-    class Meta:
-        unique_together = ('follower', 'followed')
-
 # Notification Model
 class Notification(models.Model):
     # Define the types of notifications that can occur (like, comment, follow)

@@ -31,3 +31,12 @@ class User(AbstractUser):
         except IntegrityError as e:
             logger.error(f"Error saving user: {e}")
             raise ValidationError("Database error, unable to save the user.")
+        
+# Followers Model
+class Follower(models.Model):
+    follower = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following')
+    followed = models.ForeignKey(User, on_delete=models.CASCADE, related_name='followers')
+    
+
+    class Meta:
+        unique_together = ('follower', 'followed')
