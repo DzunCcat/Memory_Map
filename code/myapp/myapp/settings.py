@@ -131,14 +131,14 @@ AUTH_USER_MODEL = 'accounts.User'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-#後で詰める
+
+#Todo
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "common_static",
+    BASE_DIR / "static",
 ]
-
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.hover-card {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    width: 300px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  
+  .username-link:hover + .hover-card,
+  .hover-card:hover {
+    display: block;
+  }

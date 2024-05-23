@@ -1,0 +1,69 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{ user.username }}</h5>
+    <p class="card-text">{{ user.bio }}</p>
+    <p class="card-text" id="follower-count">フォロワー： {{ user.followers.count }} | フォロー中： {{ user.following.count }}</p>
+    {% if request.user.is_authenticated and request.user != user %}
+      <span id="follow-status-{{ user.username }}">
+        <p>Debug: is_following = {{ is_following }}</p>  <!-- デバッグ用 -->
+        {% if is_following %}
+          <button class="btn btn-sm btn-secondary follow-btn" data-username="{{ user.username }}" data-action="unfollow">フォロー解除</button>
+        {% else %}
+          <button class="btn btn-sm btn-primary follow-btn" data-username="{{ user.username }}" data-action="follow">フォローする</button>
+        {% endif %}
+      </span>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+.hover-card {
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  width: 300px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.username-link:hover + .hover-card,
+.hover-card:hover {
+  display: block;
+}
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).on('click', '.follow-btn', function() {
+    var username = $(this).data('username');
+    var action = $(this).data('action');
+    var url = action === 'follow' ? "{% url 'accounts:follow' 'dummy' %}" : "{% url 'accounts:unfollow' 'dummy' %}";
+    url = url.replace('dummy', username);
+
+    var $this = $(this);
+
+    $.ajax({
+        url: url,
+        method: 'POST',
+        data: {
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        success: function(data) {
+            console.log('Ajax request successful. Data:', data);
+            if (data.status === 'success') {
+                console.log('Is following:', data.is_following);  // is_followingの値をログ出力
+                if (data.is_following) {
+                    $this.text('フォロー解除').removeClass('btn-primary').addClass('btn-secondary').data('action', 'unfollow');
+                } else {
+                    $this.text('フォローする').removeClass('btn-secondary').addClass('btn-primary').data('action', 'follow');
+                }
+                // フォロワーとフォロー中のカウントを更新
+                $('#follower-count').text('フォロワー： ' + data.follower_count + ' | フォロー中： ' + data.following_count);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.log('Ajax request failed. Status:', status, 'Error:', error);
+        }
+    });
+});
+  </script>

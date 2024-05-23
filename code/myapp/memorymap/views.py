@@ -72,6 +72,8 @@ from django.utils.translation import gettext_lazy as _
 from .models import Post, Media, Comment, Like, PostAccess
 from .forms import  PostForm, CommentForm
 
+from accounts.models import  Follower
+
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, JsonResponse
@@ -180,6 +182,9 @@ class PostDetailView(DetailView):
         post_access, created = PostAccess.objects.get_or_create(user=self.request.user, post=self.object)
         context['last_access_time'] = post_access.last_access_time
         context['is_new_visitor'] = created  # createdの値をコンテキストに追加
+
+        is_following = Follower.objects.filter(follower=self.request.user, followed=self.object.author).exists()
+        context['is_following'] = is_following  
         
 
         return context
@@ -268,17 +273,17 @@ def like_post(request, uuid):
             like.delete()
     return redirect('memorymap:post_detail', username=post.author.username, uuid=post.uuid)
 
-@login_required
-def follow_user(request, username):
-    user = get_object_or_404(User, username=username)
-    request.user.following.add(user)
-    return redirect('memorymap:profile', username=username)
+# @login_required
+# def follow_user(request, username):
+#     user = get_object_or_404(User, username=username)
+#     request.user.following.add(user)
+#     return redirect('memorymap:profile', username=username)
 
-@login_required
-def unfollow_user(request, username):
-    user = get_object_or_404(User, username=username)
-    request.user.following.remove(user)
-    return redirect('memorymap:profile', username=username)
+# @login_required
+# def unfollow_user(request, username):
+#     user = get_object_or_404(User, username=username)
+#     request.user.following.remove(user)
+#     return redirect('memorymap:profile', username=username)
 
 
 def search_posts(request):

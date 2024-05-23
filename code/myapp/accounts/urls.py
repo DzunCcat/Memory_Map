@@ -8,6 +8,7 @@ from .views import (
     RegisterView, 
     ProfileView, 
     profile_edit, 
+    hover_card,
     follow, 
     unfollow,
 )
@@ -20,6 +21,7 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('profile/<username>/', ProfileView.as_view(), name='profile'),
     path('profile/edit/<username>/', profile_edit, name='profile_edit'),
+    path('hover_card/<username>/', hover_card, name='hover_card'),
     path('follow/<username>/', follow, name='follow'),
     path('unfollow/<username>/', unfollow, name='unfollow'),
 ]

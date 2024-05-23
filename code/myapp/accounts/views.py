@@ -1,6 +1,8 @@
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, render, get_object_or_404
+from django.http import JsonResponse
 
+from django.template.loader import render_to_string
 from django.views.generic import TemplateView, CreateView
 
 from django.contrib.auth.views import LoginView, LogoutView
@@ -54,16 +56,34 @@ def profile_edit(request, username):
         form = ProfileEditForm(instance=user)
     return render(request, 'accounts/profile_edit.html', {'form': form})
 
-
 @login_required
 def follow(request, username):
     followed_user = get_object_or_404(User, username=username)
     if request.user != followed_user:
         Follower.objects.get_or_create(follower=request.user, followed=followed_user)
-    return redirect('accounts:profile', username=username)
+    is_following = Follower.objects.filter(follower=request.user, followed=followed_user).exists()
+    follower_count = Follower.objects.filter(followed=followed_user).count()
+    following_count = Follower.objects.filter(follower=followed_user).count()
+    return JsonResponse({'status': 'success', 'is_following': is_following, 'follower_count': follower_count, 'following_count': following_count})
 
 @login_required
 def unfollow(request, username):
     followed_user = get_object_or_404(User, username=username)
     Follower.objects.filter(follower=request.user, followed=followed_user).delete()
-    return redirect('accounts:profile', username=username)
+    is_following = Follower.objects.filter(follower=request.user, followed=followed_user).exists()
+    follower_count = Follower.objects.filter(followed=followed_user).count()
+    following_count = Follower.objects.filter(follower=followed_user).count()
+    return JsonResponse({'status': 'success', 'is_following': is_following, 'follower_count': follower_count, 'following_count': following_count})
+
+def hover_card(request, username):
+    user = get_object_or_404(User, username=username)
+    is_following = request.user.is_authenticated and Follower.objects.filter(follower=request.user, followed=user).exists()
+    print(f"Hover card view called. User: {user.username}, Is following: {is_following}")  # デバッグ用
+    context = {
+        'user': user,
+        'is_following': is_following,
+    }
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        html = render_to_string('accounts/hover_card.html', context, request=request)
+        return JsonResponse({'status': 'success', 'html': html})
+    return render(request, 'accounts/hover_card.html', context)

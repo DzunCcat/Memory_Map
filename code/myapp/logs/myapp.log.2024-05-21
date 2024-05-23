@@ -1,0 +1,1058 @@
+DEBUG 2024-05-21 13:27:21,786 utils 16 139963152419712 (0.049) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-05-21 13:27:21,804 utils 16 139963152419712 (0.006) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-05-21 13:27:31,399 utils 17 140431410375552 (0.002) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-05-21 13:27:31,405 utils 17 140431410375552 (0.001) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-05-21 13:27:31,410 utils 17 140431410375552 (0.002) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-05-21 13:27:31,411 utils 17 140431410375552 (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-05-21 13:27:31,443 utils 17 140431410375552 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-05-21 13:27:31,475 schema 17 140431410375552 CREATE TABLE "accounts_follower" ("id" bigserial NOT NULL PRIMARY KEY, "followed_id" bigint NOT NULL, "follower_id" bigint NOT NULL); (params None)
+DEBUG 2024-05-21 13:27:31,517 utils 17 140431410375552 (0.041) CREATE TABLE "accounts_follower" ("id" bigserial NOT NULL PRIMARY KEY, "followed_id" bigint NOT NULL, "follower_id" bigint NOT NULL); args=None
+DEBUG 2024-05-21 13:27:31,518 schema 17 140431410375552 ALTER TABLE "accounts_follower" ADD CONSTRAINT "accounts_follower_follower_id_followed_id_501af888_uniq" UNIQUE ("follower_id", "followed_id"); (params ())
+DEBUG 2024-05-21 13:27:31,521 utils 17 140431410375552 (0.003) ALTER TABLE "accounts_follower" ADD CONSTRAINT "accounts_follower_follower_id_followed_id_501af888_uniq" UNIQUE ("follower_id", "followed_id"); args=()
+DEBUG 2024-05-21 13:27:31,521 schema 17 140431410375552 ALTER TABLE "accounts_follower" ADD CONSTRAINT "accounts_follower_followed_id_7f8c4f54_fk_accounts_user_id" FOREIGN KEY ("followed_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-05-21 13:27:31,537 utils 17 140431410375552 (0.015) ALTER TABLE "accounts_follower" ADD CONSTRAINT "accounts_follower_followed_id_7f8c4f54_fk_accounts_user_id" FOREIGN KEY ("followed_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-05-21 13:27:31,538 schema 17 140431410375552 ALTER TABLE "accounts_follower" ADD CONSTRAINT "accounts_follower_follower_id_19eba97d_fk_accounts_user_id" FOREIGN KEY ("follower_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; (params ())
+DEBUG 2024-05-21 13:27:31,539 utils 17 140431410375552 (0.001) ALTER TABLE "accounts_follower" ADD CONSTRAINT "accounts_follower_follower_id_19eba97d_fk_accounts_user_id" FOREIGN KEY ("follower_id") REFERENCES "accounts_user" ("id") DEFERRABLE INITIALLY DEFERRED; args=()
+DEBUG 2024-05-21 13:27:31,539 schema 17 140431410375552 CREATE INDEX "accounts_follower_followed_id_7f8c4f54" ON "accounts_follower" ("followed_id"); (params ())
+DEBUG 2024-05-21 13:27:31,544 utils 17 140431410375552 (0.004) CREATE INDEX "accounts_follower_followed_id_7f8c4f54" ON "accounts_follower" ("followed_id"); args=()
+DEBUG 2024-05-21 13:27:31,544 schema 17 140431410375552 CREATE INDEX "accounts_follower_follower_id_19eba97d" ON "accounts_follower" ("follower_id"); (params ())
+DEBUG 2024-05-21 13:27:31,548 utils 17 140431410375552 (0.004) CREATE INDEX "accounts_follower_follower_id_19eba97d" ON "accounts_follower" ("follower_id"); args=()
+DEBUG 2024-05-21 13:27:31,554 utils 17 140431410375552 (0.002) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-05-21 13:27:31,558 utils 17 140431410375552 (0.002) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('accounts', '0003_follower', '2024-05-21T04:27:31.556091+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('accounts', '0003_follower', datetime.datetime(2024, 5, 21, 4, 27, 31, 556091, tzinfo=<UTC>))
+DEBUG 2024-05-21 13:27:31,560 schema 17 140431410375552 DROP TABLE "memorymap_follower" CASCADE; (params ())
+DEBUG 2024-05-21 13:27:31,573 utils 17 140431410375552 (0.013) DROP TABLE "memorymap_follower" CASCADE; args=()
+DEBUG 2024-05-21 13:27:31,576 utils 17 140431410375552 (0.002) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-05-21 13:27:31,579 utils 17 140431410375552 (0.001) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('memorymap', '0008_delete_follower', '2024-05-21T04:27:31.577430+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('memorymap', '0008_delete_follower', datetime.datetime(2024, 5, 21, 4, 27, 31, 577430, tzinfo=<UTC>))
+DEBUG 2024-05-21 13:27:31,585 utils 17 140431410375552 (0.001) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-05-21 13:27:31,587 utils 17 140431410375552 (0.000) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-05-21 13:27:31,599 utils 17 140431410375552 (0.008) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'accounts'; args=('accounts',)
+DEBUG 2024-05-21 13:27:31,603 utils 17 140431410375552 (0.003) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('accounts', 'follower') RETURNING "django_content_type"."id"; args=('accounts', 'follower')
+DEBUG 2024-05-21 13:27:31,607 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'accounts' AND "django_content_type"."model" = 'user') LIMIT 21; args=('accounts', 'user')
+DEBUG 2024-05-21 13:27:31,610 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'accounts' AND "django_content_type"."model" = 'follower') LIMIT 21; args=('accounts', 'follower')
+DEBUG 2024-05-21 13:27:31,620 utils 17 140431410375552 (0.007) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (18, 22) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(18, 22)
+DEBUG 2024-05-21 13:27:31,623 utils 17 140431410375552 (0.001) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add follower', 22, 'add_follower'), ('Can change follower', 22, 'change_follower'), ('Can delete follower', 22, 'delete_follower'), ('Can view follower', 22, 'view_follower') RETURNING "auth_permission"."id"; args=('Can add follower', 22, 'add_follower', 'Can change follower', 22, 'change_follower', 'Can delete follower', 22, 'delete_follower', 'Can view follower', 22, 'view_follower')
+DEBUG 2024-05-21 13:27:31,626 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'accounts'; args=('accounts',)
+DEBUG 2024-05-21 13:27:31,628 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'memorymap'; args=('memorymap',)
+DEBUG 2024-05-21 13:27:31,634 utils 17 140431410375552 (0.005) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'notification') LIMIT 21; args=('memorymap', 'notification')
+DEBUG 2024-05-21 13:27:31,636 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'post') LIMIT 21; args=('memorymap', 'post')
+DEBUG 2024-05-21 13:27:31,638 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'tag') LIMIT 21; args=('memorymap', 'tag')
+DEBUG 2024-05-21 13:27:31,639 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'posthashtag') LIMIT 21; args=('memorymap', 'posthashtag')
+DEBUG 2024-05-21 13:27:31,640 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'comment') LIMIT 21; args=('memorymap', 'comment')
+DEBUG 2024-05-21 13:27:31,641 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'hashtag') LIMIT 21; args=('memorymap', 'hashtag')
+DEBUG 2024-05-21 13:27:31,643 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'directmessage') LIMIT 21; args=('memorymap', 'directmessage')
+DEBUG 2024-05-21 13:27:31,645 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'userposttag') LIMIT 21; args=('memorymap', 'userposttag')
+DEBUG 2024-05-21 13:27:31,647 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'like') LIMIT 21; args=('memorymap', 'like')
+DEBUG 2024-05-21 13:27:31,648 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'repost') LIMIT 21; args=('memorymap', 'repost')
+DEBUG 2024-05-21 13:27:31,654 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'postaccess') LIMIT 21; args=('memorymap', 'postaccess')
+DEBUG 2024-05-21 13:27:31,656 utils 17 140431410375552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'memorymap' AND "django_content_type"."model" = 'media') LIMIT 21; args=('memorymap', 'media')
+DEBUG 2024-05-21 13:27:31,662 utils 17 140431410375552 (0.004) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (1, 2, 3, 5, 6, 7, 8, 9, 11, 12, 13, 21) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(1, 2, 3, 5, 6, 7, 8, 9, 11, 12, 13, 21)
+DEBUG 2024-05-21 13:27:31,664 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'memorymap'; args=('memorymap',)
+DEBUG 2024-05-21 13:27:31,666 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'mptt'; args=('mptt',)
+DEBUG 2024-05-21 13:27:31,668 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'mptt'; args=('mptt',)
+DEBUG 2024-05-21 13:27:31,670 utils 17 140431410375552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',)
+DEBUG 2024-05-21 13:27:31,672 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'admin' AND "django_content_type"."model" = 'logentry') LIMIT 21; args=('admin', 'logentry')
+DEBUG 2024-05-21 13:27:31,675 utils 17 140431410375552 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (19) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(19,)
+DEBUG 2024-05-21 13:27:31,678 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',)
+DEBUG 2024-05-21 13:27:31,683 utils 17 140431410375552 (0.004) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',)
+DEBUG 2024-05-21 13:27:31,690 utils 17 140431410375552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'permission') LIMIT 21; args=('auth', 'permission')
+DEBUG 2024-05-21 13:27:31,701 utils 17 140431410375552 (0.001) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'group') LIMIT 21; args=('auth', 'group')
+DEBUG 2024-05-21 13:27:31,705 utils 17 140431410375552 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (14, 15) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(14, 15)
+DEBUG 2024-05-21 13:27:31,707 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',)
+DEBUG 2024-05-21 13:27:31,708 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',)
+DEBUG 2024-05-21 13:27:31,709 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'contenttypes' AND "django_content_type"."model" = 'contenttype') LIMIT 21; args=('contenttypes', 'contenttype')
+DEBUG 2024-05-21 13:27:31,712 utils 17 140431410375552 (0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (17) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(17,)
+DEBUG 2024-05-21 13:27:31,713 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',)
+DEBUG 2024-05-21 13:27:31,715 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',)
+DEBUG 2024-05-21 13:27:31,717 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'sessions' AND "django_content_type"."model" = 'session') LIMIT 21; args=('sessions', 'session')
+DEBUG 2024-05-21 13:27:31,719 utils 17 140431410375552 (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (20) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(20,)
+DEBUG 2024-05-21 13:27:31,721 utils 17 140431410375552 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',)
+INFO 2024-05-21 13:29:00,438 autoreload 20 139774413728640 Watching for file changes with StatReloader
+DEBUG 2024-05-21 13:29:00,443 autoreload 20 139774413728640 Waiting for apps ready_event.
+DEBUG 2024-05-21 13:29:00,524 autoreload 20 139774413728640 Apps ready_event triggered. Sending autoreload_started signal.
+DEBUG 2024-05-21 13:29:00,581 autoreload 20 139774413728640 Watching dir /workspace/myapp/memorymap/templates with glob **/*.
+DEBUG 2024-05-21 13:29:00,588 autoreload 20 139774413728640 Watching dir /workspace/myapp/accounts/templates with glob **/*.
+DEBUG 2024-05-21 13:29:00,596 autoreload 20 139774413728640 Watching dir /workspace/myapp/templates with glob **/*.
+DEBUG 2024-05-21 13:29:00,605 autoreload 20 139774413728640 Watching dir /usr/local/lib/python3.12/site-packages/mptt/templates with glob **/*.
+DEBUG 2024-05-21 13:29:00,613 autoreload 20 139774413728640 Watching dir /workspace/myapp/locale with glob **/*.mo.
+DEBUG 2024-05-21 13:29:00,613 autoreload 20 139774413728640 Watching dir /workspace/myapp/accounts/locale with glob **/*.mo.
+DEBUG 2024-05-21 13:29:00,614 autoreload 20 139774413728640 Watching dir /workspace/myapp/memorymap/locale with glob **/*.mo.
+DEBUG 2024-05-21 13:29:00,615 autoreload 20 139774413728640 Watching dir /usr/local/lib/python3.12/site-packages/mptt/locale with glob **/*.mo.
+DEBUG 2024-05-21 13:29:00,679 utils 20 139774371256000 (0.005) 
+            SELECT c.relname,
+            CASE WHEN c.relispartition THEN 'p' WHEN c.relkind IN ('m', 'v') THEN 'v' ELSE 't' END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None
+DEBUG 2024-05-21 13:29:00,689 utils 20 139774371256000 (0.001) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=()
+DEBUG 2024-05-21 13:29:00,768 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/itercompat.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,770 autoreload 20 139774413728640 File /workspace/myapp/accounts/admin.py first seen with mtime 1709702064.9159434
+DEBUG 2024-05-21 13:29:00,770 autoreload 20 139774413728640 File /usr/local/lib/python3.12/pickle.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,770 autoreload 20 139774413728640 File /usr/local/lib/python3.12/base64.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,771 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/mail/message.py first seen with mtime 1713847791.1310096
+DEBUG 2024-05-21 13:29:00,771 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/files/base.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,771 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/urls/converters.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,772 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/migrations/__init__.py first seen with mtime 1713847791.1510098
+DEBUG 2024-05-21 13:29:00,772 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/forms/renderers.py first seen with mtime 1713847791.17101
+DEBUG 2024-05-21 13:29:00,772 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/base64mime.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,772 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/mime/nonmultipart.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,772 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/contenttypes/forms.py first seen with mtime 1713847790.7110064
+DEBUG 2024-05-21 13:29:00,773 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/message.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,773 autoreload 20 139774413728640 File /workspace/myapp/memorymap/forms.py first seen with mtime 1715825317.6733413
+DEBUG 2024-05-21 13:29:00,773 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/PIL/_util.py first seen with mtime 1713847789.8109994
+DEBUG 2024-05-21 13:29:00,773 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/autoslug/settings.py first seen with mtime 1713847789.6009977
+DEBUG 2024-05-21 13:29:00,773 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/forms/utils.py first seen with mtime 1713847791.17101
+DEBUG 2024-05-21 13:29:00,773 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/sqlparse/engine/statement_splitter.py first seen with mtime 1713847789.620998
+DEBUG 2024-05-21 13:29:00,773 autoreload 20 139774413728640 File /usr/local/lib/python3.12/encodings/utf_8.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,773 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/middleware/cache.py first seen with mtime 1713847791.18101
+DEBUG 2024-05-21 13:29:00,774 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/template/__init__.py first seen with mtime 1713847791.18101
+DEBUG 2024-05-21 13:29:00,774 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/binascii.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,774 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/managers.py first seen with mtime 1713847792.841023
+DEBUG 2024-05-21 13:29:00,774 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/templatetags/static.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,774 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/timesince.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,775 autoreload 20 139774413728640 File /workspace/myapp/memorymap/migrations/0004_auto_20240511_2233.py first seen with mtime 1715825317.6833413
+DEBUG 2024-05-21 13:29:00,775 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/pytz/__init__.py first seen with mtime 1713847789.4509964
+DEBUG 2024-05-21 13:29:00,775 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/sqlparse/sql.py first seen with mtime 1713847789.620998
+DEBUG 2024-05-21 13:29:00,775 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/templatetags/base.py first seen with mtime 1713847790.5910053
+DEBUG 2024-05-21 13:29:00,776 autoreload 20 139774413728640 File /usr/local/lib/python3.12/urllib/error.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,776 autoreload 20 139774413728640 File /usr/local/lib/python3.12/dis.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,776 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/views/decorators/cache.py first seen with mtime 1713847791.2110102
+DEBUG 2024-05-21 13:29:00,776 autoreload 20 139774413728640 File /usr/local/lib/python3.12/unittest/case.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,776 autoreload 20 139774413728640 File /usr/local/lib/python3.12/quopri.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,776 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/_json.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,777 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/quoprimime.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,777 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/serializers/__init__.py first seen with mtime 1713847791.1410098
+DEBUG 2024-05-21 13:29:00,777 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/staticfiles/management/commands/runserver.py first seen with mtime 1713847791.1110096
+DEBUG 2024-05-21 13:29:00,777 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/templatetags/l10n.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,777 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/fields/__init__.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,777 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/tasks.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,777 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/filters.py first seen with mtime 1713847790.431004
+DEBUG 2024-05-21 13:29:00,778 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/__init__.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,778 autoreload 20 139774413728640 File /usr/local/lib/python3.12/wsgiref/simple_server.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,778 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/_contextvars.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,778 autoreload 20 139774413728640 File /usr/local/lib/python3.12/inspect.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,778 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/views/debug.py first seen with mtime 1713847791.2110102
+DEBUG 2024-05-21 13:29:00,778 autoreload 20 139774413728640 File /usr/local/lib/python3.12/unittest/runner.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,778 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/hashers.py first seen with mtime 1713847790.651006
+DEBUG 2024-05-21 13:29:00,778 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/mail/__init__.py first seen with mtime 1713847791.1310096
+DEBUG 2024-05-21 13:29:00,779 autoreload 20 139774413728640 File /workspace/myapp/memorymap/migrations/0008_delete_follower.py first seen with mtime 1716265641.8587806
+DEBUG 2024-05-21 13:29:00,779 autoreload 20 139774413728640 File /usr/local/lib/python3.12/concurrent/futures/__init__.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,779 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/mixins.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,779 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/contenttypes/fields.py first seen with mtime 1713847790.7110064
+DEBUG 2024-05-21 13:29:00,780 autoreload 20 139774413728640 File /usr/local/lib/python3.12/copy.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,780 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/migrations/operations/__init__.py first seen with mtime 1713847791.1510098
+DEBUG 2024-05-21 13:29:00,780 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/ipv6.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,780 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/functions/datetime.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,781 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/functions/window.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,781 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/termios.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,781 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/servers/basehttp.py first seen with mtime 1713847791.1410098
+DEBUG 2024-05-21 13:29:00,782 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/staticfiles/views.py first seen with mtime 1713847791.1110096
+DEBUG 2024-05-21 13:29:00,782 autoreload 20 139774413728640 File /usr/local/lib/python3.12/wsgiref/__init__.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,782 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/PIL/TiffTags.py first seen with mtime 1713847789.8409996
+DEBUG 2024-05-21 13:29:00,782 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/urls/exceptions.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,782 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/management/color.py first seen with mtime 1713847791.1310096
+DEBUG 2024-05-21 13:29:00,782 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/handlers/asgi.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,782 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/checks/urls.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,782 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/sql/subqueries.py first seen with mtime 1713847791.17101
+DEBUG 2024-05-21 13:29:00,783 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/template/context.py first seen with mtime 1713847791.18101
+DEBUG 2024-05-21 13:29:00,783 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/template/loaders/app_directories.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,783 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/deconstruct.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,783 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/lookups.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,783 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/topological_sort.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,784 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/numberformat.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,784 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/files/uploadedfile.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,784 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/functions/mixins.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,784 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/sites.py first seen with mtime 1713847790.431004
+DEBUG 2024-05-21 13:29:00,784 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/views/generic/detail.py first seen with mtime 1713847791.2110102
+DEBUG 2024-05-21 13:29:00,784 autoreload 20 139774413728640 File /workspace/myapp/memorymap/migrations/0002_auto_20240425_0950.py first seen with mtime 1715825317.6833413
+DEBUG 2024-05-21 13:29:00,784 autoreload 20 139774413728640 File /usr/local/lib/python3.12/gzip.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,785 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/messages/api.py first seen with mtime 1713847790.921008
+DEBUG 2024-05-21 13:29:00,785 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/__init__.py first seen with mtime 1713847790.291003
+DEBUG 2024-05-21 13:29:00,785 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/signing.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,785 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/formats.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,786 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/templatetags/admin_urls.py first seen with mtime 1713847790.5910053
+DEBUG 2024-05-21 13:29:00,786 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/futures.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,786 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/staticfiles/apps.py first seen with mtime 1713847791.1110096
+DEBUG 2024-05-21 13:29:00,786 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/psycopg2/_range.py first seen with mtime 1713847789.6809983
+DEBUG 2024-05-21 13:29:00,786 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/validators.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,787 autoreload 20 139774413728640 File /usr/local/lib/python3.12/json/scanner.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,787 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/__init__.py first seen with mtime 1713847791.1110096
+DEBUG 2024-05-21 13:29:00,787 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/array.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,787 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/http.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,787 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/migrations/migration.py first seen with mtime 1713847791.1510098
+DEBUG 2024-05-21 13:29:00,788 autoreload 20 139774413728640 File /usr/local/lib/python3.12/traceback.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,788 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/migrations/state.py first seen with mtime 1713847791.1510098
+DEBUG 2024-05-21 13:29:00,788 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/cache.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,788 autoreload 20 139774413728640 File /usr/local/lib/python3.12/contextvars.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,788 autoreload 20 139774413728640 File /usr/local/lib/python3.12/selectors.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,788 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/urls/conf.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,788 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/psycopg2/_ipaddress.py first seen with mtime 1713847789.670998
+DEBUG 2024-05-21 13:29:00,788 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/conf/locale/__init__.py first seen with mtime 1713847790.291003
+DEBUG 2024-05-21 13:29:00,788 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/staggered.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,788 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/streams.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,789 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/cache/__init__.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,789 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/messages/apps.py first seen with mtime 1713847790.921008
+DEBUG 2024-05-21 13:29:00,789 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/sqlparse/cli.py first seen with mtime 1713847789.6109977
+DEBUG 2024-05-21 13:29:00,790 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/PIL/ExifTags.py first seen with mtime 1713847789.8309994
+DEBUG 2024-05-21 13:29:00,790 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/checks.py first seen with mtime 1713847790.431004
+DEBUG 2024-05-21 13:29:00,790 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/enums.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,790 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/contenttypes/views.py first seen with mtime 1713847790.7110064
+DEBUG 2024-05-21 13:29:00,790 autoreload 20 139774413728640 File /usr/local/lib/python3.12/numbers.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,790 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/sessions/models.py first seen with mtime 1713847791.0210087
+DEBUG 2024-05-21 13:29:00,790 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/migrations/recorder.py first seen with mtime 1713847791.1510098
+DEBUG 2024-05-21 13:29:00,791 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/fields/mixins.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,792 autoreload 20 139774413728640 File /usr/local/lib/python3.12/bz2.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,792 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/servers/__init__.py first seen with mtime 1713847791.1410098
+DEBUG 2024-05-21 13:29:00,792 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/signals.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,792 autoreload 20 139774413728640 File /usr/local/lib/python3.12/urllib/request.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,793 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/migrations/operations/models.py first seen with mtime 1713847791.1510098
+DEBUG 2024-05-21 13:29:00,793 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/functions/__init__.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,793 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lzma.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,793 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/views/decorators/__init__.py first seen with mtime 1713847791.2110102
+DEBUG 2024-05-21 13:29:00,793 autoreload 20 139774413728640 File /workspace/myapp/memorymap/migrations/0007_postaccess.py first seen with mtime 1715915520.8931499
+DEBUG 2024-05-21 13:29:00,793 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/psycopg2/extensions.py first seen with mtime 1713847789.6809983
+DEBUG 2024-05-21 13:29:00,794 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/__init__.py first seen with mtime 1713847791.1410098
+DEBUG 2024-05-21 13:29:00,794 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/psycopg2/_json.py first seen with mtime 1713847789.670998
+DEBUG 2024-05-21 13:29:00,794 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/checks/templates.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,794 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/_queue.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,794 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/utils.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,794 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/unicodedata.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,795 autoreload 20 139774413728640 File /workspace/myapp/memorymap/migrations/0006_auto_20240515_1255.py first seen with mtime 1715825317.6833413
+DEBUG 2024-05-21 13:29:00,795 autoreload 20 139774413728640 File /workspace/myapp/accounts/apps.py first seen with mtime 1709702064.9159434
+DEBUG 2024-05-21 13:29:00,795 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/checks/model_checks.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,795 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/shortcuts.py first seen with mtime 1713847790.291003
+DEBUG 2024-05-21 13:29:00,795 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/decorators.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,795 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/backends/postgresql/client.py first seen with mtime 1713847791.1510098
+DEBUG 2024-05-21 13:29:00,796 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/migrations/operations/special.py first seen with mtime 1713847791.1510098
+DEBUG 2024-05-21 13:29:00,796 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/contenttypes/apps.py first seen with mtime 1713847790.7110064
+DEBUG 2024-05-21 13:29:00,796 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/views/i18n.py first seen with mtime 1713847791.2110102
+DEBUG 2024-05-21 13:29:00,796 autoreload 20 139774413728640 File /usr/local/lib/python3.12/concurrent/__init__.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,796 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/sqlparse/tokens.py first seen with mtime 1713847789.620998
+DEBUG 2024-05-21 13:29:00,797 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/middleware/csrf.py first seen with mtime 1713847791.18101
+DEBUG 2024-05-21 13:29:00,797 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/autoreload.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,797 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/_socket.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,797 autoreload 20 139774413728640 File /usr/local/lib/python3.12/warnings.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,797 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/_csv.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,797 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/checks/security/csrf.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,798 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/templatetags/admin_list.py first seen with mtime 1713847790.5910053
+DEBUG 2024-05-21 13:29:00,798 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/asgiref/sync.py first seen with mtime 1713847790.1810021
+DEBUG 2024-05-21 13:29:00,798 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/urls/base.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,798 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/template/library.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,798 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/contentmanager.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,798 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/pytz/tzfile.py first seen with mtime 1713847789.4509964
+DEBUG 2024-05-21 13:29:00,798 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/sqlparse/engine/filter_stack.py first seen with mtime 1713847789.620998
+DEBUG 2024-05-21 13:29:00,798 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/middleware.py first seen with mtime 1713847790.651006
+DEBUG 2024-05-21 13:29:00,799 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/migrations/exceptions.py first seen with mtime 1713847791.1510098
+DEBUG 2024-05-21 13:29:00,799 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/base_subprocess.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,799 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/options.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,799 autoreload 20 139774413728640 File /workspace/myapp/memorymap/migrations/0005_alter_media_media_type.py first seen with mtime 1715825317.6833413
+DEBUG 2024-05-21 13:29:00,799 autoreload 20 139774413728640 File /usr/local/lib/python3.12/types.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,799 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/duration.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,800 autoreload 20 139774413728640 File /workspace/myapp/accounts/views.py first seen with mtime 1716265636.7087708
+DEBUG 2024-05-21 13:29:00,800 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/template/loader_tags.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,800 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/exceptions.py first seen with mtime 1713847790.431004
+DEBUG 2024-05-21 13:29:00,800 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/forms/models.py first seen with mtime 1713847791.17101
+DEBUG 2024-05-21 13:29:00,800 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/cache/backends/filebased.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,801 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/sqlparse/filters/others.py first seen with mtime 1713847789.620998
+DEBUG 2024-05-21 13:29:00,801 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/models.py first seen with mtime 1713847792.841023
+DEBUG 2024-05-21 13:29:00,801 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/sqlparse/formatter.py first seen with mtime 1713847789.620998
+DEBUG 2024-05-21 13:29:00,801 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/files/storage.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,802 autoreload 20 139774413728640 File /workspace/myapp/accounts/migrations/0001_initial.py first seen with mtime 1715825317.2733393
+DEBUG 2024-05-21 13:29:00,802 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/backends.py first seen with mtime 1713847790.651006
+DEBUG 2024-05-21 13:29:00,802 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/templatetags/__init__.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,802 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/decorators.py first seen with mtime 1713847790.651006
+DEBUG 2024-05-21 13:29:00,803 autoreload 20 139774413728640 File /usr/local/lib/python3.12/linecache.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,803 autoreload 20 139774413728640 File /usr/local/lib/python3.12/http/__init__.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,803 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/mail/utils.py first seen with mtime 1713847791.1310096
+DEBUG 2024-05-21 13:29:00,803 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/middleware/common.py first seen with mtime 1713847791.18101
+DEBUG 2024-05-21 13:29:00,803 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/sqlparse/filters/tokens.py first seen with mtime 1713847789.620998
+DEBUG 2024-05-21 13:29:00,804 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/_asyncio.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,804 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/contenttypes/management/__init__.py first seen with mtime 1713847790.7510066
+DEBUG 2024-05-21 13:29:00,804 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/checks/translation.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,804 autoreload 20 139774413728640 File /workspace/myapp/memorymap/migrations/__init__.py first seen with mtime 1709702064.9159434
+DEBUG 2024-05-21 13:29:00,804 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/parser.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,804 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/protocols.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,804 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/template/engine.py first seen with mtime 1713847791.18101
+DEBUG 2024-05-21 13:29:00,805 autoreload 20 139774413728640 File /workspace/myapp/myapp/__init__.py first seen with mtime 1709702064.9159434
+DEBUG 2024-05-21 13:29:00,805 autoreload 20 139774413728640 File /usr/local/lib/python3.12/concurrent/futures/thread.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,805 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/backends/base/client.py first seen with mtime 1713847791.1410098
+DEBUG 2024-05-21 13:29:00,805 autoreload 20 139774413728640 File /usr/local/lib/python3.12/hashlib.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,805 autoreload 20 139774413728640 File /usr/local/lib/python3.12/heapq.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,805 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/serializers/python.py first seen with mtime 1713847791.1410098
+DEBUG 2024-05-21 13:29:00,806 autoreload 20 139774413728640 File /usr/local/lib/python3.12/re/__init__.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,806 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/widgets.py first seen with mtime 1713847790.431004
+DEBUG 2024-05-21 13:29:00,806 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/events.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,806 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/sql/datastructures.py first seen with mtime 1713847791.17101
+DEBUG 2024-05-21 13:29:00,806 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/template/defaulttags.py first seen with mtime 1713847791.18101
+DEBUG 2024-05-21 13:29:00,806 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/management/__init__.py first seen with mtime 1713847790.7010062
+DEBUG 2024-05-21 13:29:00,806 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/__init__.py first seen with mtime 1713847790.651006
+DEBUG 2024-05-21 13:29:00,807 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/backends/base/features.py first seen with mtime 1713847791.1410098
+DEBUG 2024-05-21 13:29:00,807 autoreload 20 139774413728640 File /usr/local/lib/python3.12/difflib.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,807 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/middleware/security.py first seen with mtime 1713847791.18101
+DEBUG 2024-05-21 13:29:00,807 autoreload 20 139774413728640 File /usr/local/lib/python3.12/re/_parser.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,807 autoreload 20 139774413728640 File /usr/local/lib/python3.12/dataclasses.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,808 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/sessions/__init__.py first seen with mtime 1713847791.0210087
+DEBUG 2024-05-21 13:29:00,808 autoreload 20 139774413728640 File /usr/local/lib/python3.12/http/client.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,808 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/unix_events.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,808 autoreload 20 139774413728640 File /workspace/myapp/accounts/migrations/__init__.py first seen with mtime 1709702064.9159434
+DEBUG 2024-05-21 13:29:00,808 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/templatetags/tz.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,808 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/sessions/exceptions.py first seen with mtime 1713847791.0210087
+DEBUG 2024-05-21 13:29:00,808 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/apps/config.py first seen with mtime 1713847790.291003
+DEBUG 2024-05-21 13:29:00,809 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/base_user.py first seen with mtime 1713847790.651006
+DEBUG 2024-05-21 13:29:00,809 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/template/backends/base.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,809 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/__init__.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,809 autoreload 20 139774413728640 File /usr/local/lib/python3.12/http/cookies.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,809 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/_heapq.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,809 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/PIL/_typing.py first seen with mtime 1713847789.8509996
+DEBUG 2024-05-21 13:29:00,809 autoreload 20 139774413728640 File /usr/local/lib/python3.12/importlib/_abc.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,810 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/sessions/middleware.py first seen with mtime 1713847791.0210087
+DEBUG 2024-05-21 13:29:00,810 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/dates.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,810 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/pytz/lazy.py first seen with mtime 1713847789.4509964
+DEBUG 2024-05-21 13:29:00,810 autoreload 20 139774413728640 File /usr/local/lib/python3.12/ipaddress.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,810 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/lorem_ipsum.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,810 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/views/generic/edit.py first seen with mtime 1713847791.2110102
+DEBUG 2024-05-21 13:29:00,810 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/_sha2.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,810 autoreload 20 139774413728640 File /usr/local/lib/python3.12/logging/handlers.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,810 autoreload 20 139774413728640 File /usr/local/lib/python3.12/copyreg.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,811 autoreload 20 139774413728640 File /usr/local/lib/python3.12/token.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,811 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/helpers.py first seen with mtime 1713847790.431004
+DEBUG 2024-05-21 13:29:00,812 autoreload 20 139774413728640 File /usr/local/lib/python3.12/http/server.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,812 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/contenttypes/admin.py first seen with mtime 1713847790.7110064
+DEBUG 2024-05-21 13:29:00,812 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/files/uploadhandler.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,812 autoreload 20 139774413728640 File /usr/local/lib/python3.12/enum.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,812 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/template/loaders/__init__.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,812 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/sql/__init__.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,813 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/backends/base/__init__.py first seen with mtime 1713847791.1410098
+DEBUG 2024-05-21 13:29:00,813 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/template/loaders/filesystem.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,813 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/module_loading.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,813 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/generator.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,813 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/models.py first seen with mtime 1713847790.431004
+DEBUG 2024-05-21 13:29:00,814 autoreload 20 139774413728640 File /usr/local/lib/python3.12/fnmatch.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,814 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/backends/postgresql/base.py first seen with mtime 1713847791.1510098
+DEBUG 2024-05-21 13:29:00,814 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/_lzma.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,814 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/template/smartif.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,814 autoreload 20 139774413728640 File /usr/local/lib/python3.12/cgi.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,814 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/select.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,815 autoreload 20 139774413728640 File /usr/local/lib/python3.12/pprint.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,815 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/timeouts.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,815 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/psycopg2/errors.py first seen with mtime 1713847789.6809983
+DEBUG 2024-05-21 13:29:00,815 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/asyncio.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,816 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/constants.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,816 autoreload 20 139774413728640 File /usr/local/lib/python3.12/json/__init__.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,816 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/contenttypes/models.py first seen with mtime 1713847790.7110064
+DEBUG 2024-05-21 13:29:00,816 autoreload 20 139774413728640 File /usr/local/lib/python3.12/unittest/signals.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,816 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/fields/related.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,817 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/autoslug/utils.py first seen with mtime 1713847789.6009977
+DEBUG 2024-05-21 13:29:00,817 autoreload 20 139774413728640 File /usr/local/lib/python3.12/json/decoder.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,817 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/autoslug/fields.py first seen with mtime 1713847789.6009977
+DEBUG 2024-05-21 13:29:00,817 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/regex_helper.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,817 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/forms/forms.py first seen with mtime 1713847791.17101
+DEBUG 2024-05-21 13:29:00,818 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/js_asset/js.py first seen with mtime 1713847792.831023
+DEBUG 2024-05-21 13:29:00,818 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/apps.py first seen with mtime 1713847790.651006
+DEBUG 2024-05-21 13:29:00,818 autoreload 20 139774413728640 File /usr/local/lib/python3.12/html/entities.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,818 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/conf/global_settings.py first seen with mtime 1713847790.291003
+DEBUG 2024-05-21 13:29:00,818 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/timezone.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,818 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/_hashlib.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,818 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/_encoded_words.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,818 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/forms/boundfield.py first seen with mtime 1713847791.17101
+DEBUG 2024-05-21 13:29:00,819 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/contenttypes/checks.py first seen with mtime 1713847790.7110064
+DEBUG 2024-05-21 13:29:00,819 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/query_utils.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,819 autoreload 20 139774413728640 File /workspace/myapp/accounts/__init__.py first seen with mtime 1709702064.9159434
+DEBUG 2024-05-21 13:29:00,819 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/__init__.py first seen with mtime 1713847792.841023
+DEBUG 2024-05-21 13:29:00,819 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/version.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,819 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/fields/related_descriptors.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,819 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/http/response.py first seen with mtime 1713847791.18101
+DEBUG 2024-05-21 13:29:00,819 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/migrations/utils.py first seen with mtime 1713847791.1510098
+DEBUG 2024-05-21 13:29:00,820 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/cache/utils.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,820 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/aggregates.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,820 autoreload 20 139774413728640 File /usr/local/lib/python3.12/re/_casefix.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,820 autoreload 20 139774413728640 File /usr/local/lib/python3.12/json/encoder.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,820 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/constraints.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,820 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/sqlparse/keywords.py first seen with mtime 1713847789.620998
+DEBUG 2024-05-21 13:29:00,820 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/charset.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,820 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/serializers/base.py first seen with mtime 1713847791.1410098
+DEBUG 2024-05-21 13:29:00,820 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/backends/base/schema.py first seen with mtime 1713847791.1410098
+DEBUG 2024-05-21 13:29:00,821 autoreload 20 139774413728640 File /usr/local/lib/python3.12/socket.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,821 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/sessions/backends/__init__.py first seen with mtime 1713847791.0210087
+DEBUG 2024-05-21 13:29:00,821 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/backends/__init__.py first seen with mtime 1713847791.1410098
+DEBUG 2024-05-21 13:29:00,821 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/pytz/exceptions.py first seen with mtime 1713847789.4509964
+DEBUG 2024-05-21 13:29:00,822 autoreload 20 139774413728640 File /workspace/myapp/accounts/urls.py first seen with mtime 1715825317.2833393
+DEBUG 2024-05-21 13:29:00,822 autoreload 20 139774413728640 File /usr/local/lib/python3.12/reprlib.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,822 autoreload 20 139774413728640 File /usr/local/lib/python3.12/getpass.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,822 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/wsgi.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,822 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/policy.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,822 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/sql/constants.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,823 autoreload 20 139774413728640 File /usr/local/lib/python3.12/pathlib.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,823 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/templatetags/i18n.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,823 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/cache/backends/__init__.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,823 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/checks/security/__init__.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,826 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/migrations/operations/fields.py first seen with mtime 1713847791.1510098
+DEBUG 2024-05-21 13:29:00,826 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/template/backends/__init__.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,826 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/translation/trans_real.py first seen with mtime 1713847791.2110102
+DEBUG 2024-05-21 13:29:00,827 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/mime/text.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,827 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/compat.py first seen with mtime 1713847792.841023
+DEBUG 2024-05-21 13:29:00,827 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/checks/caches.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,827 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/handlers/__init__.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,828 autoreload 20 139774413728640 File /usr/local/lib/python3.12/unittest/util.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,828 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/sqlparse/filters/right_margin.py first seen with mtime 1713847789.620998
+DEBUG 2024-05-21 13:29:00,828 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/admin.py first seen with mtime 1713847792.841023
+DEBUG 2024-05-21 13:29:00,828 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/views/autocomplete.py first seen with mtime 1713847790.5910053
+DEBUG 2024-05-21 13:29:00,828 autoreload 20 139774413728640 File /usr/local/lib/python3.12/weakref.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,828 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/checks/security/sessions.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,829 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/messages/constants.py first seen with mtime 1713847790.921008
+DEBUG 2024-05-21 13:29:00,829 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/expressions.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,834 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/_random.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,834 autoreload 20 139774413728640 File /usr/local/lib/python3.12/locale.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,834 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/urls/resolvers.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,834 autoreload 20 139774413728640 File /usr/local/lib/python3.12/encodings/__init__.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,835 autoreload 20 139774413728640 File /usr/local/lib/python3.12/re/_constants.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,835 autoreload 20 139774413728640 File /usr/local/lib/python3.12/re/_compiler.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,835 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/templatetags/cache.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,835 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/translation/__init__.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,835 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/middleware/__init__.py first seen with mtime 1713847791.18101
+DEBUG 2024-05-21 13:29:00,835 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/backends/base/operations.py first seen with mtime 1713847791.1410098
+DEBUG 2024-05-21 13:29:00,836 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/conf/urls/__init__.py first seen with mtime 1713847790.431004
+DEBUG 2024-05-21 13:29:00,836 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/forms.py first seen with mtime 1713847790.651006
+DEBUG 2024-05-21 13:29:00,836 autoreload 20 139774413728640 File /usr/local/lib/python3.12/urllib/response.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,836 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/template/autoreload.py first seen with mtime 1713847791.18101
+DEBUG 2024-05-21 13:29:00,836 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/forms/fields.py first seen with mtime 1713847791.17101
+DEBUG 2024-05-21 13:29:00,836 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/checks/registry.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,836 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/termcolors.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,837 autoreload 20 139774413728640 File /workspace/myapp/memorymap/models.py first seen with mtime 1716261097.0701838
+DEBUG 2024-05-21 13:29:00,837 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/asgiref/current_thread_executor.py first seen with mtime 1713847790.1710021
+DEBUG 2024-05-21 13:29:00,837 autoreload 20 139774413728640 File /usr/local/lib/python3.12/collections/__init__.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,837 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/decorators.py first seen with mtime 1713847790.431004
+DEBUG 2024-05-21 13:29:00,838 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/backends/base/introspection.py first seen with mtime 1713847791.1410098
+DEBUG 2024-05-21 13:29:00,838 autoreload 20 139774413728640 File /usr/local/lib/python3.12/threading.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,838 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/pytz/tzinfo.py first seen with mtime 1713847789.4609966
+DEBUG 2024-05-21 13:29:00,838 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/tokens.py first seen with mtime 1713847790.651006
+DEBUG 2024-05-21 13:29:00,838 autoreload 20 139774413728640 File /usr/local/lib/python3.12/calendar.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,839 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/signals.py first seen with mtime 1713847792.841023
+DEBUG 2024-05-21 13:29:00,839 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/staticfiles/management/commands/__init__.py first seen with mtime 1713847791.1110096
+DEBUG 2024-05-21 13:29:00,839 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/checks.py first seen with mtime 1713847790.651006
+DEBUG 2024-05-21 13:29:00,839 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/_bz2.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,839 autoreload 20 139774413728640 File /usr/local/lib/python3.12/platform.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,839 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/migrations/executor.py first seen with mtime 1713847791.1510098
+DEBUG 2024-05-21 13:29:00,840 autoreload 20 139774413728640 File /usr/local/lib/python3.12/decimal.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,840 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/sites/shortcuts.py first seen with mtime 1713847791.0710092
+DEBUG 2024-05-21 13:29:00,840 autoreload 20 139774413728640 File /usr/local/lib/python3.12/random.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,840 autoreload 20 139774413728640 File /usr/local/lib/python3.12/tokenize.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,841 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/utils.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,841 autoreload 20 139774413728640 File /usr/local/lib/python3.12/secrets.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,841 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/psycopg2/_psycopg.cpython-312-x86_64-linux-gnu.so first seen with mtime 1713847789.6809983
+DEBUG 2024-05-21 13:29:00,841 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/handlers/base.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,842 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/conf/__init__.py first seen with mtime 1713847790.291003
+DEBUG 2024-05-21 13:29:00,842 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/__init__.py first seen with mtime 1713847790.431004
+DEBUG 2024-05-21 13:29:00,842 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/settings.py first seen with mtime 1713847792.841023
+DEBUG 2024-05-21 13:29:00,842 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/subprocess.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,842 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/conf/urls/static.py first seen with mtime 1713847790.431004
+DEBUG 2024-05-21 13:29:00,842 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/trsock.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,842 autoreload 20 139774413728640 File /usr/local/lib/python3.12/_weakrefset.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,843 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/PIL/_imaging.cpython-312-x86_64-linux-gnu.so first seen with mtime 1713847789.8109994
+DEBUG 2024-05-21 13:29:00,843 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/contenttypes/__init__.py first seen with mtime 1713847790.7110064
+DEBUG 2024-05-21 13:29:00,843 autoreload 20 139774413728640 File /workspace/myapp/manage.py first seen with mtime 1709702064.9159434
+DEBUG 2024-05-21 13:29:00,843 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/functional.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,843 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/views/main.py first seen with mtime 1713847790.5910053
+DEBUG 2024-05-21 13:29:00,844 autoreload 20 139774413728640 File /usr/local/lib/python3.12/operator.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,844 autoreload 20 139774413728640 File /usr/local/lib/python3.12/html/parser.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,844 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/sqlparse/filters/reindent.py first seen with mtime 1713847789.620998
+DEBUG 2024-05-21 13:29:00,844 autoreload 20 139774413728640 File /usr/local/lib/python3.12/argparse.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,844 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/views/__init__.py first seen with mtime 1713847790.5910053
+DEBUG 2024-05-21 13:29:00,845 autoreload 20 139774413728640 File /usr/local/lib/python3.12/textwrap.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,845 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/sessions/base_session.py first seen with mtime 1713847791.0210087
+DEBUG 2024-05-21 13:29:00,845 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/crypto.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,845 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/_header_value_parser.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,845 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/paginator.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,845 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/files/move.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,845 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/_bisect.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,845 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/apps.py first seen with mtime 1713847790.431004
+DEBUG 2024-05-21 13:29:00,846 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/signals.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,846 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/format_helpers.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,846 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/fields/files.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,846 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/templatetags/mptt_tags.py first seen with mtime 1713847792.8510232
+DEBUG 2024-05-21 13:29:00,846 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/asgiref/__init__.py first seen with mtime 1713847790.1710021
+DEBUG 2024-05-21 13:29:00,846 autoreload 20 139774413728640 File /workspace/myapp/accounts/models.py first seen with mtime 1716265610.0387201
+DEBUG 2024-05-21 13:29:00,847 autoreload 20 139774413728640 File /usr/local/lib/python3.12/unittest/__init__.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,847 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/checks/security/base.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,847 autoreload 20 139774413728640 File /usr/local/lib/python3.12/csv.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,847 autoreload 20 139774413728640 File /usr/local/lib/python3.12/collections/abc.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,847 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/deletion.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,847 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/forms/formsets.py first seen with mtime 1713847791.17101
+DEBUG 2024-05-21 13:29:00,848 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/checks/messages.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,848 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/views/static.py first seen with mtime 1713847791.2110102
+DEBUG 2024-05-21 13:29:00,848 autoreload 20 139774413728640 File /usr/local/lib/python3.12/queue.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,848 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/messages/middleware.py first seen with mtime 1713847790.931008
+DEBUG 2024-05-21 13:29:00,848 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/management/commands/__init__.py first seen with mtime 1713847791.1310096
+DEBUG 2024-05-21 13:29:00,849 autoreload 20 139774413728640 File /usr/local/lib/python3.12/glob.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,849 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/models.py first seen with mtime 1713847790.651006
+DEBUG 2024-05-21 13:29:00,849 autoreload 20 139774413728640 File /usr/local/lib/python3.12/contextlib.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,849 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/_os.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,849 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/query.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,849 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/base_futures.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,850 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/backends/base/base.py first seen with mtime 1713847791.1410098
+DEBUG 2024-05-21 13:29:00,850 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/threads.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,850 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/templatetags/log.py first seen with mtime 1713847790.5910053
+DEBUG 2024-05-21 13:29:00,850 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/templatetags/mptt_admin.py first seen with mtime 1713847792.8510232
+DEBUG 2024-05-21 13:29:00,851 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/log.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,851 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/exceptions.py first seen with mtime 1713847792.841023
+DEBUG 2024-05-21 13:29:00,851 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/views/__init__.py first seen with mtime 1713847791.2110102
+DEBUG 2024-05-21 13:29:00,851 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/deprecation.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,851 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/staticfiles/management/__init__.py first seen with mtime 1713847791.1110096
+DEBUG 2024-05-21 13:29:00,852 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/utils.py first seen with mtime 1713847791.1410098
+DEBUG 2024-05-21 13:29:00,852 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/views/generic/__init__.py first seen with mtime 1713847791.2110102
+DEBUG 2024-05-21 13:29:00,852 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/views/generic/base.py first seen with mtime 1713847791.2110102
+DEBUG 2024-05-21 13:29:00,852 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/_posixsubprocess.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,852 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/files/images.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,853 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/cache/backends/locmem.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,853 autoreload 20 139774413728640 File /usr/local/lib/python3.12/mimetypes.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,853 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/backends/signals.py first seen with mtime 1713847791.1410098
+DEBUG 2024-05-21 13:29:00,853 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/template/response.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,853 autoreload 20 139774413728640 File /usr/local/lib/python3.12/pkgutil.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,854 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/autoslug/__init__.py first seen with mtime 1713847789.6009977
+DEBUG 2024-05-21 13:29:00,854 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/template/base.py first seen with mtime 1713847791.18101
+DEBUG 2024-05-21 13:29:00,854 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/mixins.py first seen with mtime 1713847790.651006
+DEBUG 2024-05-21 13:29:00,854 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/http/__init__.py first seen with mtime 1713847791.18101
+DEBUG 2024-05-21 13:29:00,854 autoreload 20 139774413728640 File /usr/local/lib/python3.12/encodings/aliases.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,855 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/_ssl.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,855 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/staticfiles/utils.py first seen with mtime 1713847791.1110096
+DEBUG 2024-05-21 13:29:00,855 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/templatetags/admin_modify.py first seen with mtime 1713847790.5910053
+DEBUG 2024-05-21 13:29:00,855 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/_decimal.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,856 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/fcntl.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,856 autoreload 20 139774413728640 File /usr/local/lib/python3.12/keyword.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,856 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/__init__.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,856 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/mime/base.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,856 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/backends/postgresql/operations.py first seen with mtime 1713847791.1510098
+DEBUG 2024-05-21 13:29:00,857 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/messages/storage/__init__.py first seen with mtime 1713847790.931008
+DEBUG 2024-05-21 13:29:00,857 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/dispatch/dispatcher.py first seen with mtime 1713847791.17101
+DEBUG 2024-05-21 13:29:00,857 autoreload 20 139774413728640 File /workspace/myapp/memorymap/apps.py first seen with mtime 1709702064.9159434
+DEBUG 2024-05-21 13:29:00,858 autoreload 20 139774413728640 File /usr/local/lib/python3.12/wsgiref/headers.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,858 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/backends/postgresql/schema.py first seen with mtime 1713847791.1510098
+DEBUG 2024-05-21 13:29:00,858 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/views/generic/dates.py first seen with mtime 1713847791.2110102
+DEBUG 2024-05-21 13:29:00,859 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/cache/backends/base.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,859 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/sqlparse/lexer.py first seen with mtime 1713847789.620998
+DEBUG 2024-05-21 13:29:00,859 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/headerregistry.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,859 autoreload 20 139774413728640 File /usr/local/lib/python3.12/struct.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,860 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/actions.py first seen with mtime 1713847790.431004
+DEBUG 2024-05-21 13:29:00,860 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/asgiref/local.py first seen with mtime 1713847790.1710021
+DEBUG 2024-05-21 13:29:00,860 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/template/loaders/base.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,860 autoreload 20 139774413728640 File /usr/local/lib/python3.12/concurrent/futures/_base.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,861 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/files/locks.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,861 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/backends/base/validation.py first seen with mtime 1713847791.1410098
+DEBUG 2024-05-21 13:29:00,861 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/admin.py first seen with mtime 1713847790.651006
+DEBUG 2024-05-21 13:29:00,862 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/_pickle.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,862 autoreload 20 139774413728640 File /usr/local/lib/python3.12/tempfile.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,862 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/sqlparse/filters/output.py first seen with mtime 1713847789.620998
+DEBUG 2024-05-21 13:29:00,862 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/http/cookie.py first seen with mtime 1713847791.18101
+DEBUG 2024-05-21 13:29:00,862 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/management/commands/runserver.py first seen with mtime 1713847791.1310096
+DEBUG 2024-05-21 13:29:00,862 autoreload 20 139774413728640 File /workspace/myapp/memorymap/migrations/0001_initial.py first seen with mtime 1715825317.6733413
+DEBUG 2024-05-21 13:29:00,862 autoreload 20 139774413728640 File /usr/local/lib/python3.12/_markupbase.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,862 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/views/csrf.py first seen with mtime 1713847791.2110102
+DEBUG 2024-05-21 13:29:00,863 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/apps/registry.py first seen with mtime 1713847790.291003
+DEBUG 2024-05-21 13:29:00,863 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/dispatch/__init__.py first seen with mtime 1713847791.17101
+DEBUG 2024-05-21 13:29:00,863 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/views/generic/list.py first seen with mtime 1713847791.2110102
+DEBUG 2024-05-21 13:29:00,863 autoreload 20 139774413728640 File /usr/local/lib/python3.12/importlib/__init__.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,863 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/validators.py first seen with mtime 1713847790.651006
+DEBUG 2024-05-21 13:29:00,863 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/sql/where.py first seen with mtime 1713847791.17101
+DEBUG 2024-05-21 13:29:00,864 autoreload 20 139774413728640 File /usr/local/lib/python3.12/signal.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,865 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/base_tasks.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,865 autoreload 20 139774413728640 File /usr/local/lib/python3.12/unittest/loader.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,865 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/selector_events.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,866 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/serializers/json.py first seen with mtime 1713847791.1410098
+DEBUG 2024-05-21 13:29:00,866 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/template/exceptions.py first seen with mtime 1713847791.18101
+DEBUG 2024-05-21 13:29:00,866 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/fields/proxy.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,866 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/backends/postgresql/creation.py first seen with mtime 1713847791.1510098
+DEBUG 2024-05-21 13:29:00,867 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/__init__.py first seen with mtime 1713847790.431004
+DEBUG 2024-05-21 13:29:00,867 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/backends/ddl_references.py first seen with mtime 1713847791.1410098
+DEBUG 2024-05-21 13:29:00,867 autoreload 20 139774413728640 File /usr/local/lib/python3.12/subprocess.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,867 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/options.py first seen with mtime 1713847790.431004
+DEBUG 2024-05-21 13:29:00,867 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/apps.py first seen with mtime 1713847792.841023
+DEBUG 2024-05-21 13:29:00,867 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/html.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,867 autoreload 20 139774413728640 File /workspace/myapp/memorymap/migrations/0003_alter_media_post.py first seen with mtime 1715825317.6833413
+DEBUG 2024-05-21 13:29:00,868 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/backends/postgresql/introspection.py first seen with mtime 1713847791.1510098
+DEBUG 2024-05-21 13:29:00,868 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/exceptions.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,868 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/_policybase.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,868 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/backends/base/creation.py first seen with mtime 1713847791.1410098
+DEBUG 2024-05-21 13:29:00,868 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/_struct.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,868 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/files/temp.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,868 autoreload 20 139774413728640 File /workspace/myapp/myapp/settings.py first seen with mtime 1715825317.6833413
+DEBUG 2024-05-21 13:29:00,869 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/management/base.py first seen with mtime 1713847791.1310096
+DEBUG 2024-05-21 13:29:00,869 autoreload 20 139774413728640 File /usr/local/lib/python3.12/hmac.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,869 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/coroutines.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,870 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/encoding.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,870 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/functions/text.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,870 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/utils.py first seen with mtime 1713847790.431004
+DEBUG 2024-05-21 13:29:00,871 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/dateparse.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,871 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/templatetags/__init__.py first seen with mtime 1713847792.8510232
+DEBUG 2024-05-21 13:29:00,871 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/http/request.py first seen with mtime 1713847791.18101
+DEBUG 2024-05-21 13:29:00,872 autoreload 20 139774413728640 File /usr/local/lib/python3.12/unittest/main.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,872 autoreload 20 139774413728640 File /workspace/myapp/memorymap/urls.py first seen with mtime 1715825317.6833413
+DEBUG 2024-05-21 13:29:00,872 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/_opcode.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,873 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/template/backends/django.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,873 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/safestring.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,874 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/views.py first seen with mtime 1713847790.651006
+DEBUG 2024-05-21 13:29:00,874 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/querysets.py first seen with mtime 1713847792.841023
+DEBUG 2024-05-21 13:29:00,875 autoreload 20 139774413728640 File /usr/local/lib/python3.12/functools.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,875 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/psycopg2/__init__.py first seen with mtime 1713847789.670998
+DEBUG 2024-05-21 13:29:00,875 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/template/loader.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,876 autoreload 20 139774413728640 File /usr/local/lib/python3.12/wsgiref/util.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,876 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/sqlparse/filters/__init__.py first seen with mtime 1713847789.620998
+DEBUG 2024-05-21 13:29:00,876 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/forms.py first seen with mtime 1713847792.841023
+DEBUG 2024-05-21 13:29:00,877 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/transaction.py first seen with mtime 1713847791.1410098
+DEBUG 2024-05-21 13:29:00,877 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/backends/postgresql/__init__.py first seen with mtime 1713847791.1510098
+DEBUG 2024-05-21 13:29:00,877 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/PIL/_version.py first seen with mtime 1713847789.8109994
+DEBUG 2024-05-21 13:29:00,878 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/locks.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,878 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/http/multipartparser.py first seen with mtime 1713847791.18101
+DEBUG 2024-05-21 13:29:00,878 autoreload 20 139774413728640 File /usr/local/lib/python3.12/wsgiref/handlers.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,879 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/staticfiles/handlers.py first seen with mtime 1713847791.1110096
+DEBUG 2024-05-21 13:29:00,880 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/staticfiles/checks.py first seen with mtime 1713847791.1110096
+DEBUG 2024-05-21 13:29:00,880 autoreload 20 139774413728640 File /usr/local/lib/python3.12/__future__.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,880 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/forms/__init__.py first seen with mtime 1713847791.17101
+DEBUG 2024-05-21 13:29:00,880 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/queues.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,881 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/constants.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,883 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/manager.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,884 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/templatetags/__init__.py first seen with mtime 1713847790.5910053
+DEBUG 2024-05-21 13:29:00,884 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/checks/__init__.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,884 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/template/defaultfilters.py first seen with mtime 1713847791.18101
+DEBUG 2024-05-21 13:29:00,885 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/views/defaults.py first seen with mtime 1713847791.2110102
+DEBUG 2024-05-21 13:29:00,885 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/js_asset/__init__.py first seen with mtime 1713847792.831023
+DEBUG 2024-05-21 13:29:00,886 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/PIL/__init__.py first seen with mtime 1713847789.8109994
+DEBUG 2024-05-21 13:29:00,886 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/sqlparse/exceptions.py first seen with mtime 1713847789.620998
+DEBUG 2024-05-21 13:29:00,886 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/fields/json.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,887 autoreload 20 139774413728640 File /usr/local/lib/python3.12/socketserver.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,887 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/datetime_safe.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,888 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/signals.py first seen with mtime 1713847790.651006
+DEBUG 2024-05-21 13:29:00,888 autoreload 20 139774413728640 File /usr/local/lib/python3.12/bisect.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,888 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/checks/database.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,888 autoreload 20 139774413728640 File /usr/local/lib/python3.12/logging/__init__.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,889 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/sqlparse/filters/aligned_indent.py first seen with mtime 1713847789.620998
+DEBUG 2024-05-21 13:29:00,889 autoreload 20 139774413728640 File /usr/local/lib/python3.12/uuid.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,889 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/PIL/_binary.py first seen with mtime 1713847789.8509996
+DEBUG 2024-05-21 13:29:00,890 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/zlib.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,890 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,890 autoreload 20 139774413728640 File /usr/local/lib/python3.12/datetime.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,891 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/sqlparse/engine/grouping.py first seen with mtime 1713847789.620998
+DEBUG 2024-05-21 13:29:00,891 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/messages/__init__.py first seen with mtime 1713847790.921008
+DEBUG 2024-05-21 13:29:00,891 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/checks/async_checks.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,891 autoreload 20 139774413728640 File /workspace/myapp/memorymap/views.py first seen with mtime 1716258880.8860424
+DEBUG 2024-05-21 13:29:00,892 autoreload 20 139774413728640 File /workspace/myapp/accounts/forms.py first seen with mtime 1715825317.2733393
+DEBUG 2024-05-21 13:29:00,892 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/log.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,892 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/_parseaddr.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,892 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/inspect.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,893 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/files/utils.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,893 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/sslproto.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,893 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/sql/query.py first seen with mtime 1713847791.17101
+DEBUG 2024-05-21 13:29:00,893 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/views/decorators/debug.py first seen with mtime 1713847791.2110102
+DEBUG 2024-05-21 13:29:00,894 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/fields/reverse_related.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,894 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/apps/__init__.py first seen with mtime 1713847790.291003
+DEBUG 2024-05-21 13:29:00,894 autoreload 20 139774413728640 File /usr/local/lib/python3.12/unittest/result.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,894 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/sqlparse/__init__.py first seen with mtime 1713847789.6109977
+DEBUG 2024-05-21 13:29:00,895 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/staticfiles/finders.py first seen with mtime 1713847791.1110096
+DEBUG 2024-05-21 13:29:00,895 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/files/__init__.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,895 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/base.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,896 autoreload 20 139774413728640 File /usr/local/lib/python3.12/shutil.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,896 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/indexes.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,896 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/urls/__init__.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,896 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/_distutils_hack/__init__.py first seen with mtime 1712759903.0
+DEBUG 2024-05-21 13:29:00,897 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/taskgroups.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,897 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/views/decorators/csrf.py first seen with mtime 1713847791.2110102
+DEBUG 2024-05-21 13:29:00,897 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/management/__init__.py first seen with mtime 1713847791.1310096
+DEBUG 2024-05-21 13:29:00,897 autoreload 20 139774413728640 File /usr/local/lib/python3.12/typing.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,898 autoreload 20 139774413728640 File /usr/local/lib/python3.12/_compression.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,898 autoreload 20 139774413728640 File /usr/local/lib/python3.12/ast.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,898 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/text.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,898 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/tree.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,899 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/mime/message.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,900 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/functions/math.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,900 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/runners.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,900 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/functions/comparison.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,900 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/fields/related_lookups.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,900 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/hashable.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,901 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/sites/__init__.py first seen with mtime 1713847791.0610092
+DEBUG 2024-05-21 13:29:00,901 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/math.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,901 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/forms/widgets.py first seen with mtime 1713847791.17101
+DEBUG 2024-05-21 13:29:00,902 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/encoders.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,902 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/sessions/backends/base.py first seen with mtime 1713847791.0210087
+DEBUG 2024-05-21 13:29:00,902 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/core/handlers/wsgi.py first seen with mtime 1713847791.1210096
+DEBUG 2024-05-21 13:29:00,902 autoreload 20 139774413728640 File /usr/local/lib/python3.12/urllib/__init__.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,902 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/mime/multipart.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,903 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/template/utils.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,903 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/backends/postgresql/features.py first seen with mtime 1713847791.1510098
+DEBUG 2024-05-21 13:29:00,903 autoreload 20 139774413728640 File /usr/local/lib/python3.12/urllib/parse.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,904 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/PIL/Image.py first seen with mtime 1713847789.8209994
+DEBUG 2024-05-21 13:29:00,904 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/translation/reloader.py first seen with mtime 1713847791.2110102
+DEBUG 2024-05-21 13:29:00,904 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/migrations/loader.py first seen with mtime 1713847791.1510098
+DEBUG 2024-05-21 13:29:00,904 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/fields.py first seen with mtime 1713847792.841023
+DEBUG 2024-05-21 13:29:00,905 autoreload 20 139774413728640 File /workspace/myapp/accounts/migrations/0003_follower.py first seen with mtime 1716265641.8487806
+DEBUG 2024-05-21 13:29:00,905 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/_uuid.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,906 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/mime/__init__.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,906 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/psycopg2/extras.py first seen with mtime 1713847789.6809983
+DEBUG 2024-05-21 13:29:00,906 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/views/decorators/common.py first seen with mtime 1713847791.2110102
+DEBUG 2024-05-21 13:29:00,906 autoreload 20 139774413728640 File /usr/local/lib/python3.12/gettext.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,907 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/transports.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,907 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/dateformat.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,907 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/_blake2.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,908 autoreload 20 139774413728640 File /usr/local/lib/python3.12/lib-dynload/_datetime.cpython-312-x86_64-linux-gnu.so first seen with mtime 1712759897.0
+DEBUG 2024-05-21 13:29:00,908 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/feedparser.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,908 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/base_events.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,909 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/errors.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,910 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/connection.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,911 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/PIL/ImageMode.py first seen with mtime 1713847789.8509996
+DEBUG 2024-05-21 13:29:00,911 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/baseconv.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,911 autoreload 20 139774413728640 File /workspace/myapp/memorymap/__init__.py first seen with mtime 1709702064.9159434
+DEBUG 2024-05-21 13:29:00,912 autoreload 20 139774413728640 File /usr/local/lib/python3.12/opcode.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,912 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/header.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,912 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/utils.py first seen with mtime 1713847792.841023
+DEBUG 2024-05-21 13:29:00,913 autoreload 20 139774413728640 File /workspace/myapp/myapp/urls.py first seen with mtime 1715825317.6933415
+DEBUG 2024-05-21 13:29:00,913 autoreload 20 139774413728640 File /usr/local/lib/python3.12/asyncio/exceptions.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,913 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/migrations/operations/base.py first seen with mtime 1713847791.1510098
+DEBUG 2024-05-21 13:29:00,914 autoreload 20 139774413728640 File /usr/local/lib/python3.12/email/iterators.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,914 autoreload 20 139774413728640 File /usr/local/lib/python3.12/string.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,914 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/urls/utils.py first seen with mtime 1713847791.19101
+DEBUG 2024-05-21 13:29:00,915 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/sessions/apps.py first seen with mtime 1713847791.0210087
+DEBUG 2024-05-21 13:29:00,917 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/staticfiles/__init__.py first seen with mtime 1713847791.1110096
+DEBUG 2024-05-21 13:29:00,918 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/utils/datastructures.py first seen with mtime 1713847791.2010102
+DEBUG 2024-05-21 13:29:00,918 autoreload 20 139774413728640 File /usr/local/lib/python3.12/unittest/suite.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,919 autoreload 20 139774413728640 File /usr/local/lib/python3.12/logging/config.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,919 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/sqlparse/utils.py first seen with mtime 1713847789.620998
+DEBUG 2024-05-21 13:29:00,920 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/migrations/operations/utils.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,920 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/password_validation.py first seen with mtime 1713847790.651006
+DEBUG 2024-05-21 13:29:00,920 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/migrations/graph.py first seen with mtime 1713847791.1510098
+DEBUG 2024-05-21 13:29:00,921 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/psycopg2/errorcodes.py first seen with mtime 1713847789.6809983
+DEBUG 2024-05-21 13:29:00,921 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/backends/utils.py first seen with mtime 1713847791.1410098
+DEBUG 2024-05-21 13:29:00,921 autoreload 20 139774413728640 File /workspace/myapp/memorymap/admin.py first seen with mtime 1715825317.6733413
+DEBUG 2024-05-21 13:29:00,922 autoreload 20 139774413728640 File /usr/local/lib/python3.12/html/__init__.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:00,922 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/sqlparse/engine/__init__.py first seen with mtime 1713847789.620998
+DEBUG 2024-05-21 13:29:00,922 autoreload 20 139774413728640 File /usr/local/lib/python3.12/ssl.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,922 autoreload 20 139774413728640 File /usr/local/lib/python3.12/_compat_pickle.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:00,923 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/__init__.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:00,923 autoreload 20 139774413728640 File /workspace/myapp/accounts/migrations/0002_alter_user_slug.py first seen with mtime 1715825317.2833393
+DEBUG 2024-05-21 13:29:00,923 autoreload 20 139774413728640 File /workspace/myapp/memorymap/templates/memorymap first seen with mtime 1715915520.8931499
+DEBUG 2024-05-21 13:29:00,924 autoreload 20 139774413728640 File /workspace/myapp/memorymap/templates/memorymap/article_confirm_delete.html first seen with mtime 1709702064.9159434
+DEBUG 2024-05-21 13:29:00,924 autoreload 20 139774413728640 File /workspace/myapp/memorymap/templates/memorymap/article_detail.html first seen with mtime 1709702064.9159434
+DEBUG 2024-05-21 13:29:00,924 autoreload 20 139774413728640 File /workspace/myapp/memorymap/templates/memorymap/article_form.html first seen with mtime 1709702064.9159434
+DEBUG 2024-05-21 13:29:00,925 autoreload 20 139774413728640 File /workspace/myapp/memorymap/templates/memorymap/article_list.html first seen with mtime 1709702064.9159434
+DEBUG 2024-05-21 13:29:00,925 autoreload 20 139774413728640 File /workspace/myapp/memorymap/templates/memorymap/streetview.html first seen with mtime 1709702064.9159434
+DEBUG 2024-05-21 13:29:00,926 autoreload 20 139774413728640 File /workspace/myapp/memorymap/templates/memorymap/base_old.html first seen with mtime 1715825317.6833413
+DEBUG 2024-05-21 13:29:00,926 autoreload 20 139774413728640 File /workspace/myapp/memorymap/templates/memorymap/home.html first seen with mtime 1715825317.6833413
+DEBUG 2024-05-21 13:29:00,926 autoreload 20 139774413728640 File /workspace/myapp/memorymap/templates/memorymap/post_confirm_delete.html first seen with mtime 1715825317.6833413
+DEBUG 2024-05-21 13:29:00,927 autoreload 20 139774413728640 File /workspace/myapp/memorymap/templates/memorymap/post_form.html first seen with mtime 1715825317.6833413
+DEBUG 2024-05-21 13:29:00,927 autoreload 20 139774413728640 File /workspace/myapp/memorymap/templates/memorymap/search_results.html first seen with mtime 1715825317.6833413
+DEBUG 2024-05-21 13:29:00,928 autoreload 20 139774413728640 File /workspace/myapp/memorymap/templates/memorymap/news_feed.html first seen with mtime 1715915520.8931499
+DEBUG 2024-05-21 13:29:00,928 autoreload 20 139774413728640 File /workspace/myapp/memorymap/templates/memorymap/post_detail.html first seen with mtime 1715915520.8931499
+DEBUG 2024-05-21 13:29:00,929 autoreload 20 139774413728640 File /workspace/myapp/accounts/templates/accounts first seen with mtime 1715825317.2833393
+DEBUG 2024-05-21 13:29:00,930 autoreload 20 139774413728640 File /workspace/myapp/accounts/templates/accounts/login.html first seen with mtime 1715825317.2833393
+DEBUG 2024-05-21 13:29:00,930 autoreload 20 139774413728640 File /workspace/myapp/accounts/templates/accounts/profile.html first seen with mtime 1715825317.2833393
+DEBUG 2024-05-21 13:29:00,930 autoreload 20 139774413728640 File /workspace/myapp/accounts/templates/accounts/profile_edit.html first seen with mtime 1715825317.2833393
+DEBUG 2024-05-21 13:29:00,931 autoreload 20 139774413728640 File /workspace/myapp/accounts/templates/accounts/register.html first seen with mtime 1715825317.2833393
+DEBUG 2024-05-21 13:29:00,932 autoreload 20 139774413728640 File /workspace/myapp/templates/base.html first seen with mtime 1715915520.8931499
+DEBUG 2024-05-21 13:29:00,935 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/templates/admin first seen with mtime 1713847792.8510232
+DEBUG 2024-05-21 13:29:00,935 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/templates/admin/grappelli_mptt_change_list.html first seen with mtime 1713847792.8510232
+DEBUG 2024-05-21 13:29:00,936 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/templates/admin/grappelli_mptt_change_list_results.html first seen with mtime 1713847792.8510232
+DEBUG 2024-05-21 13:29:00,936 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/templates/admin/mptt_change_list.html first seen with mtime 1713847792.8510232
+DEBUG 2024-05-21 13:29:00,937 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/templates/admin/mptt_change_list_results.html first seen with mtime 1713847792.8510232
+DEBUG 2024-05-21 13:29:00,938 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/templates/admin/mptt_filter.html first seen with mtime 1713847792.8510232
+DEBUG 2024-05-21 13:29:00,940 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/locale/da/LC_MESSAGES/django.mo first seen with mtime 1713847792.841023
+DEBUG 2024-05-21 13:29:00,941 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/locale/de/LC_MESSAGES/django.mo first seen with mtime 1713847792.841023
+DEBUG 2024-05-21 13:29:00,942 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/locale/es/LC_MESSAGES/django.mo first seen with mtime 1713847792.841023
+DEBUG 2024-05-21 13:29:00,942 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/locale/es_AR/LC_MESSAGES/django.mo first seen with mtime 1713847792.8510232
+DEBUG 2024-05-21 13:29:00,943 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/locale/fi/LC_MESSAGES/django.mo first seen with mtime 1713847792.8510232
+DEBUG 2024-05-21 13:29:00,943 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/locale/fr/LC_MESSAGES/django.mo first seen with mtime 1713847792.8510232
+DEBUG 2024-05-21 13:29:00,944 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/locale/hu/LC_MESSAGES/django.mo first seen with mtime 1713847792.8510232
+DEBUG 2024-05-21 13:29:00,944 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/locale/it/LC_MESSAGES/django.mo first seen with mtime 1713847792.8510232
+DEBUG 2024-05-21 13:29:00,945 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/locale/mn/LC_MESSAGES/django.mo first seen with mtime 1713847792.8510232
+DEBUG 2024-05-21 13:29:00,945 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/locale/nb/LC_MESSAGES/django.mo first seen with mtime 1713847792.8510232
+DEBUG 2024-05-21 13:29:00,946 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/locale/pl/LC_MESSAGES/django.mo first seen with mtime 1713847792.8510232
+DEBUG 2024-05-21 13:29:00,946 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/locale/pt_BR/LC_MESSAGES/django.mo first seen with mtime 1713847792.8510232
+DEBUG 2024-05-21 13:29:00,947 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/locale/ru/LC_MESSAGES/django.mo first seen with mtime 1713847792.8510232
+DEBUG 2024-05-21 13:29:00,948 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/locale/uk/LC_MESSAGES/django.mo first seen with mtime 1713847792.8510232
+DEBUG 2024-05-21 13:29:00,949 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/locale/zh_Hans/LC_MESSAGES/django.mo first seen with mtime 1713847792.8510232
+DEBUG 2024-05-21 13:29:00,949 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/mptt/locale/zh_Hant/LC_MESSAGES/django.mo first seen with mtime 1713847792.8510232
+DEBUG 2024-05-21 13:29:02,060 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/migrations/0009_alter_user_last_name_max_length.py first seen with mtime 1713847790.7010062
+DEBUG 2024-05-21 13:29:02,061 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/migrations/0003_alter_user_email_max_length.py first seen with mtime 1713847790.7010062
+DEBUG 2024-05-21 13:29:02,061 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/migrations/0004_alter_user_username_opts.py first seen with mtime 1713847790.7010062
+DEBUG 2024-05-21 13:29:02,062 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/migrations/0008_alter_user_username_max_length.py first seen with mtime 1713847790.7010062
+DEBUG 2024-05-21 13:29:02,062 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/migrations/0001_initial.py first seen with mtime 1713847790.541005
+DEBUG 2024-05-21 13:29:02,063 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/middleware/clickjacking.py first seen with mtime 1713847791.18101
+DEBUG 2024-05-21 13:29:02,068 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/sessions/migrations/0001_initial.py first seen with mtime 1713847791.0610092
+DEBUG 2024-05-21 13:29:02,069 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/sessions/backends/db.py first seen with mtime 1713847791.0210087
+DEBUG 2024-05-21 13:29:02,074 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/migrations/0011_update_proxy_permissions.py first seen with mtime 1713847790.7010062
+DEBUG 2024-05-21 13:29:02,074 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/contenttypes/migrations/0001_initial.py first seen with mtime 1713847790.7510066
+DEBUG 2024-05-21 13:29:02,074 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/migrations/0002_logentry_remove_auto_add.py first seen with mtime 1713847790.541005
+DEBUG 2024-05-21 13:29:02,075 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/migrations/0007_alter_validators_add_error_messages.py first seen with mtime 1713847790.7010062
+DEBUG 2024-05-21 13:29:02,075 autoreload 20 139774413728640 File /workspace/myapp/myapp/wsgi.py first seen with mtime 1709702064.9259434
+DEBUG 2024-05-21 13:29:02,075 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/migrations/0002_alter_permission_name_max_length.py first seen with mtime 1713847790.7010062
+DEBUG 2024-05-21 13:29:02,076 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/db/models/sql/compiler.py first seen with mtime 1713847791.1610098
+DEBUG 2024-05-21 13:29:02,076 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/migrations/0001_initial.py first seen with mtime 1713847790.7010062
+DEBUG 2024-05-21 13:29:02,078 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/contenttypes/migrations/0002_remove_content_type_name.py first seen with mtime 1713847790.7510066
+DEBUG 2024-05-21 13:29:02,079 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/migrations/__init__.py first seen with mtime 1713847790.7010062
+DEBUG 2024-05-21 13:29:02,079 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/sessions/migrations/__init__.py first seen with mtime 1713847791.0610092
+DEBUG 2024-05-21 13:29:02,079 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/migrations/__init__.py first seen with mtime 1713847790.541005
+DEBUG 2024-05-21 13:29:02,080 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/migrations/0006_require_contenttypes_0002.py first seen with mtime 1713847790.7010062
+DEBUG 2024-05-21 13:29:02,081 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/migrations/0012_alter_user_first_name_max_length.py first seen with mtime 1713847790.7010062
+DEBUG 2024-05-21 13:29:02,081 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/admin/migrations/0003_logentry_add_action_flag_choices.py first seen with mtime 1713847790.541005
+DEBUG 2024-05-21 13:29:02,087 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/migrations/0005_alter_user_last_login_null.py first seen with mtime 1713847790.7010062
+DEBUG 2024-05-21 13:29:02,088 autoreload 20 139774413728640 File /usr/local/lib/python3.12/encodings/idna.py first seen with mtime 1712759889.0
+DEBUG 2024-05-21 13:29:02,089 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/migrations/0010_alter_group_name_max_length.py first seen with mtime 1713847790.7010062
+DEBUG 2024-05-21 13:29:02,090 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/contenttypes/migrations/__init__.py first seen with mtime 1713847790.7510066
+DEBUG 2024-05-21 13:29:02,091 autoreload 20 139774413728640 File /usr/local/lib/python3.12/stringprep.py first seen with mtime 1712759888.0
+DEBUG 2024-05-21 13:29:06,046 utils 20 139774274827968 (0.008) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2024-05-21T04:29:05.989058+00:00'::timestamptz AND "django_session"."session_key" = 'q63q56hc4h2rmdzgyubgt1nkai011ij1') LIMIT 21; args=(datetime.datetime(2024, 5, 21, 4, 29, 5, 989058, tzinfo=<UTC>), 'q63q56hc4h2rmdzgyubgt1nkai011ij1')
+DEBUG 2024-05-21 13:29:06,055 utils 20 139774274827968 (0.004) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2024-05-21 13:29:06,091 utils 20 139774274827968 (0.006) SELECT "memorymap_post"."id", "memorymap_post"."author_id", "memorymap_post"."content", "memorymap_post"."content_type", "memorymap_post"."title", "memorymap_post"."visibility", "memorymap_post"."created_at", "memorymap_post"."updated_at", "memorymap_post"."thumbnail", "memorymap_post"."uuid" FROM "memorymap_post" WHERE ("memorymap_post"."visibility" = 'public' OR ("memorymap_post"."author_id" = 2 AND "memorymap_post"."visibility" = 'private') OR ("memorymap_post"."author_id" = 2 AND "memorymap_post"."visibility" = 'custom')) ORDER BY "memorymap_post"."created_at" DESC; args=('public', 2, 'private', 2, 'custom')
+DEBUG 2024-05-21 13:29:06,100 utils 20 139774274827968 (0.001) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2024-05-21 13:29:06,222 utils 20 139774274827968 (0.005) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2024-05-21 13:29:06,232 utils 20 139774274827968 (0.001) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2024-05-21 13:29:06,252 utils 20 139774274827968 (0.014) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2024-05-21 13:29:06,273 utils 20 139774274827968 (0.009) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2024-05-21 13:29:06,276 utils 20 139774274827968 (0.001) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,)
+INFO 2024-05-21 13:29:06,286 basehttp 20 139774274827968 "GET /memorymap/home/ HTTP/1.1" 200 7954
+INFO 2024-05-21 13:29:06,389 basehttp 20 139774264338112 "GET /media/%E9%AB%98%E6%A9%8B%E5%90%8D%E4%BA%BA.jpg HTTP/1.1" 304 0
+INFO 2024-05-21 13:29:06,391 basehttp 20 139774274827968 "GET /media/media/thumbnails/85954794-8030-4f07-9706-76f3090ed55d.png HTTP/1.1" 304 0
+INFO 2024-05-21 13:29:06,392 basehttp 20 139774253848256 "GET /media/Media.png HTTP/1.1" 304 0
+DEBUG 2024-05-21 13:29:06,435 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/messages/storage/cookie.py first seen with mtime 1713847790.931008
+DEBUG 2024-05-21 13:29:06,437 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/messages/storage/fallback.py first seen with mtime 1713847790.931008
+DEBUG 2024-05-21 13:29:06,437 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/messages/storage/session.py first seen with mtime 1713847790.931008
+DEBUG 2024-05-21 13:29:06,439 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/auth/context_processors.py first seen with mtime 1713847790.651006
+DEBUG 2024-05-21 13:29:06,443 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/messages/context_processors.py first seen with mtime 1713847790.921008
+DEBUG 2024-05-21 13:29:06,444 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/messages/storage/base.py first seen with mtime 1713847790.931008
+DEBUG 2024-05-21 13:29:06,445 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/template/context_processors.py first seen with mtime 1713847791.18101
+DEBUG 2024-05-21 13:29:06,447 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/messages/utils.py first seen with mtime 1713847790.931008
+DEBUG 2024-05-21 13:29:06,447 autoreload 20 139774413728640 File /usr/local/lib/python3.12/site-packages/django/contrib/sessions/serializers.py first seen with mtime 1713847791.0210087
+INFO 2024-05-21 13:29:06,480 basehttp 20 139774253848256 "GET /media/%E3%83%88%E3%83%BC%E3%83%AF.jpg HTTP/1.1" 200 11166
+INFO 2024-05-21 13:29:06,491 basehttp 20 139774264338112 "GET /media/%E6%80%92%E9%B3%B4%E3%82%8B%E3%83%9A%E3%83%B3%E3%82%AE%E3%83%B3.jpg HTTP/1.1" 200 105926
+DEBUG 2024-05-21 13:29:06,714 base 20 139774264338112 Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 167, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 290, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/urls/resolvers.py", line 589, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLPattern '' [name='root']>], [<URLResolver <module 'memorymap.urls' from '/workspace/myapp/memorymap/urls.py'> (memorymap:memorymap) 'memorymap/'>], [<URLResolver <module 'accounts.urls' from '/workspace/myapp/accounts/urls.py'> (accounts:accounts) 'accounts/'>], [<URLPattern '^media/(?P<path>.*)$'>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 829, in _resolve_lookup
+    current = current[bit]
+              ~~~~~~~^^^^^
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 837, in _resolve_lookup
+    current = getattr(current, bit)
+              ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 843, in _resolve_lookup
+    current = current[int(bit)]
+                      ^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 848, in _resolve_lookup
+    raise VariableDoesNotExist("Failed lookup for key "
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <URLPattern list> (admin:admin) 'admin/'>
+DEBUG 2024-05-21 13:29:06,717 base 20 139774264338112 Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 167, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 290, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/urls/resolvers.py", line 589, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLPattern '' [name='root']>], [<URLResolver <module 'memorymap.urls' from '/workspace/myapp/memorymap/urls.py'> (memorymap:memorymap) 'memorymap/'>], [<URLResolver <module 'accounts.urls' from '/workspace/myapp/accounts/urls.py'> (accounts:accounts) 'accounts/'>], [<URLPattern '^media/(?P<path>.*)$'>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 829, in _resolve_lookup
+    current = current[bit]
+              ~~~~~~~^^^^^
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 837, in _resolve_lookup
+    current = getattr(current, bit)
+              ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 843, in _resolve_lookup
+    current = current[int(bit)]
+                      ^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 848, in _resolve_lookup
+    raise VariableDoesNotExist("Failed lookup for key "
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'memorymap.urls' from '/workspace/myapp/memorymap/urls.py'> (memorymap:memorymap) 'memorymap/'>
+DEBUG 2024-05-21 13:29:06,720 base 20 139774264338112 Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 167, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 290, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/urls/resolvers.py", line 589, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLPattern '' [name='root']>], [<URLResolver <module 'memorymap.urls' from '/workspace/myapp/memorymap/urls.py'> (memorymap:memorymap) 'memorymap/'>], [<URLResolver <module 'accounts.urls' from '/workspace/myapp/accounts/urls.py'> (accounts:accounts) 'accounts/'>], [<URLPattern '^media/(?P<path>.*)$'>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 829, in _resolve_lookup
+    current = current[bit]
+              ~~~~~~~^^^^^
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 837, in _resolve_lookup
+    current = getattr(current, bit)
+              ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 843, in _resolve_lookup
+    current = current[int(bit)]
+                      ^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/template/base.py", line 848, in _resolve_lookup
+    raise VariableDoesNotExist("Failed lookup for key "
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'accounts.urls' from '/workspace/myapp/accounts/urls.py'> (accounts:accounts) 'accounts/'>
+WARNING 2024-05-21 13:29:06,723 log 20 139774264338112 Not Found: /favicon.ico
+WARNING 2024-05-21 13:29:06,724 basehttp 20 139774264338112 "GET /favicon.ico HTTP/1.1" 404 2567
+DEBUG 2024-05-21 13:29:07,944 utils 20 139774264338112 (0.001) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2024-05-21T04:29:07.927216+00:00'::timestamptz AND "django_session"."session_key" = 'q63q56hc4h2rmdzgyubgt1nkai011ij1') LIMIT 21; args=(datetime.datetime(2024, 5, 21, 4, 29, 7, 927216, tzinfo=<UTC>), 'q63q56hc4h2rmdzgyubgt1nkai011ij1')
+DEBUG 2024-05-21 13:29:07,948 utils 20 139774264338112 (0.002) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2024-05-21 13:29:07,956 utils 20 139774264338112 (0.002) SELECT "memorymap_post"."id", "memorymap_post"."author_id", "memorymap_post"."content", "memorymap_post"."content_type", "memorymap_post"."title", "memorymap_post"."visibility", "memorymap_post"."created_at", "memorymap_post"."updated_at", "memorymap_post"."thumbnail", "memorymap_post"."uuid" FROM "memorymap_post" WHERE ("memorymap_post"."visibility" = 'public' OR ("memorymap_post"."author_id" = 2 AND "memorymap_post"."visibility" = 'private') OR ("memorymap_post"."author_id" = 2 AND "memorymap_post"."visibility" = 'custom')) ORDER BY "memorymap_post"."created_at" DESC; args=('public', 2, 'private', 2, 'custom')
+DEBUG 2024-05-21 13:29:07,959 utils 20 139774264338112 (0.002) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2024-05-21 13:29:07,963 utils 20 139774264338112 (0.001) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2024-05-21 13:29:07,966 utils 20 139774264338112 (0.001) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2024-05-21 13:29:07,970 utils 20 139774264338112 (0.001) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2024-05-21 13:29:07,974 utils 20 139774264338112 (0.001) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2024-05-21 13:29:07,978 utils 20 139774264338112 (0.001) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,)
+INFO 2024-05-21 13:29:07,981 basehttp 20 139774264338112 "GET /memorymap/home/ HTTP/1.1" 200 7954
+DEBUG 2024-05-21 13:29:08,738 utils 20 139774264338112 (0.002) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2024-05-21T04:29:08.710617+00:00'::timestamptz AND "django_session"."session_key" = 'q63q56hc4h2rmdzgyubgt1nkai011ij1') LIMIT 21; args=(datetime.datetime(2024, 5, 21, 4, 29, 8, 710617, tzinfo=<UTC>), 'q63q56hc4h2rmdzgyubgt1nkai011ij1')
+DEBUG 2024-05-21 13:29:08,747 utils 20 139774264338112 (0.005) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2024-05-21 13:29:08,766 utils 20 139774264338112 (0.002) SELECT "memorymap_post"."id", "memorymap_post"."author_id", "memorymap_post"."content", "memorymap_post"."content_type", "memorymap_post"."title", "memorymap_post"."visibility", "memorymap_post"."created_at", "memorymap_post"."updated_at", "memorymap_post"."thumbnail", "memorymap_post"."uuid" FROM "memorymap_post" WHERE ("memorymap_post"."visibility" = 'public' OR ("memorymap_post"."author_id" = 2 AND "memorymap_post"."visibility" = 'private') OR ("memorymap_post"."author_id" = 2 AND "memorymap_post"."visibility" = 'custom')) ORDER BY "memorymap_post"."created_at" DESC; args=('public', 2, 'private', 2, 'custom')
+DEBUG 2024-05-21 13:29:08,771 utils 20 139774264338112 (0.001) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2024-05-21 13:29:08,775 utils 20 139774264338112 (0.001) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2024-05-21 13:29:08,778 utils 20 139774264338112 (0.001) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2024-05-21 13:29:08,781 utils 20 139774264338112 (0.001) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2024-05-21 13:29:08,783 utils 20 139774264338112 (0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2024-05-21 13:29:08,785 utils 20 139774264338112 (0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 3 LIMIT 21; args=(3,)
+INFO 2024-05-21 13:29:08,787 basehttp 20 139774264338112 "GET /memorymap/home/ HTTP/1.1" 200 7954
+DEBUG 2024-05-21 13:29:14,120 utils 20 139774264338112 (0.001) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2024-05-21T04:29:14.101820+00:00'::timestamptz AND "django_session"."session_key" = 'q63q56hc4h2rmdzgyubgt1nkai011ij1') LIMIT 21; args=(datetime.datetime(2024, 5, 21, 4, 29, 14, 101820, tzinfo=<UTC>), 'q63q56hc4h2rmdzgyubgt1nkai011ij1')
+DEBUG 2024-05-21 13:29:14,124 utils 20 139774264338112 (0.002) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2024-05-21 13:29:14,128 utils 20 139774264338112 (0.002) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."username" = 'DzunCcat' LIMIT 21; args=('DzunCcat',)
+DEBUG 2024-05-21 13:29:14,137 utils 20 139774264338112 (0.005) SELECT COUNT(*) AS "__count" FROM "accounts_follower" WHERE "accounts_follower"."followed_id" = 2; args=(2,)
+DEBUG 2024-05-21 13:29:14,141 utils 20 139774264338112 (0.001) SELECT COUNT(*) AS "__count" FROM "accounts_follower" WHERE "accounts_follower"."follower_id" = 2; args=(2,)
+DEBUG 2024-05-21 13:29:14,144 utils 20 139774264338112 (0.002) SELECT (1) AS "a" FROM "accounts_follower" WHERE ("accounts_follower"."followed_id" = 2 AND "accounts_follower"."follower_id" = 2) LIMIT 1; args=(2, 2)
+DEBUG 2024-05-21 13:29:14,155 utils 20 139774264338112 (0.002) SELECT "memorymap_post"."id", "memorymap_post"."author_id", "memorymap_post"."content", "memorymap_post"."content_type", "memorymap_post"."title", "memorymap_post"."visibility", "memorymap_post"."created_at", "memorymap_post"."updated_at", "memorymap_post"."thumbnail", "memorymap_post"."uuid" FROM "memorymap_post" WHERE "memorymap_post"."author_id" = 2 ORDER BY "memorymap_post"."created_at" DESC; args=(2,)
+DEBUG 2024-05-21 13:29:14,166 utils 20 139774264338112 (0.008) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2024-05-21 13:29:14,179 utils 20 139774264338112 (0.007) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2024-05-21 13:29:14,182 utils 20 139774264338112 (0.001) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2024-05-21 13:29:14,185 utils 20 139774264338112 (0.001) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+DEBUG 2024-05-21 13:29:14,187 utils 20 139774264338112 (0.000) SELECT "accounts_user"."id", "accounts_user"."password", "accounts_user"."last_login", "accounts_user"."is_superuser", "accounts_user"."username", "accounts_user"."first_name", "accounts_user"."last_name", "accounts_user"."email", "accounts_user"."is_staff", "accounts_user"."is_active", "accounts_user"."date_joined", "accounts_user"."profile_picture", "accounts_user"."bio", "accounts_user"."birthday", "accounts_user"."slug" FROM "accounts_user" WHERE "accounts_user"."id" = 2 LIMIT 21; args=(2,)
+INFO 2024-05-21 13:29:14,194 basehttp 20 139774264338112 "GET /accounts/profile/DzunCcat/ HTTP/1.1" 200 6504
+INFO 2024-05-21 13:29:14,268 basehttp 20 139774264338112 "GET /media/profile_pics/%E6%80%92%E9%B3%B4%E3%82%8B%E3%83%9A%E3%83%B3%E3%82%AE%E3%83%B3.jpg HTTP/1.1" 200 105926
+DEBUG 2024-05-21 13:36:08,428 autoreload 20 139774413728640 File /workspace/myapp/accounts/templates/accounts previous mtime: 1715825317.2833393, current mtime: 1716266167.969783
+DEBUG 2024-05-21 13:36:08,434 autoreload 20 139774413728640 /workspace/myapp/accounts/templates/accounts notified as changed. Signal results: [(<function template_changed at 0x7f1fc2f2bce0>, True), (<function translation_file_changed at 0x7f1fc1fd8040>, None)].
+DEBUG 2024-05-21 13:36:08,435 autoreload 20 139774413728640 File /workspace/myapp/accounts/templates/accounts/hover_card.html first seen with mtime 1716266167.969783
+DEBUG 2024-05-21 13:37:12,333 autoreload 20 139774413728640 File /workspace/myapp/accounts/templates/accounts/hover_card.html previous mtime: 1716266167.969783, current mtime: 1716266232.2498913
+DEBUG 2024-05-21 13:37:12,334 autoreload 20 139774413728640 /workspace/myapp/accounts/templates/accounts/hover_card.html notified as changed. Signal results: [(<function template_changed at 0x7f1fc2f2bce0>, True), (<function translation_file_changed at 0x7f1fc1fd8040>, None)].
+DEBUG 2024-05-21 15:33:52,710 autoreload 20 139774413728640 File /workspace/myapp/accounts/views.py previous mtime: 1716265636.7087708, current mtime: 1716273232.4330833
+DEBUG 2024-05-21 15:33:52,712 autoreload 20 139774413728640 /workspace/myapp/accounts/views.py notified as changed. Signal results: [(<function template_changed at 0x7f1fc2f2bce0>, None), (<function translation_file_changed at 0x7f1fc1fd8040>, None)].
+INFO 2024-05-21 15:33:52,712 autoreload 20 139774413728640 /workspace/myapp/accounts/views.py changed, reloading.
