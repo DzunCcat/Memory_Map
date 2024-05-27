@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+
 {% block extra_meta %}
     <meta name="description" content="会員制SNSアプリのホームページ">
     <meta name="keywords" content="SNS, 会員制, ホーム">
@@ -18,11 +19,7 @@
               <img src="{{ post.thumbnail.url }}" class="card-img-top" alt="{{ post.title }}">
             {% endif %}
             <div class="card-body">
-              {% if post.content_type == 'article' %}
-                <h5 class="card-title">{{ post.title }}</h5>
-              {% elif post.content_type == 'tweet' %}
-                <h5 class="card-title">{{ post.author.username }}</h5>
-              {% endif %}
+              {% include 'memorymap/post_header_info.html' with post=post template_name='home' %}
               <p class="card-text">{{ post.content|truncatewords:20 }}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <a href="{% url 'memorymap:post_detail' post.author.username post.uuid %}" class="btn btn-sm btn-outline-secondary">詳細を見る</a>

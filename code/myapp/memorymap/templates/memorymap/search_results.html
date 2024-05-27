@@ -9,12 +9,20 @@
       <p>{{ posts|length }} 件の投稿が見つかりました。</p>
 
       {% for post in posts %}
-        <div class="card mb-3">
-          <div class="card-body">
-            <h5 class="card-title">{{ post.title }}</h5>
-            <p class="card-text">{{ post.content|truncatewords:30 }}</p>
-            <a href="{% url 'memorymap:post_detail' post.author.username post.uuid %}" class="btn btn-primary">詳細を見る</a>
-          </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
+            <div class="card h-100 shadow-sm">
+                {% if post.thumbnail %}
+                    <img src="{{ post.thumbnail.url }}" class="card-img-top" alt="{{ post.title }}">
+                {% endif %}
+                <div class="card-body">
+                    {% include 'memorymap/post_header_info.html' with post=post template_name='profile' %}
+                    <p class="card-text">{{ post.content|truncatewords:20 }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="{% url 'memorymap:post_detail' post.author.username post.uuid %}" class="btn btn-sm btn-outline-secondary">詳細を見る</a>
+                        <small class="text-muted">{{ post.created_at|date:"Y/m/d H:i" }}</small>
+                    </div>
+                </div>
+            </div>
         </div>
       {% endfor %}
     {% else %}

@@ -94,6 +94,15 @@ class HomeView(LoginRequiredMixin,ListView):
             # Q(visibility="friends", author__in=self.request.user.following.all()) | 
             Q(visibility="custom", author=self.request.user) 
         ).order_by('-created_at')    
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        posts = context['posts']
+        user = self.request.user
+        is_following = {post.author.id: Follower.objects.filter(follower=user, followed=post.author).exists() for post in posts}
+        context['is_following'] = is_following
+        context['user'] = user
+        return context
 
 class NewsFeedView(LoginRequiredMixin, ListView):
     model = Post
@@ -272,19 +281,6 @@ def like_post(request, uuid):
         if not created:
             like.delete()
     return redirect('memorymap:post_detail', username=post.author.username, uuid=post.uuid)
-
-# @login_required
-# def follow_user(request, username):
-#     user = get_object_or_404(User, username=username)
-#     request.user.following.add(user)
-#     return redirect('memorymap:profile', username=username)
-
-# @login_required
-# def unfollow_user(request, username):
-#     user = get_object_or_404(User, username=username)
-#     request.user.following.remove(user)
-#     return redirect('memorymap:profile', username=username)
-
 
 def search_posts(request):
     query = request.GET.get('query', '')
