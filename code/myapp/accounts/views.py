@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.http import JsonResponse
 
 from django.template.loader import render_to_string
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, ListView
 
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -87,3 +87,22 @@ def hover_card(request, username):
         html = render_to_string('accounts/hover_card.html', context, request=request)
         return JsonResponse({'status': 'success', 'html': html})
     return render(request, 'accounts/hover_card.html', context)
+
+
+class FollowingListView(LoginRequiredMixin, ListView):
+    model = User
+    template_name = 'accounts/following_list.html'
+    context_object_name = 'following'
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs['username'])
+        return user.following.all()
+
+class FollowersListView(LoginRequiredMixin, ListView):
+    model = User
+    template_name = 'accounts/followers_list.html'
+    context_object_name = 'followers'
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs['username'])
+        return user.followers.all()

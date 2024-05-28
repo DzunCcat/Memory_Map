@@ -16,7 +16,10 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ user.username }}</h5>
                         <p class="card-text">{{ user.bio }}</p>
-                        <p class="card-text">フォロワー： {{ followers }} | フォロー中： {{ following }}</p>
+                        <p class="card-text">
+                            <a href="{% url 'accounts:following_list' user.username %}">フォロー中: {{ following }}</a> | 
+                            <a href="{% url 'accounts:followers_list' user.username %}">フォロワー: {{ followers }}</a>
+                        </p>
                         {% if request.user == user %}
                             <a href="{% url 'accounts:profile_edit' username=user.username  %}" class="btn btn-primary">プロフィールを編集</a>
                         {% else %}

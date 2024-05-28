@@ -2,7 +2,10 @@
   <div class="card-body">
     <h5 class="card-title">{{ user.username }}</h5>
     <p class="card-text">{{ user.bio }}</p>
-    <p class="card-text" id="follower-count">フォロワー： {{ user.followers.count }} | フォロー中： {{ user.following.count }}</p>
+    <p class="card-text">
+      <a href="{% url 'accounts:following_list' user.username %}">フォロー中: {{ following }}</a> | 
+      <a href="{% url 'accounts:followers_list' user.username %}">フォロワー: {{ followers }}</a>
+    </p>
     {% if request.user.is_authenticated and request.user != user %}
       <span id="follow-status-{{ user.username }}">
         <p>Debug: is_following = {{ is_following }}</p>  <!-- デバッグ用 -->
