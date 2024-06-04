@@ -17,17 +17,15 @@
                         <h5 class="card-title">{{ user.username }}</h5>
                         <p class="card-text">{{ user.bio }}</p>
                         <p class="card-text">
-                            <a href="{% url 'accounts:following_list' user.username %}">フォロー中: {{ following }}</a> | 
-                            <a href="{% url 'accounts:followers_list' user.username %}">フォロワー: {{ followers }}</a>
+                            <a href="{% url 'accounts:following_list' user.username %}">フォロー中: <span id="following-count">{{ following_count }}</span></a> | 
+                            <a href="{% url 'accounts:followers_list' user.username %}">フォロワー: <span id="follower-count">{{ followers_count }}</span></a>
                         </p>
                         {% if request.user == user %}
-                            <a href="{% url 'accounts:profile_edit' username=user.username  %}" class="btn btn-primary">プロフィールを編集</a>
+                            <a href="{% url 'accounts:profile_edit' username=user.username %}" class="btn btn-primary">プロフィールを編集</a>
                         {% else %}
-                            {% if is_following %}
-                                <a href="{% url 'accounts:unfollow' user.username %}" class="btn btn-secondary">フォロー解除</a>
-                            {% else %}
-                                <a href="{% url 'accounts:follow' user.username %}" class="btn btn-primary">フォローする</a>
-                            {% endif %}
+                            <button id="profile-follow-btn" class="btn {% if is_following %}btn-secondary{% else %}btn-primary{% endif %}" data-username="{{ user.username }}" data-action="{% if is_following %}unfollow{% else %}follow{% endif %}">
+                                {% if is_following %}フォロー解除{% else %}フォローする{% endif %}
+                            </button>
                         {% endif %}
                     </div>
                 </div>
@@ -42,7 +40,24 @@
                                     <img src="{{ post.thumbnail.url }}" class="card-img-top" alt="{{ post.title }}">
                                 {% endif %}
                                 <div class="card-body">
-                                    {% include 'memorymap/post_header_info.html' with post=post template_name='profile' %}
+                                    {% if post.content_type == 'article' %}
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h5 class="card-title">{{ post.title }}</h5>
+                                            <small>
+                                                <a href="{% url 'accounts:profile' post.author.username %}" class="username-link">{{ post.author.username }}</a>
+                                                <div class="hover-card">
+                                                    {% include 'accounts/hover_card.html' with user=post.author %}
+                                                </div>
+                                            </small>
+                                        </div>
+                                    {% elif post.content_type == 'tweet' %}
+                                        <h5 class="card-title">
+                                            <a href="{% url 'accounts:profile' post.author.username %}" class="username-link">{{ post.author.username }}</a>
+                                            <div class="hover-card">
+                                                {% include 'accounts/hover_card.html' with user=post.author %}
+                                            </div>
+                                        </h5>
+                                    {% endif %}
                                     <p class="card-text">{{ post.content|truncatewords:20 }}</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <a href="{% url 'memorymap:post_detail' post.author.username post.uuid %}" class="btn btn-sm btn-outline-secondary">詳細を見る</a>
@@ -58,4 +73,52 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#profile-follow-btn').click(function(event) {
+        event.preventDefault();
+        var $this = $(this);
+        $this.prop('disabled', true);  // ボタンを無効化
+
+        var username = $this.data('username');
+        var action = $this.data('action');
+        var url = action === 'follow' ? "{% url 'accounts:follow' 'dummy' %}".replace('dummy', username) : "{% url 'accounts:unfollow' 'dummy' %}".replace('dummy', username);
+        console.log('Request URL:', url);  // デバッグ用ログ
+
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: {
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(data) {
+                console.log('Ajax request successful. Data:', data);
+                if (data.status === 'success') {
+                    if (data.is_following) {
+                        $this.text('フォロー解除').removeClass('btn-primary').addClass('btn-secondary').data('action', 'unfollow');
+                    } else {
+                        $this.text('フォローする').removeClass('btn-secondary').addClass('btn-primary').data('action', 'follow');
+                    }
+                    // フォロワーとフォロー中のカウントを更新
+                    $('#follower-count').fadeOut('fast', function() {
+                        $(this).text(data.follower_count).fadeIn('fast');
+                    });
+                    $('#following-count').fadeOut('fast', function() {
+                        $(this).text(data.following_count).fadeIn('fast');
+                    });
+                }
+                $this.prop('disabled', false);  // ボタンを再度有効化
+            },
+            error: function(xhr, status, error) {
+                console.log('Ajax request failed. Status:', status, 'Error:', error);
+                $this.prop('disabled', false);  // ボタンを再度有効化
+            }
+        });
+    });
+});
+</script>
 {% endblock %}

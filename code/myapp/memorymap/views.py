@@ -68,6 +68,7 @@ from django.core.exceptions import PermissionDenied
 
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
 
 from .models import Post, Media, Comment, Like, PostAccess
 from .forms import  PostForm, CommentForm
@@ -81,29 +82,37 @@ from django.core.exceptions import ValidationError
 
 
 
-class HomeView(LoginRequiredMixin,ListView):
+class HomeView(LoginRequiredMixin, ListView):
     model = Post
     template_name = 'memorymap/home.html'
     context_object_name = 'posts'
-    login_url  = '/accounts/login/'
+    login_url = '/accounts/login/'
 
     def get_queryset(self):
         return Post.objects.filter(
-            Q(visibility="public") | 
-            Q(visibility = "private", author=self.request.user) |
-            # Q(visibility="friends", author__in=self.request.user.following.all()) | 
-            Q(visibility="custom", author=self.request.user) 
-        ).order_by('-created_at')    
-    
+            Q(visibility="public") |
+            Q(visibility="private", author=self.request.user) |
+            Q(visibility="custom", author=self.request.user)
+        ).order_by('-created_at')
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         posts = context['posts']
         user = self.request.user
-        is_following = {post.author.id: Follower.objects.filter(follower=user, followed=post.author).exists() for post in posts}
-        context['is_following'] = is_following
-        context['user'] = user
-        return context
 
+        for post in posts:
+            post.is_following = Follower.objects.filter(follower=user, followed=post.author).exists()
+
+        followers = Follower.objects.filter(followed=user).count()
+        following = Follower.objects.filter(follower=user).count()
+
+        context.update({
+            'followers_count': followers,
+            'following_count': following,
+            'user': user,
+        })
+        return context
+    
 class NewsFeedView(LoginRequiredMixin, ListView):
     model = Post
     template_name = 'memorymap/news_feed.html'
@@ -112,22 +121,34 @@ class NewsFeedView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         following_users = self.request.user.following.values_list('followed', flat=True)
-        last_access_time = PostAccess.objects.filter(user=self.request.user).order_by('-last_access_time').first()
-        if last_access_time:
-            queryset = Post.objects.filter(
-                Q(visibility='public', author__in=following_users) |
-                Q(visibility='private', author=self.request.user) |
-                Q(author=self.request.user),
-                created_at__gt=last_access_time.last_access_time
-            ).order_by('-created_at')
-        else:
-            queryset = Post.objects.filter(
-                Q(visibility='public', author__in=following_users) |
-                Q(visibility='private', author=self.request.user) |
-                Q(author=self.request.user)
-            ).order_by('-created_at')
+        update_interval = timezone.now() - timezone.timedelta(hours=1)
+        seen_posts = PostAccess.objects.filter(user=self.request.user).values_list('post', flat=True)
+        liked_posts = Like.objects.filter(user=self.request.user).values_list('post', flat=True)
+
+        queryset = Post.objects.filter(
+                    Q(created_at__gte=update_interval),
+                    Q(author__in=following_users) | Q(author=self.request.user),
+                    ~Q(id__in=seen_posts) | Q(id__in=liked_posts)
+                ).order_by('-created_at')
 
         return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        posts = context['posts']
+        user = self.request.user
+        is_following = {post.author.id: Follower.objects.filter(follower=user, followed=post.author).exists() for post in posts}
+        followers = Follower.objects.filter(followed=user).count()
+        following = Follower.objects.filter(follower=user).count()
+
+        context.update({
+            'is_following': is_following,
+            'followers_count': followers,
+            'following_count': following,
+            'user': user,
+        })
+        return context
+    
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
@@ -183,19 +204,29 @@ class PostDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['comment_form'] = CommentForm()  # コメントフォームをコンテキストに追加
-        context['comments'] = Comment.objects.filter(post=self.object).order_by('-created_at')  # コメントを新しいものから順に表示
+        context['comment_form'] = CommentForm()
+        context['comments'] = Comment.objects.filter(post=self.object).order_by('-created_at')
         context['like_count'] = self.object.likes.exclude(user=self.object.author).count()
-        context['media'] = Media.objects.filter(post=self.object) 
+        context['media'] = Media.objects.filter(post=self.object)
 
         post_access, created = PostAccess.objects.get_or_create(user=self.request.user, post=self.object)
         context['last_access_time'] = post_access.last_access_time
-        context['is_new_visitor'] = created  # createdの値をコンテキストに追加
+        context['is_new_visitor'] = created
 
         is_following = Follower.objects.filter(follower=self.request.user, followed=self.object.author).exists()
-        context['is_following'] = is_following  
-        
+        context['is_following'] = is_following
 
+        user = self.request.user
+        post = self.object  # 現在の投稿を使用する
+
+        followers = Follower.objects.filter(followed=user).count()
+        following = Follower.objects.filter(follower=user).count()
+
+        context.update({
+            'followers_count': followers,
+            'following_count': following,
+            'user': user,
+        })
         return context
 
     def post(self, request, *args, **kwargs):

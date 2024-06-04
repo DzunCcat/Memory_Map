@@ -38,8 +38,8 @@ class ProfileView(LoginRequiredMixin, TemplateView):
         context.update({
             'user': user,
             'posts': Post.objects.filter(author=user).order_by('-created_at'),
-            'followers': Follower.objects.filter(followed=user).count(),
-            'following': Follower.objects.filter(follower=user).count(),
+            'followers_count': Follower.objects.filter(followed=user).count(),
+            'following_count': Follower.objects.filter(follower=user).count(),
             'is_following': self.request.user.is_authenticated and Follower.objects.filter(follower=self.request.user, followed=user).exists()
         })
         return context
@@ -75,17 +75,29 @@ def unfollow(request, username):
     following_count = Follower.objects.filter(follower=followed_user).count()
     return JsonResponse({'status': 'success', 'is_following': is_following, 'follower_count': follower_count, 'following_count': following_count})
 
+@login_required
 def hover_card(request, username):
     user = get_object_or_404(User, username=username)
     is_following = request.user.is_authenticated and Follower.objects.filter(follower=request.user, followed=user).exists()
-    print(f"Hover card view called. User: {user.username}, Is following: {is_following}")  # デバッグ用
+    following_count = Follower.objects.filter(follower=user).count()
+    followers_count = Follower.objects.filter(followed=user).count()
+
     context = {
         'user': user,
         'is_following': is_following,
+        'following_count': following_count,
+        'followers_count': followers_count,
     }
+
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        html = render_to_string('accounts/hover_card.html', context, request=request)
-        return JsonResponse({'status': 'success', 'html': html})
+        return JsonResponse({
+            'username': user.username,
+            'bio': user.bio,
+            'following_count': following_count,
+            'followers_count': followers_count,
+            'is_following': is_following,
+        })
+
     return render(request, 'accounts/hover_card.html', context)
 
 

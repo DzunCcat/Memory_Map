@@ -3,12 +3,11 @@
     <h5 class="card-title">{{ user.username }}</h5>
     <p class="card-text">{{ user.bio }}</p>
     <p class="card-text">
-      <a href="{% url 'accounts:following_list' user.username %}">フォロー中: {{ following }}</a> | 
-      <a href="{% url 'accounts:followers_list' user.username %}">フォロワー: {{ followers }}</a>
+      <a href="{% url 'accounts:following_list' user.username %}">フォロー中: <span id="following-count-{{ user.username }}">{{ following_count }}</span></a> | 
+      <a href="{% url 'accounts:followers_list' user.username %}">フォロワー: <span id="follower-count-{{ user.username }}">{{ followers_count }}</span></a>
     </p>
     {% if request.user.is_authenticated and request.user != user %}
       <span id="follow-status-{{ user.username }}">
-        <p>Debug: is_following = {{ is_following }}</p>  <!-- デバッグ用 -->
         {% if is_following %}
           <button class="btn btn-sm btn-secondary follow-btn" data-username="{{ user.username }}" data-action="unfollow">フォロー解除</button>
         {% else %}
@@ -37,36 +36,89 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-$(document).on('click', '.follow-btn', function() {
-    var username = $(this).data('username');
-    var action = $(this).data('action');
-    var url = action === 'follow' ? "{% url 'accounts:follow' 'dummy' %}" : "{% url 'accounts:unfollow' 'dummy' %}";
-    url = url.replace('dummy', username);
+$(document).ready(function() {
+    // フォローボタンのクリックイベントハンドラ
+    $(document).on('click', '.hover-card .follow-btn', function(event) {
+        event.stopPropagation();
+        var $this = $(this);
+        $this.prop('disabled', true);  // ボタンを無効化
 
-    var $this = $(this);
+        var username = $(this).data('username');
+        var action = $(this).data('action');
+        var url = action === 'follow' ? "{% url 'accounts:follow' 'dummy' %}".replace('dummy', username) : "{% url 'accounts:unfollow' 'dummy' %}".replace('dummy', username);
+        console.log('Request URL:', url);  // デバッグ用ログ
 
-    $.ajax({
-        url: url,
-        method: 'POST',
-        data: {
-            'csrfmiddlewaretoken': '{{ csrf_token }}'
-        },
-        success: function(data) {
-            console.log('Ajax request successful. Data:', data);
-            if (data.status === 'success') {
-                console.log('Is following:', data.is_following);  // is_followingの値をログ出力
-                if (data.is_following) {
-                    $this.text('フォロー解除').removeClass('btn-primary').addClass('btn-secondary').data('action', 'unfollow');
-                } else {
-                    $this.text('フォローする').removeClass('btn-secondary').addClass('btn-primary').data('action', 'follow');
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: {
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(data) {
+                console.log('Ajax request successful. Data:', data);
+                if (data.status === 'success') {
+                    if (data.is_following) {
+                        $this.text('フォロー解除').removeClass('btn-primary').addClass('btn-secondary').data('action', 'unfollow');
+                    } else {
+                        $this.text('フォローする').removeClass('btn-secondary').addClass('btn-primary').data('action', 'follow');
+                    }
+                    // フォロワーとフォロー中のカウントを更新
+                    $('#follower-count-' + username).fadeOut('fast', function() {
+                        $(this).text(data.follower_count).fadeIn('fast');
+                    });
+                    $('#following-count-' + username).fadeOut('fast', function() {
+                        $(this).text(data.following_count).fadeIn('fast');
+                    });
+                    // profile.html のカウントとフォローボタンも更新
+                    var $profileFollowBtn = $('#profile-follow-btn');
+                    if ($profileFollowBtn.length > 0 && $profileFollowBtn.data('username') === username) {
+                        if (data.is_following) {
+                            $profileFollowBtn.text('フォロー解除').removeClass('btn-primary').addClass('btn-secondary').data('action', 'unfollow');
+                        } else {
+                            $profileFollowBtn.text('フォローする').removeClass('btn-secondary').addClass('btn-primary').data('action', 'follow');
+                        }
+                        $('#follower-count').fadeOut('fast', function() {
+                            $(this).text(data.follower_count).fadeIn('fast');
+                        });
+                        $('#following-count').fadeOut('fast', function() {
+                            $(this).text(data.following_count).fadeIn('fast');
+                        });
+                    }
                 }
-                // フォロワーとフォロー中のカウントを更新
-                $('#follower-count').text('フォロワー： ' + data.follower_count + ' | フォロー中： ' + data.following_count);
+                $this.prop('disabled', false);  // ボタンを再度有効化
+            },
+            error: function(xhr, status, error) {
+                console.log('Ajax request failed. Status:', status, 'Error:', error);
+                $this.prop('disabled', false);  // ボタンを再度有効化
             }
-        },
-        error: function(xhr, status, error) {
-            console.log('Ajax request failed. Status:', status, 'Error:', error);
-        }
+        });
+    });
+
+    // ユーザー名にホバーしたときのイベントハンドラ
+    $('.username-link').hover(function() {
+        var username = $(this).text().trim();
+        var $hoverCard = $(this).next('.hover-card');
+
+        $.ajax({
+            url: "/accounts/hover_card/" + username + "/",
+            method: 'GET',
+            success: function(data) {
+                $hoverCard.find('.card-title').text(data.username);
+                $hoverCard.find('.card-text').eq(0).text(data.bio);
+                $hoverCard.find('#following-count-' + data.username).fadeOut('fast', function() {
+                    $(this).text(data.following_count).fadeIn('fast');
+                });
+                $hoverCard.find('#follower-count-' + data.username).fadeOut('fast', function() {
+                    $(this).text(data.followers_count).fadeIn('fast');
+                });
+
+                if (data.is_following) {
+                    $hoverCard.find('.follow-btn').text('フォロー解除').removeClass('btn-primary').addClass('btn-secondary').data('action', 'unfollow');
+                } else {
+                    $hoverCard.find('.follow-btn').text('フォローする').removeClass('btn-secondary').addClass('btn-primary').data('action', 'follow');
+                }
+            }
+        });
     });
 });
-  </script>
+</script>

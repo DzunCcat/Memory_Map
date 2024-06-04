@@ -43,9 +43,19 @@ class PostForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         content_type = cleaned_data.get("content_type")
+        title = cleaned_data.get("title")
         thumbnail = cleaned_data.get("thumbnail")
-        if content_type == 'article' and not thumbnail:
-            self.add_error('thumbnail', 'Thumbnail is required for articles.')
+
+        if content_type == 'article':
+            if not title:
+                self.add_error('title', 'タイトルは記事の場合必須です。')
+            if not thumbnail:
+                self.add_error('thumbnail', 'サムネイルは記事の場合必須です。')
+        elif content_type == 'tweet':
+            cleaned_data['title'] = None
+            cleaned_data['thumbnail'] = None
+
+        return cleaned_data
 
 class CommentForm(forms.ModelForm):
     class Meta:
