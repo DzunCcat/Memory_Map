@@ -100,7 +100,6 @@ def hover_card(request, username):
 
     return render(request, 'accounts/hover_card.html', context)
 
-
 class FollowingListView(LoginRequiredMixin, ListView):
     model = User
     template_name = 'accounts/following_list.html'

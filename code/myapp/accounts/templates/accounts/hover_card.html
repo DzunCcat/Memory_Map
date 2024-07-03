@@ -8,7 +8,7 @@
     </p>
     {% if request.user.is_authenticated and request.user != user %}
       <span id="follow-status-{{ user.username }}">
-        {% if is_following %}
+        {% if user.is_following %}
           <button class="btn btn-sm btn-secondary follow-btn" data-username="{{ user.username }}" data-action="unfollow">フォロー解除</button>
         {% else %}
           <button class="btn btn-sm btn-primary follow-btn" data-username="{{ user.username }}" data-action="follow">フォローする</button>

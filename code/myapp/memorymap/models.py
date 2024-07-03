@@ -69,7 +69,7 @@ class ThumbnailPath(object):
         return f'media/thumbnails/{filename}'
     
 # Post Model
-class Post(models.Model):
+class Post(MPTTModel):
     CONTENT_TYPES = (
         ('tweet', _('Tweet')),
         ('article', _('Article')),
@@ -92,6 +92,16 @@ class Post(models.Model):
     thumbnail = models.ImageField(upload_to=ThumbnailPath(), blank=True, null=True)
     uuid = models.UUIDField(default=uuid.uuid4, editable=False)  # UUIDフィールドを追加
 
+    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+    reply_count = models.PositiveIntegerField(default=0)
+
+
+    # MPTT fields
+    lft = models.PositiveIntegerField(default=0, editable=False)
+    rght = models.PositiveIntegerField(default=0, editable=False)
+    tree_id = models.PositiveIntegerField(default=0, editable=False)
+    level = models.PositiveIntegerField(default=0, editable=False)
+
 
     def clean(self):
         if self.content_type == 'tweet':
@@ -104,6 +114,9 @@ class Post(models.Model):
                 raise ValidationError(_('Article posts must have a title.'))
             if not self.thumbnail:
                 raise ValidationError(_('Article posts must have a thumbnail.'))
+            
+    class MPTTMeta:
+        order_insertion_by = ['created_at']
 
     class Meta:
         indexes = [
@@ -120,11 +133,9 @@ class Post(models.Model):
         else:
             return _('Post not found.')
 
-    #post_detail should be set in view.
-
     def get_absolute_url(self):
         return reverse('memorymap:post_detail', kwargs={'username': self.author.username, 'uuid': self.uuid})
-    
+
     def delete(self, *args, **kwargs):
         media_files = self.media_post.all()
         for media in media_files:
@@ -132,6 +143,14 @@ class Post(models.Model):
         media_files.delete()
         
         super().delete(*args, **kwargs)
+
+    def increment_reply_count(self):
+        self.reply_count += 1
+        self.save()
+
+    def decrement_reply_count(self):
+        self.reply_count -= 1
+        self.save()
 
 class PostAccess(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -228,23 +247,28 @@ class Repost(models.Model):
     reposted_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='reposts')
     created_at = models.DateTimeField(auto_now_add=True)
 
-# Comment Model
-class Comment(MPTTModel):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='comments')
-    content = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+#postがコメント機能持ったため不要
+# # Comment Model
+# class Comment(MPTTModel):
+#     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='comments')
+#     content = models.TextField()
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
+#     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
 
-    class MPTTMeta:
-        order_insertion_by = ['created_at']
+#     class MPTTMeta:
+#         order_insertion_by = ['created_at']
 
-    class Meta:
-        verbose_name = _('Comment')
-        verbose_name_plural = _('Comments')
+#     class Meta:
+#         verbose_name = _('Comment')
+#         verbose_name_plural = _('Comments')
+#         indexes = [
+#             models.Index(fields=['content']),
+#         ]
 
-    def __str__(self):
-        return f"{self.user.username}: {self.content[:20]}"
+#     def __str__(self):
+#         return f"{self.user.username}: {self.content[:20]}"
 
 # Tag Model
 class Tag(models.Model):

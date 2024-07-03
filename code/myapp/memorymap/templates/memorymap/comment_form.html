@@ -1,0 +1,15 @@
+<form id="comment-form-{% if parent_id == post.id %}main{% else %}{{ parent_id }}{% endif %}" 
+      class="reply-form" 
+      method="post" 
+      enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="hidden" name="parent_id" value="{{ parent_id }}">
+  {{ form.content }}
+  <div id="comment-dropzone-{% if parent_id == post.id %}main{% else %}{{ parent_id }}{% endif %}" 
+       class="dropzone"
+       data-url="{% url 'memorymap:file_upload' %}"
+       data-max-filesize="{{ dropzone_config.maxFilesize }}"
+       data-accepted-files="{{ dropzone_config.acceptedFiles }}"></div>
+  <input type="hidden" name="file_ids" id="file_ids-{% if parent_id == post.id %}main{% else %}{{ parent_id }}{% endif %}" value="">
+  <button type="submit" class="btn btn-primary mt-3">コメントを投稿</button>
+</form>

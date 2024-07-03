@@ -1,0 +1,33 @@
+{% for comment in comments %}
+  <div class="comment comment-level-{{ comment.level }}" id="comment-{{ comment.id }}">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">
+          <a href="{% url 'accounts:profile' comment.author.username %}">{{ comment.author.username }}</a>
+        </h5>
+        <p class="card-text comment-content" data-original-content="{{ comment.content }}">{{ comment.content|linebreaks }}</p>
+        <div class="media-preview">
+          {% for media in comment.media_post.all %}
+            {% include 'memorymap/media_item.html' with media=media %}
+          {% endfor %}
+        </div>
+        <p class="card-text"><small class="text-muted">{{ comment.created_at|date:"Y/m/d H:i" }}</small></p>
+        {% if comment.level < 3 %}
+          <button class="btn btn-sm btn-outline-primary" onclick="toggleReplyForm('{{ comment.id }}')">返信</button>
+        {% endif %}
+        {% if user == comment.author %}
+          <button class="btn btn-sm btn-outline-secondary" onclick="editComment('{{ comment.id }}')">編集</button>
+          <button class="btn btn-sm btn-outline-danger" onclick="deleteComment('{{ comment.id }}')">削除</button>
+        {% endif %}
+      </div>
+    </div>
+    {% if comment.level < 3 %}
+      {% include 'memorymap/comment_form.html' with form=comment_form parent_id=comment.id %}
+    {% endif %}
+    {% if not comment.is_leaf_node %}
+      <div class="children ml-4">
+        {% include 'memorymap/comment_thread.html' with comments=comment.get_children %}
+      </div>
+    {% endif %}
+  </div>
+{% endfor %}

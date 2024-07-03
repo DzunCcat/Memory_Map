@@ -35,18 +35,18 @@ Dropzone.options.myDropzone = {
     acceptedFiles: 'image/*,video/*,audio/*',
     addRemoveLinks: true,
     autoProcessQueue: false,
-    parallelUploads: 5, //autoProcessQueue=falseの場合、defoult=2なのでmaxFilesと同値に設定
+    parallelUploads: 5,
     dictDefaultMessage: "画像またはビデオをドロップするか、クリックしてファイルを選択してください。",
+    headers: {
+        'X-CSRFToken': csrftoken
+    },
     init: function() {
         var myDropzone = this;
-
-        // 投稿ボタンがクリックされたときの処理を変更
         document.getElementById("post-form").addEventListener("submit", function(e) {
             e.preventDefault();
-            if (!formSubmitted) { // フラグをチェック
-                formSubmitted = true; // フラグを設定
-                if (myDropzone.getQueuedFiles().length > 0 && !myDropzone.processing) {
-                    console.log("All files added. Processing queue...");
+            if (!formSubmitted) {
+                formSubmitted = true;
+                if (myDropzone.getQueuedFiles().length > 0) {
                     myDropzone.processQueue();
                 } else {
                     this.submit();
@@ -54,22 +54,26 @@ Dropzone.options.myDropzone = {
             }
         });
         this.on("sending", function(file, xhr, formData) {
-            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-            formData.append("media_type", file.type.split('/')[0]); // メディアタイプを送信
+            formData.append("media_type", file.type.split('/')[0]);
         });
         this.on("success", function(file, response) {
             if (response.status === 'success') {
                 var file_ids_input = document.getElementById("file_ids");
                 if (file_ids_input.value) {
-                    file_ids_input.value += ',' + response.file_id; // 既存の値があればカンマで区切って追加
+                    file_ids_input.value += ',' + response.file_id;
                 } else {
-                    file_ids_input.value = response.file_id; // 最初のファイルIDを設定
+                    file_ids_input.value = response.file_id;
                 }
+            } else {
+                console.error("File upload failed:", response.error);
             }
         });
         this.on("queuecomplete", function() {
             document.getElementById("post-form").submit();
             formSubmitted = false;
+        });
+        this.on("error", function(file, errorMessage) {
+            console.error("Upload error:", errorMessage);
         });
     }
 };
