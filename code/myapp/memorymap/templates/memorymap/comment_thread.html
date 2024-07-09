@@ -1,5 +1,5 @@
 {% for comment in comments %}
-  <div class="comment comment-level-{{ comment.level }}" id="comment-{{ comment.id }}">
+  <div class="comment comment-level-{{ comment.level }}" id="comment-{{ comment.id }}" data-comment-id="{{ comment.id }}">
     <div class="card mb-3">
       <div class="card-body">
         <h5 class="card-title">
@@ -13,11 +13,11 @@
         </div>
         <p class="card-text"><small class="text-muted">{{ comment.created_at|date:"Y/m/d H:i" }}</small></p>
         {% if comment.level < 3 %}
-          <button class="btn btn-sm btn-outline-primary" onclick="toggleReplyForm('{{ comment.id }}')">返信</button>
+          <button class="btn btn-sm btn-outline-primary reply-button">返信</button>
         {% endif %}
         {% if user == comment.author %}
-          <button class="btn btn-sm btn-outline-secondary" onclick="editComment('{{ comment.id }}')">編集</button>
-          <button class="btn btn-sm btn-outline-danger" onclick="deleteComment('{{ comment.id }}')">削除</button>
+          <button class="btn btn-sm btn-outline-secondary edit-button">編集</button>
+          <button class="btn btn-sm btn-outline-danger delete-button">削除</button>
         {% endif %}
       </div>
     </div>

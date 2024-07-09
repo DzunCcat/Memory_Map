@@ -231,30 +231,28 @@ def edit_comment(request, comment_id):
     original_parent = comment.parent
     original_level = comment.level
     form = PostForm(request.POST, instance=comment)
-    # debug
-    print("Received data:", request.POST)
 
     if form.is_valid():
         comment = form.save(commit=False)
-        # 親子関係とレベル情報を保持
         comment.parent = original_parent
         comment.level = original_level
         comment.save()
 
-                # コメントのHTMLを再レンダリング
         comment_html = render_to_string('memorymap/comment_item.html', {
             'comment': comment,
             'user': request.user,
-            'post': comment.get_root()  # ルート投稿を取得
+            'post': comment.get_root()
         })
-        
+
         return JsonResponse({
             'status': 'success',
             'content': comment.content,
             'html': comment_html,
         })
-    # debug
-    print("Form errors:", form.errors)
+    else:
+        print("Form errors:", form.errors)  # デバッグ用にフォームエラーを出力
+        print("Received data:", request.POST)  # デバッグ用に受信データを出力
+
     return JsonResponse({'status': 'error', 'errors': form.errors}, status=400)
 
 @login_required

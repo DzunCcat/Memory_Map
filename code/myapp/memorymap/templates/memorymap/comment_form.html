@@ -1,7 +1,8 @@
 <form id="comment-form-{% if parent_id == post.id %}main{% else %}{{ parent_id }}{% endif %}" 
       class="reply-form" 
       method="post" 
-      enctype="multipart/form-data">
+      enctype="multipart/form-data"
+      action="{% url 'memorymap:add_comment' post.uuid %}">
   {% csrf_token %}
   <input type="hidden" name="parent_id" value="{{ parent_id }}">
   {{ form.content }}
