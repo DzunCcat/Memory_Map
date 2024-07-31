@@ -18,8 +18,11 @@
             {% if post.content_type == 'article' %}
               <h1 class="card-title">{{ post.title }}</h1>
             {% endif %}
-            <h5 class="card-subtitle mb-2 text-muted">
-              <a href="{% url 'accounts:profile' post.author.username %}">{{ post.author.username }}</a>
+            <h5 class="card-subtitle mb-2 text-muted d-flex justify-content-end align-items-center">
+              <div class="user-container position-relative">
+                <a href="{% url 'accounts:profile' post.author.username %}" class="username-link" data-username="{{ post.author.username }}">{{ post.author.username }}</a>
+                <div class="hover-card-container"></div>
+              </div>
             </h5>
             <p class="card-text">{{ post.content|linebreaks }}</p>
             <div class="media-preview">
@@ -71,4 +74,5 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
   <script src="{% static 'memorymap/js/post_detail.js' %}"></script>
+  <script src="{% static 'js/hover_card.js' %}"></script>
 {% endblock %}

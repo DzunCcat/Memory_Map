@@ -1,84 +1,80 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{{ user.username }}のプロフィール - {{block.super}}{% endblock %}
+{% block title %}{{ profile_user.username }}のプロフィール - {{ block.super }}{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    {% if user.profile_picture %}
-                        <img src="{{ user.profile_picture.url }}" class="card-img-top" alt="{{ user.username }}のプロフィール画像">
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                {% if profile_user.profile_picture %}
+                    <img src="{{ profile_user.profile_picture.url }}" class="card-img-top" alt="{{ profile_user.username }}のプロフィール画像">
+                {% else %}
+                    <img src="{% static 'images/default_profile.jpg' %}" class="card-img-top" alt="デフォルトのプロフィール画像">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ profile_user.username }}</h5>
+                    <p class="card-text">{{ profile_user.bio }}</p>
+                    <p class="card-text">
+                        <a href="{% url 'accounts:follow_list' profile_user.username %}#following">フォロー中: <span id="following-count">{{ following_count }}</span></a> | 
+                        <a href="{% url 'accounts:follow_list' profile_user.username %}#followers">フォロワー: <span id="follower-count">{{ followers_count }}</span></a>
+                    </p>
+                    {% if request.user == profile_user %}
+                        <a href="{% url 'accounts:profile_edit' username=profile_user.username %}" class="btn btn-primary">プロフィールを編集</a>
                     {% else %}
-                        <img src="{% static 'images/default_profile.jpg' %}" class="card-img-top" alt="デフォルトのプロフィール画像">
+                        <button id="profile-follow-btn" class="btn {% if is_following %}btn-secondary{% else %}btn-primary{% endif %}" data-username="{{ profile_user.username }}" data-action="{% if is_following %}unfollow{% else %}follow{% endif %}">
+                            {% if is_following %}フォロー解除{% else %}フォローする{% endif %}
+                        </button>
                     {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title">{{ user.username }}</h5>
-                        <p class="card-text">{{ user.bio }}</p>
-                        <p class="card-text">
-                            <a href="{% url 'accounts:following_list' user.username %}">フォロー中: <span id="following-count">{{ following_count }}</span></a> | 
-                            <a href="{% url 'accounts:followers_list' user.username %}">フォロワー: <span id="follower-count">{{ followers_count }}</span></a>
-                        </p>
-                        {% if request.user == user %}
-                            <a href="{% url 'accounts:profile_edit' username=user.username %}" class="btn btn-primary">プロフィールを編集</a>
-                        {% else %}
-                            <button id="profile-follow-btn" class="btn {% if is_following %}btn-secondary{% else %}btn-primary{% endif %}" data-username="{{ user.username }}" data-action="{% if is_following %}unfollow{% else %}follow{% endif %}">
-                                {% if is_following %}フォロー解除{% else %}フォローする{% endif %}
-                            </button>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <h2>{{ user.username }}の投稿</h2>
-                <div class="row">
-                    {% for post in posts %}
-                        <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
-                            <div class="card h-100 shadow-sm">
-                                {% if post.thumbnail %}
-                                    <img src="{{ post.thumbnail.url }}" class="card-img-top" alt="{{ post.title }}">
-                                {% endif %}
-                                <div class="card-body">
-                                    {% if post.content_type == 'article' %}
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <h5 class="card-title">{{ post.title }}</h5>
-                                            <small>
-                                                <a href="{% url 'accounts:profile' post.author.username %}" class="username-link">{{ post.author.username }}</a>
-                                                <div class="hover-card">
-                                                    {% include 'accounts/hover_card.html' with user=post.author %}
-                                                </div>
-                                            </small>
-                                        </div>
-                                    {% elif post.content_type == 'tweet' %}
-                                        <h5 class="card-title">
-                                            <a href="{% url 'accounts:profile' post.author.username %}" class="username-link">{{ post.author.username }}</a>
-                                            <div class="hover-card">
-                                                {% include 'accounts/hover_card.html' with user=post.author %}
-                                            </div>
-                                        </h5>
-                                    {% endif %}
-                                    <p class="card-text">{{ post.content|truncatewords:20 }}</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <a href="{% url 'memorymap:post_detail' post.author.username post.uuid %}" class="btn btn-sm btn-outline-secondary">詳細を見る</a>
-                                        <small class="text-muted">{{ post.created_at|date:"Y/m/d H:i" }}</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    {% empty %}
-                        <p>まだ投稿はありません。</p>
-                    {% endfor %}
                 </div>
             </div>
         </div>
+        <div class="col-md-8">
+            <h2>{{ profile_user.username }}の投稿</h2>
+            <div class="row">
+                {% for post in posts %}
+                    <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            {% if post.thumbnail %}
+                                <img src="{{ post.thumbnail.url }}" class="card-img-top" alt="{{ post.title }}">
+                            {% endif %}
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    {% if post.content_type == 'article' %}
+                                        <h5 class="card-title">{{ post.title }}</h5>
+                                    {% endif %}
+                                    <small>
+                                        <div class="user-container position-relative">
+                                            <a href="{% url 'accounts:profile' post.author.username %}" class="username-link" data-username="{{ post.author.username }}">{{ post.author.username }}</a>
+                                            <div class="hover-card-container"></div>
+                                        </div>
+                                    </small>
+                                </div>
+                                <p class="card-text">{{ post.content|truncatewords:20 }}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <a href="{% url 'memorymap:post_detail' post.author.username post.uuid %}" class="btn btn-sm btn-outline-secondary">詳細を見る</a>
+                                    <small class="text-muted">{{ post.created_at|date:"Y/m/d H:i" }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>まだ投稿はありません。</p>
+                {% endfor %}
+            </div>
+        </div>
     </div>
+</div>
 {% endblock %}
 
 {% block extra_js %}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'js/hover_card.js' %}"></script>
 <script>
 $(document).ready(function() {
+    const csrftoken = '{{ csrf_token }}';
+
     $('#profile-follow-btn').click(function(event) {
         event.preventDefault();
         var $this = $(this);
@@ -93,7 +89,7 @@ $(document).ready(function() {
             url: url,
             method: 'POST',
             data: {
-                'csrfmiddlewaretoken': '{{ csrf_token }}'
+                'csrfmiddlewaretoken': csrftoken
             },
             success: function(data) {
                 console.log('Ajax request successful. Data:', data);

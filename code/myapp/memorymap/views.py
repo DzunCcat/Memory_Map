@@ -36,31 +36,21 @@ class HomeView(LoginRequiredMixin, ListView):
             Q(visibility="public") |
             Q(visibility="private", author=user) |
             Q(visibility="custom", author=user)
-        ).order_by('-created_at')
+        ).order_by('-created_at').select_related('author')
         
         return queryset
 
     def get_context_data(self, **kwargs):
-        
         context = super().get_context_data(**kwargs)
         posts = context['posts']
         user = self.request.user
 
         for post in posts:
             post.author.is_following = Follower.objects.filter(follower=user, followed=post.author).exists()
+            post.author.following_count = Follower.objects.filter(follower=post.author).count()
+            post.author.followers_count = Follower.objects.filter(followed=post.author).count()
 
-        followers = Follower.objects.filter(followed=user).count()
-        following = Follower.objects.filter(follower=user).count()
-
-        context.update({
-            'followers_count': followers,
-            'following_count': following,
-            'user': user,
-        })
-
-        # デバッグ用
-        print(context)
-
+        context['user'] = user
         return context
 
     

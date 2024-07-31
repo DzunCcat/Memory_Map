@@ -3,7 +3,10 @@
     <div class="card mb-3">
       <div class="card-body">
         <h5 class="card-title">
-          <a href="{% url 'accounts:profile' comment.author.username %}">{{ comment.author.username }}</a>
+          <div class="user-container position-relative">
+            <a href="{% url 'accounts:profile' comment.author.username %}" class="username-link" data-username="{{ comment.author.username }}">{{ comment.author.username }}</a>
+            <div class="hover-card-container"></div>
+          </div>
         </h5>
         <p class="card-text comment-content" data-original-content="{{ comment.content }}">{{ comment.content|linebreaks }}</p>
         <div class="media-preview">

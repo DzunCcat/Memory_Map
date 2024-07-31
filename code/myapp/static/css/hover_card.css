@@ -1,0 +1,24 @@
+.user-container {
+  display: inline-block;
+}
+
+.hover-card-container {
+  position: relative;
+}
+
+.hover-card {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  width: 300px;
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+.hover-card.show {
+  display: block;
+}
