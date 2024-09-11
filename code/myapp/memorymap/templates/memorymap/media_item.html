@@ -1,0 +1,13 @@
+{% if media.media_type == 'image' %}
+  <img src="{{ media.file.url }}" alt="Media" class="img-fluid">
+{% elif media.media_type == 'video' %}
+  <video controls class="img-fluid">
+    <source src="{{ media.file.url }}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+{% elif media.media_type == 'audio' %}
+  <audio controls>
+    <source src="{{ media.file.url }}" type="audio/mpeg">
+    Your browser does not support the audio tag.
+  </audio>
+{% endif %}

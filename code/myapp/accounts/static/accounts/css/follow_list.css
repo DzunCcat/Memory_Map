@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.card {
+    margin: 10px;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+  }
+  
+  .card-text {
+    font-size: 0.875rem;
+  }
+  
+  .card-body {
+    padding: 15px;
+  }
+  
+  .btn {
+    margin-top: 10px;
+  }
+  

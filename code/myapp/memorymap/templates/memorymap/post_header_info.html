@@ -1,0 +1,130 @@
+{% if template_name == 'home' %}
+  <!-- home.htmlのスタイル -->
+  {% if post.content_type == 'article' %}
+    <div class="d-flex justify-content-between align-items-center">
+      <h5 class="card-title">{{ post.title }}</h5>
+      <small>
+        <a href="{% url 'accounts:profile' post.author.username %}" class="username-link">{{ post.author.username }}</a>
+        <div class="hover-card">
+          {% include 'accounts/hover_card.html' with user=post.author %}
+        </div>
+      </small>
+    </div>
+  {% elif post.content_type == 'tweet' %}
+    <h5 class="card-title">
+      <a href="{% url 'accounts:profile' post.author.username %}" class="username-link">{{ post.author.username }}</a>
+      <div class="hover-card">
+        {% include 'accounts/hover_card.html' with user=post.author %}
+      </div>
+    </h5>
+  {% endif %}
+{% elif template_name == 'post_detail' %}
+  <!-- post_detail.htmlのスタイル -->
+  {% if post.content_type == 'article' %}
+    <div class="d-flex justify-content-between align-items-center">
+      <h1 class="card-title">{{ post.title }}</h1>
+      <h5>
+        <a href="{% url 'accounts:profile' post.author.username %}" class="username-link">{{ post.author.username }}</a>
+        <div class="hover-card">
+          {% include 'accounts/hover_card.html' with user=post.author %}
+        </div>
+      </h5>
+    </div>
+  {% elif post.content_type == 'tweet' %}
+    <h1 class="card-title">
+      <a href="{% url 'accounts:profile' post.author.username %}" class="username-link">{{ post.author.username }}</a>
+      <div class="hover-card">
+        {% include 'accounts/hover_card.html' with user=post.author %}
+      </div>
+    </h1>
+  {% endif %}
+    {% elif template_name == 'profile' %}
+    <!-- profile.htmlのスタイル -->
+    {% if post.content_type == 'article' %}
+    <div class="d-flex justify-content-between align-items-center">
+        <h5 class="card-title">{{ post.title }}</h5>
+        <small>
+        <a href="{% url 'accounts:profile' post.author.username %}" class="username-link">{{ post.author.username }}</a>
+        <div class="hover-card">
+            {% include 'accounts/hover_card.html' with user=post.author %}
+        </div>
+        </small>
+    </div>
+    {% elif post.content_type == 'tweet' %}
+    <h5 class="card-title">
+        <a href="{% url 'accounts:profile' post.author.username %}" class="username-link">{{ post.author.username }}</a>
+        <div class="hover-card">
+        {% include 'accounts/hover_card.html' with user=post.author %}
+        </div>
+    </h5>
+    {% endif %}
+    {% elif template_name == 'search_results' %}
+    <!-- profile.htmlのスタイル -->
+    {% if post.content_type == 'article' %}
+    <div class="d-flex justify-content-between align-items-center">
+        <h5 class="card-title">{{ post.title }}</h5>
+        <small>
+        <a href="{% url 'accounts:profile' post.author.username %}" class="username-link">{{ post.author.username }}</a>
+        <div class="hover-card">
+            {% include 'accounts/hover_card.html' with user=post.author %}
+        </div>
+        </small>
+    </div>
+    {% elif post.content_type == 'tweet' %}
+    <h5 class="card-title">
+        <a href="{% url 'accounts:profile' post.author.username %}" class="username-link">{{ post.author.username }}</a>
+        <div class="hover-card">
+        {% include 'accounts/hover_card.html' with user=post.author %}
+        </div>
+    </h5>
+    {% endif %}
+    {% elif template_name == 'news_feed' %}
+    <!-- profile.htmlのスタイル -->
+    {% if post.content_type == 'article' %}
+    <div class="d-flex justify-content-between align-items-center">
+        <h5 class="card-title">{{ post.title }}</h5>
+        <small>
+        <a href="{% url 'accounts:profile' post.author.username %}" class="username-link">{{ post.author.username }}</a>
+        <div class="hover-card">
+            {% include 'accounts/hover_card.html' with user=post.author %}
+        </div>
+        </small>
+    </div>
+    {% elif post.content_type == 'tweet' %}
+    <h5 class="card-title">
+        <a href="{% url 'accounts:profile' post.author.username %}" class="username-link">{{ post.author.username }}</a>
+        <div class="hover-card">
+        {% include 'accounts/hover_card.html' with user=post.author %}
+        </div>
+    </h5>
+    {% endif %}
+    {% elif template_name == 'post_confirm_delete' %}
+    <!-- post_confirm_delete.htmlのスタイル -->
+    {% if post.content_type == 'article' %}
+      <div class="d-flex justify-content-between align-items-center">
+        <h1 class="card-title">{{ post.title }}</h1>
+        <h5>
+          <a href="{% url 'accounts:profile' post.author.username %}" class="username-link">{{ post.author.username }}</a>
+          <div class="hover-card">
+            {% include 'accounts/hover_card.html' with user=post.author %}
+          </div>
+        </h5>
+      </div>
+    {% elif post.content_type == 'tweet' %}
+      <h1 class="card-title">
+        <a href="{% url 'accounts:profile' post.author.username %}" class="username-link">{{ post.author.username }}</a>
+        <div class="hover-card">
+          {% include 'accounts/hover_card.html' with user=post.author %}
+        </div>
+      </h1>
+    {% endif %}
+    
+{% else %}
+  <!-- デフォルトのスタイル -->
+  {% if post.content_type == 'article' %}
+    <h2 class="card-title">{{ post.title }}</h2>
+    <p>Author: {{ post.author.username }}</p>
+  {% elif post.content_type == 'tweet' %}
+    <p>{{ post.author.username }}</p>
+  {% endif %}
+{% endif %}

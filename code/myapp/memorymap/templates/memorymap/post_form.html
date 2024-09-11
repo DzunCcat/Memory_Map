@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css">
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <h1 class="my-4">{% if form.instance.pk %}投稿を編集{% else %}新しい投稿を作成{% endif %}</h1>
+        <form method="post" enctype="multipart/form-data" id="post-form">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <div class="dropzone" id="myDropzone"></div>
+          <input type="hidden" id="file_ids" name="file_ids" value="">
+          <button type="submit" class="btn btn-primary">{% if form.instance.pk %}更新{% else %}投稿{% endif %}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+<script>
+var formSubmitted = false;
+var csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+Dropzone.options.myDropzone = {
+    url: "{% url 'memorymap:file_upload'%}",
+    paramName: "file",
+    maxFilesize: 100,
+    maxFiles: 5,
+    acceptedFiles: 'image/*,video/*,audio/*',
+    addRemoveLinks: true,
+    autoProcessQueue: false,
+    parallelUploads: 5,
+    dictDefaultMessage: "画像またはビデオをドロップするか、クリックしてファイルを選択してください。",
+    headers: {
+        'X-CSRFToken': csrftoken
+    },
+    init: function() {
+        var myDropzone = this;
+        document.getElementById("post-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            if (!formSubmitted) {
+                formSubmitted = true;
+                if (myDropzone.getQueuedFiles().length > 0) {
+                    myDropzone.processQueue();
+                } else {
+                    this.submit();
+                }
+            }
+        });
+        this.on("sending", function(file, xhr, formData) {
+            formData.append("media_type", file.type.split('/')[0]);
+        });
+        this.on("success", function(file, response) {
+            if (response.status === 'success') {
+                var file_ids_input = document.getElementById("file_ids");
+                if (file_ids_input.value) {
+                    file_ids_input.value += ',' + response.file_id;
+                } else {
+                    file_ids_input.value = response.file_id;
+                }
+            } else {
+                console.error("File upload failed:", response.error);
+            }
+        });
+        this.on("queuecomplete", function() {
+            document.getElementById("post-form").submit();
+            formSubmitted = false;
+        });
+        this.on("error", function(file, errorMessage) {
+            console.error("Upload error:", errorMessage);
+        });
+    }
+};
+
+
+  function updateFormFields() {
+      var contentType = document.getElementById("id_content_type").value;
+      var titleField = document.getElementById("id_title").parentNode;
+      var thumbnailField = document.getElementById("id_thumbnail").parentNode;
+  
+      if (contentType === "tweet") {
+          titleField.style.display = "none";
+          thumbnailField.style.display = "none";
+      } else {
+          titleField.style.display = "block";
+          thumbnailField.style.display = "block";
+      }
+  }
+
+  window.addEventListener('DOMContentLoaded', (event) => {
+    updateFormFields();
+  });
+</script>
+{% endblock %}

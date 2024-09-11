@@ -1,0 +1,20 @@
+<div class="card hover-card">
+  <div class="card-body">
+    <h5 class="card-title">{{ user.username }}</h5>
+    <p class="card-text">{{ user.bio }}</p>
+    <p class="card-text">
+      <a href="{% url 'accounts:follow_list' user.username %}">フォロー: <span class="following-count">{{ user.following_count }}</span></a> | 
+      <a href="{% url 'accounts:follow_list' user.username %}">フォロワー: <span class="follower-count">{{ user.followers_count }}</span></a>
+    </p>
+    {% if request.user.is_authenticated and request.user != user %}
+      <form class="follow-form" method="post">
+        {% csrf_token %}
+        <button class="btn btn-sm {% if user.is_following %}btn-secondary{% else %}btn-primary{% endif %} follow-btn"
+                data-username="{{ user.username }}"
+                data-action="{% if user.is_following %}unfollow{% else %}follow{% endif %}">
+          {% if user.is_following %}フォロー解除{% else %}フォローする{% endif %}
+        </button>
+      </form>
+    {% endif %}
+  </div>
+</div>

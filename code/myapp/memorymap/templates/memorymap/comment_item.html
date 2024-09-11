@@ -1,0 +1,24 @@
+<div class="comment comment-level-{{ comment.level }}" id="comment-{{ comment.id }}">
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">
+        <a href="{% url 'accounts:profile' comment.author.username %}">{{ comment.author.username }}</a>
+      </h5>
+      <p class="card-text comment-content">{{ comment.content|linebreaks }}</p>
+      <div class="media-preview">
+        {% for media in comment.media_post.all %}
+          {% include 'memorymap/media_item.html' with media=media %}
+        {% endfor %}
+      </div>
+      <p class="card-text"><small class="text-muted">{{ comment.created_at|date:"Y/m/d H:i" }}</small></p>
+      {% if comment.level < 3 %}
+        <button class="btn btn-sm btn-outline-primary reply-button" data-comment-id="{{ comment.id }}">返信</button>
+      {% endif %}
+      {% if user == comment.author %}
+        <button class="btn btn-sm btn-outline-secondary edit-button" data-comment-id="{{ comment.id }}">編集</button>
+        <button class="btn btn-sm btn-outline-danger delete-button" data-comment-id="{{ comment.id }}">削除</button>
+      {% endif %}
+    </div>
+  </div>
+  <div class="child-comments"></div>
+</div>

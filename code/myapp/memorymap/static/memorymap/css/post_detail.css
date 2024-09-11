@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+.comment-level-1 { margin-left: 20px; }
+.comment-level-2 { margin-left: 40px; }
+.comment-level-3 { margin-left: 60px; }
+.reply-form { margin-top: 10px; }
+.reply-form:not(#comment-form-main) { display: none; }
+.children {
+  margin-left: 20px;
+  border-left: 1px solid #ccc;
+  padding-left: 10px;
+}
