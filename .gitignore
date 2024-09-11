@@ -1,0 +1,21 @@
+# ログファイルを無視
+*.log
+
+# Python関連の無視対象
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 仮想環境
+venv/
+env/
+
+# Django関連
+*.sqlite3
+db.sqlite3
+/media/
+staticfiles/
+
+# 環境変数ファイル
+.env
